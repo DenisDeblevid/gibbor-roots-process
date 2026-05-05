@@ -287,6 +287,43 @@
   .presse-extrait { font-size:1rem; font-weight:300; font-style:italic; line-height:1.7; color:rgba(244,240,232,0.65); }
   .presse-titre { font-size:1rem; font-weight:600; line-height:1.5; color:var(--blanc); margin-bottom:0.8rem; }
 
+  /* ── ATMOSPHÈRE SECTIONS ── */
+
+  /* Séparateur cicatrice */
+  .sep {
+    width:100%; height:1px;
+    background:linear-gradient(90deg, transparent 0%, var(--rouge) 30%, var(--or) 50%, var(--rouge) 70%, transparent 100%);
+    opacity:0.35; margin:0;
+  }
+
+  /* Section Process — forêt profonde en fond */
+  .sec-process {
+    position:relative;
+    background:
+      linear-gradient(180deg, rgba(10,10,10,0.97) 0%, rgba(12,18,12,0.96) 50%, rgba(10,10,10,0.97) 100%),
+      url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1600&q=20') center/cover fixed;
+  }
+
+  /* Section Sacs — ville sombre en fond */
+  .sec-sacs {
+    position:relative;
+    background:
+      linear-gradient(180deg, rgba(10,10,10,0.97) 0%, rgba(12,12,18,0.96) 50%, rgba(10,10,10,0.97) 100%),
+      url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1600&q=20') center/cover fixed;
+  }
+
+  /* Presse — ligne gauche rouge */
+  .presse-card {
+    padding:2rem; border:1px solid rgba(244,240,232,0.07);
+    background:rgba(244,240,232,0.02); transition:all 0.3s;
+    border-left:3px solid rgba(192,57,43,0.2);
+  }
+  .presse-card:hover {
+    border-color:rgba(192,57,43,0.3);
+    border-left-color:var(--rouge);
+    background:rgba(244,240,232,0.03);
+  }
+
   /* ── TEAM BUILDING ── */
   .sec-btob { padding:8rem 3rem; border-top:1px solid var(--gris); border-bottom:1px solid var(--gris); }
   .btob-inner { max-width:1200px; margin:0 auto; }
@@ -604,6 +641,9 @@
   </p>
 </section>
 
+<!-- SÉPARATEUR -->
+<div class="sep"></div>
+
 <!-- PARCOURS -->
 <section class="sec-parcours" id="parcours">
   <div class="parcours-inner">
@@ -713,6 +753,9 @@
   </div>
 </section>
 
+<!-- SÉPARATEUR -->
+<div class="sep"></div>
+
 <!-- SACS -->
 <section class="sec-sacs" id="sacs">
   <p class="s-label">Autonomie matérielle</p>
@@ -798,6 +841,9 @@
   </div>
 </section>
 
+<!-- SÉPARATEUR -->
+<div class="sep"></div>
+
 <!-- TEAM BUILDING -->
 <section class="sec-btob" id="entreprises">
   <div class="btob-inner">
@@ -877,6 +923,9 @@
 
   </div>
 </section>
+
+<!-- SÉPARATEUR -->
+<div class="sep"></div>
 
 <!-- CONTACT -->
 <section class="sec-contact" id="contact">
