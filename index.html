@@ -145,10 +145,10 @@
   .maslow-item.securite .maslow-t { color:var(--or); }
   .maslow-num { font-family:'Bebas Neue',sans-serif; font-size:4rem; line-height:1; color:rgba(244,240,232,0.05); margin-bottom:1rem; }
   .maslow-t { font-family:'Share Tech Mono',monospace; font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--rouge); margin-bottom:0.8rem; }
-  .maslow-d { font-size:0.95rem; font-weight:300; line-height:1.6; color:rgba(244,240,232,0.52); margin-bottom:1rem; }
+  .maslow-d { font-size:1rem; font-weight:400; line-height:1.7; color:rgba(244,240,232,0.72); margin-bottom:1rem; }
   .maslow-besoins { list-style:none; margin-top:0.8rem; }
-  .maslow-besoins li { font-family:'Share Tech Mono',monospace; font-size:0.6rem; letter-spacing:0.07em; color:rgba(244,240,232,0.35); padding:0.3rem 0; border-bottom:1px solid rgba(244,240,232,0.04); }
-  .maslow-besoins li::before { content:'— '; color:var(--rouge); opacity:0.6; }
+  .maslow-besoins li { font-family:'Courier Prime',monospace; font-size:0.85rem; color:rgba(244,240,232,0.6); padding:0.35rem 0; border-bottom:1px solid rgba(244,240,232,0.06); }
+  .maslow-besoins li::before { content:'— '; color:var(--rouge); opacity:0.8; }
   /* Barre gauche au survol — comme parcours */
   .maslow-item::before { content:''; position:absolute; top:0; left:0; width:3px; height:0; background:var(--rouge); transition:height 0.4s; }
   .maslow-item:hover::before { height:100%; }
@@ -180,8 +180,8 @@
   .modules-bloc-titre { font-family:'Bebas Neue',sans-serif; font-size:1.6rem; letter-spacing:0.08em; color:rgba(244,240,232,0.65); margin-bottom:0.4rem; }
   .modules-bloc-sous { font-family:'Share Tech Mono',monospace; font-size:0.68rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(192,57,43,0.6); margin-bottom:2rem; }
   .modules-liste { display:grid; grid-template-columns:repeat(4,1fr); gap:0; list-style:none; }
-  .modules-liste li { padding:1rem 1.2rem; border-left:1px solid rgba(244,240,232,0.07); border-bottom:1px solid rgba(244,240,232,0.07); font-family:'Share Tech Mono',monospace; font-size:0.68rem; letter-spacing:0.07em; color:rgba(244,240,232,0.5); cursor:default; transition:color 0.3s, background 0.3s; position:relative; }
-  .modules-liste li:hover { color:rgba(244,240,232,0.85); background:rgba(192,57,43,0.06); }
+  .modules-liste li { padding:1rem 1.2rem; border-left:1px solid rgba(244,240,232,0.07); border-bottom:1px solid rgba(244,240,232,0.07); font-family:'Courier Prime',monospace; font-size:0.88rem; color:rgba(244,240,232,0.65); cursor:default; transition:color 0.3s, background 0.3s; position:relative; }
+  .modules-liste li:hover { color:rgba(244,240,232,0.9); background:rgba(192,57,43,0.06); }
   .modules-liste li::before { content:''; position:absolute; left:0; top:0; width:0; height:100%; background:var(--rouge); opacity:0.4; transition:width 0.3s; }
   .modules-liste li:hover::before { width:2px; }
   .m-num { display:block; font-size:0.55rem; color:rgba(192,57,43,0.55); margin-bottom:0.3rem; }
@@ -327,8 +327,8 @@
   .btob-card:hover { background:rgba(192,57,43,0.04); border-left-color:var(--rouge); }
   .btob-card:hover::before { height:100%; }
   .btob-card-num { font-family:'Bebas Neue',sans-serif; font-size:3.5rem; color:var(--rouge); line-height:1; margin-bottom:0.5rem; opacity:0.6; }
-  .btob-card-t { font-family:'Share Tech Mono',monospace; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(244,240,232,0.45); margin-bottom:0.8rem; }
-  .btob-card-d { font-size:0.95rem; font-weight:300; line-height:1.6; color:rgba(244,240,232,0.38); }
+  .btob-card-t { font-family:'Share Tech Mono',monospace; font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(244,240,232,0.7); margin-bottom:0.8rem; }
+  .btob-card-d { font-size:1.05rem; font-weight:400; line-height:1.7; color:rgba(244,240,232,0.6); }
 
   .btob-ctas { display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap; }
 
@@ -374,8 +374,26 @@
   @keyframes typing { from { width:0; } to { width:100%; } }
   @keyframes blink-caret { from, to { border-color:transparent; } 50% { border-color:var(--rouge); } }
 
-  /* ── ANIMATIONS ── */
+  /* ── ANIMATION MACHINE À ÉCRIRE AU SCROLL ── */
+  .tw { opacity:0; }
+  .tw.visible { opacity:1; }
+  .tw-line { display:inline-block; overflow:hidden; white-space:nowrap; width:0; }
+  .tw.visible .tw-line { animation:tw-typing 1.2s steps(30,end) forwards; }
+  .tw.visible .tw-line:nth-child(2) { animation-delay:1.3s; }
+  .tw.visible .tw-line:nth-child(3) { animation-delay:2.6s; }
+  @keyframes tw-typing { from { width:0; } to { width:100%; } }
+
+  /* ── BOITES CONTACT MÊME TAILLE ── */
+  .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--gris); align-items:stretch; }
+  .contact-bloc { padding:3rem; background:var(--noir); position:relative; overflow:hidden; transition:background 0.3s, border-color 0.3s; border-left:3px solid transparent; display:flex; flex-direction:column; }
+  .contact-bloc:hover { background:rgba(244,240,232,0.01); border-left-color:var(--rouge); }
+  .contact-bloc::before { content:''; position:absolute; top:0; left:0; width:3px; height:0; background:var(--rouge); transition:height 0.4s; z-index:2; }
+  .contact-bloc:hover::before { height:100%; }
+  .contact-bloc p { flex-grow:0; }
+  .form-q { flex-grow:1; display:flex; flex-direction:column; gap:1rem; }
+  .form-q .form-submit { margin-top:auto; }
   @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+
   @media (max-width:900px) {
     nav { padding:1.2rem 1.5rem; }
     .nav-links { display:none; }
@@ -469,7 +487,10 @@
 
   <!-- Titre avec main -->
   <div class="titre-avec-main">
-    <h2 class="s-titre">UN CHEMIN,<br>PAS UN STAGE ORDINAIRE.</h2>
+    <h2 class="s-titre tw">
+      <span class="tw-line">UN CHEMIN,</span><br>
+      <span class="tw-line">PAS UN STAGE ORDINAIRE.</span>
+    </h2>
     <div class="main-bloc">
       <svg viewBox="0 0 60 75" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M30 8 L30 45" stroke="#f4f0e8" stroke-width="3.5" stroke-linecap="round"/>
@@ -588,7 +609,10 @@
     <p class="s-label">Les parcours</p>
 
     <div class="titre-avec-main">
-      <h2 class="s-titre">DES CHEMINS<br>QUI CHANGENT QUELQUE CHOSE.</h2>
+      <h2 class="s-titre tw">
+        <span class="tw-line">DES CHEMINS</span><br>
+        <span class="tw-line">QUI CHANGENT QUELQUE CHOSE.</span>
+      </h2>
       <div class="main-bloc">
         <svg viewBox="0 0 60 75" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M30 8 L30 45" stroke="#f4f0e8" stroke-width="3.5" stroke-linecap="round"/>
@@ -692,7 +716,10 @@
   <p class="s-label">Autonomie matérielle</p>
 
   <div class="titre-avec-main">
-    <h2 class="s-titre">TON SAC.<br>TON NIVEAU.</h2>
+    <h2 class="s-titre tw">
+      <span class="tw-line">TON SAC.</span><br>
+      <span class="tw-line">TON NIVEAU.</span>
+    </h2>
     <div class="main-bloc">
       <svg viewBox="0 0 60 75" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M30 8 L30 45" stroke="#f4f0e8" stroke-width="3.5" stroke-linecap="round"/>
@@ -775,7 +802,10 @@
     <p class="s-label">Entreprises & Organisations</p>
 
     <div class="titre-avec-main">
-      <h2 class="s-titre">VOS ÉQUIPES.<br>UN VRAI TEST.</h2>
+      <h2 class="s-titre tw">
+        <span class="tw-line">VOS ÉQUIPES.</span><br>
+        <span class="tw-line">UN VRAI TEST.</span>
+      </h2>
       <div class="main-bloc">
         <svg viewBox="0 0 60 75" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M30 8 L30 45" stroke="#f4f0e8" stroke-width="3.5" stroke-linecap="round"/>
@@ -850,7 +880,10 @@
 <section class="sec-contact" id="contact">
   <div class="contact-header">
     <p class="s-label" style="text-align:center;">Première étape</p>
-    <h2 class="s-titre" style="text-align:center;">PRÊT À<br>REPRENDRE LE CONTRÔLE ?</h2>
+    <h2 class="s-titre tw" style="text-align:center;">
+      <span class="tw-line">PRÊT À</span><br>
+      <span class="tw-line">REPRENDRE LE CONTRÔLE ?</span>
+    </h2>
     <p class="s-intro" style="margin:1rem auto;text-align:center;">
       Prends un rendez-vous ou définis ton niveau en 2 minutes. C'est la seule façon de commencer vraiment.
     </p>
@@ -943,6 +976,19 @@
     <li><a href="#">Mentions légales</a></li>
   </ul>
 </footer>
+
+<script>
+// Animation machine à écrire au scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !entry.target.classList.contains('visible')) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.tw').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
