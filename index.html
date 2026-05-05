@@ -485,6 +485,38 @@
   .contact-bloc p { flex-grow:0; }
   .form-q { flex-grow:1; display:flex; flex-direction:column; gap:1rem; }
   .form-q .form-submit { margin-top:auto; }
+
+  /* ── MODALE SOS MORSE ── */
+  .sos-overlay {
+    position:fixed; inset:0; z-index:9000;
+    background:rgba(0,0,0,0.92);
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; pointer-events:none; transition:opacity 0.4s ease;
+  }
+  .sos-overlay.active { opacity:1; pointer-events:all; }
+  .sos-modal {
+    background:#0a0a0a; border:1px solid rgba(192,57,43,0.4);
+    padding:3rem; max-width:420px; width:90%; position:relative;
+    box-shadow:0 0 60px rgba(192,57,43,0.15);
+    transform:translateY(20px); transition:transform 0.4s ease;
+  }
+  .sos-overlay.active .sos-modal { transform:translateY(0); }
+  .sos-modal-tag { font-family:'Share Tech Mono',monospace; font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--rouge); margin-bottom:1rem; }
+  .sos-modal-titre { font-family:'Bebas Neue',sans-serif; font-size:2rem; letter-spacing:0.05em; color:var(--blanc); margin-bottom:0.5rem; }
+  .sos-modal-desc { font-family:'Courier Prime',monospace; font-size:0.9rem; line-height:1.7; color:rgba(244,240,232,0.6); margin-bottom:2rem; }
+  .sos-champ { margin-bottom:1rem; }
+  .sos-champ label { font-family:'Share Tech Mono',monospace; font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(244,240,232,0.4); display:block; margin-bottom:0.4rem; }
+  .sos-champ input { width:100%; padding:0.8rem 1rem; background:rgba(244,240,232,0.04); border:1px solid rgba(244,240,232,0.1); color:var(--blanc); font-family:'Courier Prime',monospace; font-size:0.95rem; outline:none; transition:border-color 0.3s; }
+  .sos-champ input:focus { border-color:var(--rouge); }
+  .sos-btn { width:100%; padding:1rem; background:var(--rouge); color:var(--blanc); font-family:'Share Tech Mono',monospace; font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; border:none; cursor:pointer; transition:background 0.3s; margin-top:0.5rem; clip-path:polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)); }
+  .sos-btn:hover { background:#a93226; }
+  .sos-confirm { display:none; text-align:center; padding:1rem 0; }
+  .sos-confirm.visible { display:block; }
+  .sos-confirm-titre { font-family:'Bebas Neue',sans-serif; font-size:2.2rem; letter-spacing:0.1em; color:var(--or); margin-bottom:0.5rem; }
+  .sos-confirm-texte { font-family:'Courier Prime',monospace; font-size:0.9rem; line-height:1.7; color:rgba(244,240,232,0.6); }
+  .sos-close { position:absolute; top:1rem; right:1.2rem; font-family:'Share Tech Mono',monospace; font-size:0.65rem; letter-spacing:0.15em; color:rgba(244,240,232,0.25); cursor:pointer; transition:color 0.3s; text-transform:uppercase; }
+  .sos-close:hover { color:rgba(244,240,232,0.6); }
+
   @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
 
   @media (max-width:900px) {
@@ -1051,8 +1083,27 @@
   </ul>
 </footer>
 
+<!-- MODALE SOS MORSE -->
+<div class="sos-overlay" id="sos-overlay">
+  <div class="sos-modal">
+    <span class="sos-close" onclick="fermerSOS()">Fermer ×</span>
+    <div id="sos-form-bloc">
+      <p class="sos-modal-tag">· · · — — — · · ·</p>
+      <h2 class="sos-modal-titre">VOUS AVEZ<br>TROUVÉ.</h2>
+      <p class="sos-modal-desc">Laissez votre nom et votre email. Vous recevrez un code de réduction de <strong style="color:var(--or);">−20%</strong> sur le Parcours Initiation Niveau 1.</p>
+      <div class="sos-champ"><label>Prénom & Nom</label><input type="text" id="sos-nom" placeholder="Denis Deblevid"></div>
+      <div class="sos-champ"><label>Email</label><input type="email" id="sos-email" placeholder="contact@exemple.fr"></div>
+      <button class="sos-btn" onclick="envoyerSOS()">Recevoir mon code →</button>
+    </div>
+    <div class="sos-confirm" id="sos-confirm">
+      <p class="sos-confirm-titre">CODE ENVOYÉ.</p>
+      <p class="sos-confirm-texte">Votre réduction de <strong style="color:var(--or);">−20%</strong> sur le Parcours Initiation vous sera transmise par email dans les 24h.<br><br>Bienvenue dans Gibbor Roots Process.</p>
+    </div>
+  </div>
+</div>
+
 <script>
-// Animation machine à écrire au scroll
+// ── INTERSECTION OBSERVER — machine à écrire au scroll ──
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting && !entry.target.classList.contains('visible')) {
@@ -1060,8 +1111,89 @@ const observer = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.3 });
-
 document.querySelectorAll('.tw').forEach(el => observer.observe(el));
+
+// ── SÉQUENCE SOS MORSE ──
+// SOS = · · · — — — · · ·
+// Court = clic < 300ms | Long = clic >= 300ms
+const SOS_PATTERN = ['short','short','short','long','long','long','short','short','short'];
+let morseSequence = [];
+let morseTimer = null;
+let pressStart = 0;
+const RESET_DELAY = 2000; // Reset si pas de clic pendant 2s
+
+function detecterMorse(duree) {
+  const type = duree < 300 ? 'short' : 'long';
+  morseSequence.push(type);
+
+  // Vérifier si la séquence correspond à SOS
+  const seq = morseSequence.join(',');
+  const sos = SOS_PATTERN.join(',');
+
+  if (seq === sos) {
+    morseSequence = [];
+    ouvrirSOS();
+    return;
+  }
+
+  // Si la séquence ne peut plus matcher — reset
+  if (morseSequence.length > SOS_PATTERN.length ||
+      !SOS_PATTERN.slice(0, morseSequence.length).join(',').startsWith(morseSequence.slice(0, morseSequence.length).join(','))) {
+    morseSequence = [];
+  }
+
+  // Reset automatique après 2s sans action
+  clearTimeout(morseTimer);
+  morseTimer = setTimeout(() => { morseSequence = []; }, RESET_DELAY);
+}
+
+// Attacher aux mains SVG du hero
+document.querySelectorAll('.hero-main-corner .main-bloc, .titre-avec-main .main-bloc').forEach(main => {
+  main.addEventListener('mousedown', () => { pressStart = Date.now(); });
+  main.addEventListener('mouseup', () => {
+    const duree = Date.now() - pressStart;
+    detecterMorse(duree);
+  });
+  // Support tactile
+  main.addEventListener('touchstart', (e) => { e.preventDefault(); pressStart = Date.now(); });
+  main.addEventListener('touchend', (e) => { e.preventDefault(); const duree = Date.now() - pressStart; detecterMorse(duree); });
+});
+
+function ouvrirSOS() {
+  document.getElementById('sos-overlay').classList.add('active');
+}
+
+function fermerSOS() {
+  document.getElementById('sos-overlay').classList.remove('active');
+  document.getElementById('sos-confirm').classList.remove('visible');
+  document.getElementById('sos-form-bloc').style.display = 'block';
+}
+
+function envoyerSOS() {
+  const nom = document.getElementById('sos-nom').value;
+  const email = document.getElementById('sos-email').value;
+  if (!nom || !email) { alert('Merci de renseigner votre nom et votre email.'); return; }
+
+  // Envoi mailto
+  const sujet = encodeURIComponent('CODE SOS — Gibbor Roots Process — ' + nom);
+  const corps = encodeURIComponent(
+    'NOUVEAU CODE SOS DÉCLENCHÉ\n\n' +
+    'Nom : ' + nom + '\n' +
+    'Email : ' + email + '\n\n' +
+    'Cette personne a trouvé la séquence SOS morse.\n' +
+    'Lui envoyer le code −20% sur le Parcours Initiation Niveau 1.'
+  );
+  window.open('mailto:denisdeblevidcontact@gmail.com?subject=' + sujet + '&body=' + corps);
+
+  // Afficher confirmation
+  document.getElementById('sos-form-bloc').style.display = 'none';
+  document.getElementById('sos-confirm').classList.add('visible');
+}
+
+// Fermer au clic sur l'overlay
+document.getElementById('sos-overlay').addEventListener('click', function(e) {
+  if (e.target === this) fermerSOS();
+});
 </script>
 
 </body>
