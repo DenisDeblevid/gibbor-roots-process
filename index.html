@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gibbor Roots Process</title>
+<title>Gibbor Roots Process — Solide. Concret. Réel.</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -18,9 +18,7 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
-
   body {
     background: var(--noir);
     color: var(--blanc);
@@ -28,7 +26,58 @@
     overflow-x: hidden;
   }
 
-  /* NAV */
+  /* ─── RGPD ─── */
+  .rgpd-banner {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 9999;
+    background: rgba(10,10,10,0.97);
+    border-top: 1px solid rgba(244,240,232,0.1);
+    padding: 1.2rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .rgpd-banner p {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: rgba(244,240,232,0.55);
+    max-width: 700px;
+    line-height: 1.6;
+  }
+  .rgpd-banner p a { color: var(--or); text-decoration: none; }
+  .rgpd-btns { display: flex; gap: 1rem; flex-shrink: 0; }
+  .rgpd-accept {
+    padding: 0.6rem 1.5rem;
+    background: var(--rouge);
+    color: var(--blanc);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .rgpd-accept:hover { background: #a93226; }
+  .rgpd-refuse {
+    padding: 0.6rem 1.5rem;
+    background: transparent;
+    color: rgba(244,240,232,0.5);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid rgba(244,240,232,0.15);
+    cursor: pointer;
+    transition: border-color 0.3s;
+  }
+  .rgpd-refuse:hover { border-color: rgba(244,240,232,0.4); }
+
+  /* ─── NAV ─── */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -37,9 +86,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+    background: linear-gradient(to bottom, rgba(10,10,10,0.97), transparent);
   }
-
   .nav-logo {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.4rem;
@@ -47,29 +95,21 @@
     color: var(--blanc);
     text-decoration: none;
   }
-
   .nav-logo span { color: var(--rouge); }
-
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
-
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
   .nav-links a {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--blanc);
     text-decoration: none;
-    opacity: 0.7;
+    opacity: 0.6;
     transition: opacity 0.3s, color 0.3s;
   }
-
   .nav-links a:hover { opacity: 1; color: var(--or); }
 
-  /* HERO — LA DÉCHIRURE */
+  /* ─── HERO ─── */
   .hero {
     min-height: 100vh;
     position: relative;
@@ -78,62 +118,75 @@
     overflow: hidden;
   }
 
-  /* Côté forêt — gauche */
   .hero-foret {
     position: absolute;
     top: 0; left: 0;
-    width: 58%;
+    width: 60%;
     height: 100%;
     background:
-      linear-gradient(135deg, rgba(10,10,10,0.5) 0%, rgba(26,46,26,0.3) 100%),
-      url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200&q=80') center/cover no-repeat;
-    clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%);
+      linear-gradient(135deg, rgba(10,10,10,0.55) 0%, rgba(26,46,26,0.35) 100%),
+      url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1400&q=80') center/cover no-repeat;
   }
 
-  /* Côté urbain — droite */
   .hero-urbain {
     position: absolute;
     top: 0; right: 0;
     width: 55%;
     height: 100%;
     background:
-      linear-gradient(135deg, rgba(28,28,30,0.6) 0%, rgba(10,10,10,0.8) 100%),
-      url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&q=80') center/cover no-repeat;
-    clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
+      linear-gradient(225deg, rgba(10,10,10,0.7) 0%, rgba(28,28,30,0.5) 100%),
+      url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1400&q=80') center/cover no-repeat;
   }
 
-  /* La ligne de déchirure */
+  /* Déchirure — masque SVG pour un bord irrégulier sans noir */
+  .hero-foret {
+    clip-path: polygon(0 0, 78% 0, 62% 20%, 70% 40%, 58% 60%, 68% 80%, 60% 100%, 0 100%);
+  }
+  .hero-urbain {
+    clip-path: polygon(38% 0, 100% 0, 100% 100%, 40% 100%, 32% 80%, 42% 60%, 30% 40%, 38% 20%);
+  }
+
   .hero-dechirure {
     position: absolute;
     top: 0;
     left: 50%;
-    transform: translateX(-50%) rotate(-2deg);
-    width: 6px;
-    height: 110%;
-    background: linear-gradient(to bottom, transparent, var(--rouge), var(--or), var(--rouge), transparent);
-    opacity: 0.8;
-    z-index: 5;
-    filter: blur(1px);
-  }
-
-  .hero-dechirure::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -8px;
-    width: 20px;
+    transform: translateX(-50%);
+    width: 120px;
     height: 100%;
-    background: linear-gradient(to bottom, transparent, rgba(192,57,43,0.15), transparent);
-    filter: blur(8px);
+    background: linear-gradient(to bottom,
+      transparent 0%,
+      rgba(192,57,43,0.6) 20%,
+      rgba(201,168,76,0.4) 50%,
+      rgba(192,57,43,0.6) 80%,
+      transparent 100%
+    );
+    filter: blur(12px);
+    z-index: 5;
   }
 
-  /* Contenu hero */
+  .hero-dechirure-line {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 1px);
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom,
+      transparent,
+      var(--rouge) 15%,
+      var(--or) 50%,
+      var(--rouge) 85%,
+      transparent
+    );
+    z-index: 6;
+    opacity: 0.7;
+  }
+
   .hero-content {
     position: relative;
     z-index: 10;
     padding: 0 3rem;
-    max-width: 700px;
+    max-width: 620px;
     margin-left: 5%;
-    animation: fadeUp 1.2s ease forwards;
   }
 
   .hero-tag {
@@ -150,29 +203,28 @@
   .hero-titre {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(3.5rem, 8vw, 7rem);
-    line-height: 0.95;
+    line-height: 0.92;
     letter-spacing: 0.02em;
     color: var(--blanc);
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
     opacity: 0;
     animation: fadeUp 0.8s 0.5s ease forwards;
   }
-
   .hero-titre .accent { color: var(--rouge); }
 
   .hero-accroche {
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-size: clamp(1rem, 2vw, 1.3rem);
     font-weight: 300;
     font-style: italic;
-    color: rgba(244,240,232,0.8);
-    margin-bottom: 0.5rem;
+    color: rgba(244,240,232,0.75);
+    margin-bottom: 0.4rem;
     opacity: 0;
     animation: fadeUp 0.8s 0.7s ease forwards;
   }
 
   .hero-sous-accroche {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-size: clamp(1.4rem, 3vw, 2rem);
     letter-spacing: 0.1em;
     color: var(--or);
     margin-bottom: 3rem;
@@ -188,181 +240,248 @@
     animation: fadeUp 0.8s 1.1s ease forwards;
   }
 
-  .btn-principal {
-    padding: 1rem 2.5rem;
-    background: var(--rouge);
-    color: var(--blanc);
-    font-family: 'Share Tech Mono', monospace;
+  /* Main ouverte SVG — symbole apaisement */
+  .hero-main {
+    position: absolute;
+    right: 6%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    text-align: center;
+    opacity: 0;
+    animation: fadeUp 0.8s 1.4s ease forwards;
+  }
+  .hero-main svg {
+    width: 80px;
+    height: 80px;
+    opacity: 0.35;
+    transition: opacity 0.4s;
+  }
+  .hero-main:hover svg { opacity: 0.7; }
+  .hero-main-texte {
+    font-family: 'Bebas Neue', sans-serif;
     font-size: 0.8rem;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.2em;
+    color: rgba(244,240,232,0.3);
+    margin-top: 0.8rem;
     text-transform: uppercase;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    transition: color 0.4s;
   }
+  .hero-main:hover .hero-main-texte { color: var(--or); }
 
-  .btn-principal:hover {
-    background: #a93226;
-    transform: translateY(-2px);
-  }
-
-  .btn-secondaire {
-    padding: 1rem 2.5rem;
-    background: transparent;
-    color: var(--blanc);
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.8rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: 1px solid rgba(244,240,232,0.3);
-    cursor: pointer;
-    transition: border-color 0.3s, color 0.3s;
-  }
-
-  .btn-secondaire:hover {
-    border-color: var(--or);
-    color: var(--or);
-  }
-
-  /* Labels flottants */
   .label-foret {
     position: absolute;
     bottom: 3rem;
     left: 5%;
     z-index: 10;
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(244,240,232,0.4);
+    color: rgba(244,240,232,0.35);
     opacity: 0;
-    animation: fadeUp 0.8s 1.3s ease forwards;
+    animation: fadeUp 0.8s 1.5s ease forwards;
   }
-
   .label-urbain {
     position: absolute;
     bottom: 3rem;
     right: 5%;
     z-index: 10;
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(244,240,232,0.4);
+    color: rgba(244,240,232,0.35);
     text-align: right;
     opacity: 0;
-    animation: fadeUp 0.8s 1.5s ease forwards;
+    animation: fadeUp 0.8s 1.6s ease forwards;
   }
 
-  /* SECTION PROCESS */
-  .section-process {
-    padding: 8rem 3rem;
-    max-width: 1200px;
-    margin: 0 auto;
+  /* ─── BTNS ─── */
+  .btn-principal {
+    padding: 1rem 2.5rem;
+    background: var(--rouge);
+    color: var(--blanc);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    display: inline-block;
   }
+  .btn-principal:hover { background: #a93226; transform: translateY(-2px); }
+  .btn-secondaire {
+    padding: 1rem 2.5rem;
+    background: transparent;
+    color: var(--blanc);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(244,240,232,0.25);
+    cursor: pointer;
+    transition: border-color 0.3s, color 0.3s;
+    display: inline-block;
+  }
+  .btn-secondaire:hover { border-color: var(--or); color: var(--or); }
 
+  /* ─── SECTION LABELS ─── */
   .section-label {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--rouge);
     margin-bottom: 1rem;
   }
-
   .section-titre {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-size: clamp(2.2rem, 4.5vw, 4rem);
     line-height: 1;
     letter-spacing: 0.02em;
     margin-bottom: 2rem;
   }
-
   .section-intro {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 300;
-    line-height: 1.8;
-    color: rgba(244,240,232,0.75);
+    line-height: 1.85;
+    color: rgba(244,240,232,0.7);
     max-width: 680px;
+    margin-bottom: 4rem;
+  }
+
+  /* ─── PROCESS / PRESSE ─── */
+  .section-process {
+    padding: 8rem 3rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .presse-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
     margin-bottom: 5rem;
   }
 
-  /* MASLOW VISUEL */
+  .presse-card {
+    padding: 2rem;
+    border: 1px solid rgba(244,240,232,0.07);
+    background: rgba(244,240,232,0.02);
+    position: relative;
+    transition: border-color 0.3s;
+  }
+  .presse-card:hover { border-color: rgba(192,57,43,0.3); }
+  .presse-source {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--or);
+    margin-bottom: 0.8rem;
+  }
+  .presse-titre {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--blanc);
+    margin-bottom: 0.6rem;
+  }
+  .presse-extrait {
+    font-size: 0.88rem;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.6;
+    color: rgba(244,240,232,0.5);
+  }
+  .presse-date {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.6rem;
+    color: rgba(244,240,232,0.25);
+    margin-top: 1rem;
+  }
+
+  /* MASLOW */
+  .maslow-intro {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(244,240,232,0.65);
+    max-width: 760px;
+    margin-bottom: 3rem;
+    border-left: 3px solid var(--rouge);
+    padding-left: 1.5rem;
+  }
+
   .maslow-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 0;
     margin-bottom: 6rem;
   }
-
   .maslow-item {
     padding: 2.5rem 1.5rem;
-    border-left: 1px solid rgba(244,240,232,0.08);
+    border-left: 1px solid rgba(244,240,232,0.07);
     position: relative;
     transition: background 0.3s;
     cursor: default;
   }
-
-  .maslow-item:hover {
-    background: rgba(244,240,232,0.03);
+  .maslow-item:hover { background: rgba(244,240,232,0.03); }
+  .maslow-item.securite {
+    background: rgba(192,57,43,0.06);
+    border-left-color: var(--rouge);
   }
-
+  .maslow-item.securite .maslow-num { color: rgba(192,57,43,0.15); }
   .maslow-num {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 4rem;
     line-height: 1;
-    color: rgba(244,240,232,0.06);
+    color: rgba(244,240,232,0.05);
     margin-bottom: 1rem;
   }
-
   .maslow-titre {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--rouge);
     margin-bottom: 0.8rem;
   }
-
+  .maslow-item.securite .maslow-titre { color: var(--or); }
   .maslow-desc {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 300;
     line-height: 1.6;
-    color: rgba(244,240,232,0.6);
+    color: rgba(244,240,232,0.55);
   }
-
   .maslow-item::after {
     content: '';
     position: absolute;
     bottom: 0; left: 0;
-    width: 0;
-    height: 2px;
+    width: 0; height: 2px;
     background: var(--rouge);
     transition: width 0.4s;
   }
-
   .maslow-item:hover::after { width: 100%; }
 
-  /* SECTION STAGES */
+  /* ─── STAGES ─── */
   .section-stages {
     padding: 6rem 3rem;
-    background: linear-gradient(180deg, var(--noir) 0%, #0f0f0f 100%);
     border-top: 1px solid rgba(244,240,232,0.06);
   }
+  .stages-inner { max-width: 1200px; margin: 0 auto; }
 
-  .stages-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .stages-grid {
+  .stages-principaux {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2px;
-    margin-top: 4rem;
+    margin-top: 3rem;
+    margin-bottom: 4rem;
   }
 
   .stage-card {
@@ -373,23 +492,16 @@
     overflow: hidden;
     transition: border-color 0.3s;
   }
-
-  .stage-card:hover {
-    border-color: rgba(192,57,43,0.4);
-  }
-
+  .stage-card:hover { border-color: rgba(192,57,43,0.35); }
   .stage-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0;
-    width: 3px;
-    height: 0;
+    width: 3px; height: 0;
     background: var(--rouge);
     transition: height 0.4s;
   }
-
   .stage-card:hover::before { height: 100%; }
-
   .stage-num {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 5rem;
@@ -398,16 +510,14 @@
     position: absolute;
     top: 1rem; right: 2rem;
   }
-
   .stage-tag {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--or);
     margin-bottom: 1rem;
   }
-
   .stage-titre {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 2rem;
@@ -415,7 +525,6 @@
     margin-bottom: 1rem;
     color: var(--blanc);
   }
-
   .stage-desc {
     font-size: 0.95rem;
     font-weight: 300;
@@ -423,33 +532,86 @@
     color: rgba(244,240,232,0.6);
     margin-bottom: 1.5rem;
   }
-
   .stage-details {
     list-style: none;
     margin-bottom: 2rem;
   }
-
   .stage-details li {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    color: rgba(244,240,232,0.5);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: rgba(244,240,232,0.45);
     padding: 0.4rem 0;
     border-bottom: 1px solid rgba(244,240,232,0.05);
   }
+  .stage-details li::before { content: '— '; color: var(--rouge); }
 
-  .stage-details li::before {
-    content: '— ';
-    color: var(--rouge);
+  /* Modules à venir */
+  .modules-avenir {
+    border: 1px solid rgba(244,240,232,0.06);
+    padding: 3rem;
+    background: rgba(244,240,232,0.01);
+  }
+  .modules-avenir-titre {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.08em;
+    color: rgba(244,240,232,0.4);
+    margin-bottom: 0.5rem;
+  }
+  .modules-avenir-sous {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(192,57,43,0.5);
+    margin-bottom: 2rem;
+  }
+  .modules-liste {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    list-style: none;
+  }
+  .modules-liste li {
+    padding: 1rem 1.5rem;
+    border-left: 1px solid rgba(244,240,232,0.06);
+    border-bottom: 1px solid rgba(244,240,232,0.06);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: rgba(244,240,232,0.3);
+    cursor: default;
+    transition: color 0.3s, background 0.3s;
+    position: relative;
+  }
+  .modules-liste li:hover {
+    color: rgba(244,240,232,0.7);
+    background: rgba(192,57,43,0.05);
+  }
+  .modules-liste li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0;
+    width: 0; height: 100%;
+    background: var(--rouge);
+    opacity: 0.4;
+    transition: width 0.3s;
+  }
+  .modules-liste li:hover::before { width: 2px; }
+  .modules-liste .num {
+    display: block;
+    font-size: 0.55rem;
+    color: rgba(192,57,43,0.4);
+    margin-bottom: 0.3rem;
   }
 
-  /* SECTION SACS */
+  /* ─── SACS ─── */
   .section-sacs {
     padding: 8rem 3rem;
     max-width: 1200px;
     margin: 0 auto;
   }
-
   .sacs-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -457,204 +619,331 @@
     margin-top: 4rem;
     background: rgba(244,240,232,0.06);
   }
-
   .sac-card {
     padding: 3rem 2.5rem;
     background: var(--noir);
     position: relative;
     transition: background 0.3s;
+    overflow: hidden;
   }
-
-  .sac-card:hover {
-    background: rgba(244,240,232,0.02);
-  }
-
+  .sac-card:hover { background: rgba(244,240,232,0.02); }
   .sac-card.featured {
-    background: rgba(192,57,43,0.05);
+    background: rgba(192,57,43,0.04);
     border-top: 3px solid var(--rouge);
   }
 
+  /* Image sac */
+  .sac-image {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    opacity: 0.6;
+    filter: grayscale(40%);
+    transition: opacity 0.3s, filter 0.3s;
+  }
+  .sac-card:hover .sac-image { opacity: 0.8; filter: grayscale(20%); }
+
   .sac-badge {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.6rem;
+    font-size: 0.58rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     padding: 0.3rem 0.8rem;
     margin-bottom: 1.5rem;
     display: inline-block;
   }
-
   .sac-card:not(.featured) .sac-badge {
-    color: rgba(244,240,232,0.4);
-    border: 1px solid rgba(244,240,232,0.15);
+    color: rgba(244,240,232,0.35);
+    border: 1px solid rgba(244,240,232,0.12);
   }
-
   .sac-card.featured .sac-badge {
     color: var(--rouge);
     border: 1px solid var(--rouge);
   }
-
   .sac-titre {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.8rem;
     letter-spacing: 0.05em;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
     color: var(--blanc);
   }
-
   .sac-sous-titre {
     font-style: italic;
-    font-size: 0.9rem;
-    color: rgba(244,240,232,0.4);
+    font-size: 0.88rem;
+    color: rgba(244,240,232,0.35);
     margin-bottom: 1.5rem;
   }
-
   .sac-prix {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: var(--or);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
   }
-
+  .sac-prix-note {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    color: rgba(244,240,232,0.3);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
   .sac-duree {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    color: rgba(244,240,232,0.4);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    color: rgba(244,240,232,0.35);
     text-transform: uppercase;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
-
+  .sac-apprendre {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: rgba(201,168,76,0.7);
+    border-left: 2px solid var(--or);
+    padding-left: 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
   .sac-regle {
     font-style: italic;
-    font-size: 0.9rem;
-    color: rgba(244,240,232,0.5);
+    font-size: 0.88rem;
+    color: rgba(244,240,232,0.4);
     border-left: 2px solid var(--rouge);
     padding-left: 1rem;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
   }
 
-  /* SECTION ENTREPRISES */
+  /* ─── TEAM BUILDING ─── */
   .section-btob {
     padding: 8rem 3rem;
-    background: rgba(244,240,232,0.02);
+    background: linear-gradient(180deg, rgba(244,240,232,0.015) 0%, var(--noir) 100%);
     border-top: 1px solid rgba(244,240,232,0.06);
     border-bottom: 1px solid rgba(244,240,232,0.06);
   }
-
   .btob-inner {
     max-width: 1200px;
     margin: 0 auto;
+  }
+  .btob-header {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 6rem;
-    align-items: center;
+    align-items: start;
+    margin-bottom: 5rem;
   }
 
-  .btob-texte .section-titre {
-    margin-bottom: 1.5rem;
+  .btob-image-wrapper {
+    position: relative;
+  }
+  .btob-image {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    filter: grayscale(30%);
+    opacity: 0.75;
+    transition: opacity 0.4s, filter 0.4s;
+  }
+  .btob-image:hover { opacity: 0.9; filter: grayscale(10%); }
+  .btob-image-label {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(244,240,232,0.5);
+    background: rgba(10,10,10,0.7);
+    padding: 0.4rem 0.8rem;
   }
 
   .btob-texte p {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 300;
-    line-height: 1.8;
-    color: rgba(244,240,232,0.7);
+    line-height: 1.85;
+    color: rgba(244,240,232,0.68);
     margin-bottom: 1rem;
   }
-
   .btob-points {
     list-style: none;
     margin: 2rem 0 3rem;
   }
-
   .btob-points li {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    color: rgba(244,240,232,0.6);
-    padding: 0.8rem 0;
-    border-bottom: 1px solid rgba(244,240,232,0.06);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: rgba(244,240,232,0.55);
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(244,240,232,0.05);
     display: flex;
     align-items: center;
     gap: 1rem;
+    transition: color 0.3s;
   }
-
+  .btob-points li:hover { color: rgba(244,240,232,0.85); }
   .btob-points li::before {
     content: '◆';
     color: var(--rouge);
-    font-size: 0.5rem;
+    font-size: 0.45rem;
     flex-shrink: 0;
   }
 
-  .btob-visuel {
-    position: relative;
+  /* Cards résultats BtoB */
+  .btob-resultats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(244,240,232,0.06);
+    margin-bottom: 4rem;
   }
-
-  .btob-chiffre {
+  .btob-resultat-card {
+    padding: 2.5rem;
+    background: var(--noir);
+    transition: background 0.3s;
+  }
+  .btob-resultat-card:hover { background: rgba(192,57,43,0.04); }
+  .btob-resultat-num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 10rem;
+    font-size: 3.5rem;
+    color: var(--rouge);
     line-height: 1;
-    color: rgba(244,240,232,0.04);
-    position: absolute;
-    top: -2rem;
-    right: -1rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.7;
   }
-
-  .btob-bloc {
-    border: 1px solid rgba(244,240,232,0.08);
-    padding: 3rem;
-    position: relative;
-    z-index: 2;
+  .btob-resultat-titre {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(244,240,232,0.5);
+    margin-bottom: 0.8rem;
   }
-
-  .btob-bloc-titre {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.5rem;
-    letter-spacing: 0.05em;
-    margin-bottom: 1rem;
-    color: var(--or);
-  }
-
-  .btob-bloc p {
-    font-size: 0.95rem;
+  .btob-resultat-desc {
+    font-size: 0.9rem;
     font-weight: 300;
-    line-height: 1.7;
-    color: rgba(244,240,232,0.6);
+    line-height: 1.6;
+    color: rgba(244,240,232,0.4);
   }
 
-  /* SECTION CONTACT */
-  .section-contact {
-    padding: 8rem 3rem;
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .contact-titre {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    line-height: 1;
-    letter-spacing: 0.02em;
-    margin-bottom: 1.5rem;
-  }
-
-  .contact-desc {
-    font-size: 1.1rem;
-    font-weight: 300;
-    line-height: 1.8;
-    color: rgba(244,240,232,0.65);
+  .btob-image2 {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    filter: grayscale(40%);
+    opacity: 0.6;
     margin-bottom: 3rem;
   }
 
-  .contact-ctas {
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-    flex-wrap: wrap;
+  /* ─── CONTACT / QUESTIONNAIRE ─── */
+  .section-contact {
+    padding: 8rem 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 3rem;
   }
 
-  /* FOOTER */
+  .contact-bloc {
+    padding: 3rem;
+    border: 1px solid rgba(244,240,232,0.07);
+    background: rgba(244,240,232,0.01);
+    position: relative;
+  }
+  .contact-bloc::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 0; height: 3px;
+    background: var(--rouge);
+    transition: width 0.4s;
+  }
+  .contact-bloc:hover::before { width: 100%; }
+
+  .contact-bloc-titre {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    color: var(--blanc);
+  }
+  .contact-bloc p {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(244,240,232,0.55);
+    margin-bottom: 2rem;
+  }
+
+  /* Formulaire niveau */
+  .form-niveau {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .form-niveau label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(244,240,232,0.45);
+    margin-bottom: 0.3rem;
+    display: block;
+  }
+  .form-niveau input,
+  .form-niveau select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: rgba(244,240,232,0.04);
+    border: 1px solid rgba(244,240,232,0.1);
+    color: var(--blanc);
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  .form-niveau input:focus,
+  .form-niveau select:focus {
+    border-color: var(--rouge);
+  }
+  .form-niveau select option { background: #1a1a1a; }
+  .form-niveau .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .form-submit {
+    padding: 1rem;
+    background: var(--rouge);
+    color: var(--blanc);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 0.5rem;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  }
+  .form-submit:hover { background: #a93226; }
+
+  .promo-note {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: rgba(201,168,76,0.5);
+    margin-top: 1rem;
+    line-height: 1.5;
+    border-left: 1px solid var(--or);
+    padding-left: 0.8rem;
+  }
+
+  /* ─── FOOTER ─── */
   footer {
     padding: 3rem;
     border-top: 1px solid rgba(244,240,232,0.06);
@@ -664,81 +953,77 @@
     flex-wrap: wrap;
     gap: 1rem;
   }
-
   .footer-logo {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.2rem;
     letter-spacing: 0.15em;
-    color: rgba(244,240,232,0.4);
+    color: rgba(244,240,232,0.35);
   }
-
   .footer-logo span { color: var(--rouge); }
-
   .footer-devise {
     font-style: italic;
     font-size: 0.85rem;
-    color: rgba(244,240,232,0.25);
+    color: rgba(244,240,232,0.2);
     text-align: center;
   }
-
   .footer-links {
     display: flex;
     gap: 2rem;
     list-style: none;
   }
-
   .footer-links a {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(244,240,232,0.3);
+    color: rgba(244,240,232,0.25);
     text-decoration: none;
     transition: color 0.3s;
   }
-
   .footer-links a:hover { color: var(--or); }
 
-  /* SÉPARATEUR DÉCHIRÉ */
-  .dechirure-sep {
-    width: 100%;
-    height: 40px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .dechirure-sep svg {
-    width: 100%;
-    height: 100%;
-  }
-
-  /* ANIMATIONS */
+  /* ─── ANIMATIONS ─── */
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
+    from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
     nav { padding: 1.2rem 1.5rem; }
     .nav-links { display: none; }
-    .hero-content { padding: 0 1.5rem; margin-left: 0; }
-    .hero-foret { width: 100%; clip-path: none; }
+    .hero-content { padding: 0 1.5rem; margin-left: 0; max-width: 100%; }
     .hero-urbain { display: none; }
-    .hero-dechirure { display: none; }
+    .hero-foret { width: 100%; clip-path: none; }
+    .hero-dechirure, .hero-dechirure-line { display: none; }
+    .hero-main { display: none; }
+    .presse-grid { grid-template-columns: 1fr; }
     .maslow-grid { grid-template-columns: 1fr 1fr; }
-    .stages-grid { grid-template-columns: 1fr; }
+    .stages-principaux { grid-template-columns: 1fr; }
+    .modules-liste { grid-template-columns: 1fr 1fr; }
     .sacs-grid { grid-template-columns: 1fr; }
-    .btob-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .btob-header { grid-template-columns: 1fr; gap: 3rem; }
+    .btob-resultats { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
     .section-process, .section-sacs, .section-contact { padding: 5rem 1.5rem; }
     .section-stages, .section-btob { padding: 5rem 1.5rem; }
-    footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+    footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+    .rgpd-banner { padding: 1rem 1.5rem; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ─── RGPD ─── -->
+<div class="rgpd-banner" id="rgpd">
+  <p>Ce site utilise des cookies pour analyser la navigation et améliorer votre expérience. Aucune donnée n'est transmise à des tiers sans votre consentement. En continuant, vous acceptez notre <a href="#">politique de confidentialité</a>.</p>
+  <div class="rgpd-btns">
+    <button class="rgpd-accept" onclick="document.getElementById('rgpd').style.display='none'">Accepter</button>
+    <button class="rgpd-refuse" onclick="document.getElementById('rgpd').style.display='none'">Refuser</button>
+  </div>
+</div>
+
+<!-- ─── NAV ─── -->
 <nav>
   <a href="#" class="nav-logo">GIBBOR <span>ROOTS</span> PROCESS</a>
   <ul class="nav-links">
@@ -750,11 +1035,12 @@
   </ul>
 </nav>
 
-<!-- HERO -->
+<!-- ─── HERO ─── -->
 <section class="hero">
   <div class="hero-foret"></div>
   <div class="hero-urbain"></div>
   <div class="hero-dechirure"></div>
+  <div class="hero-dechirure-line"></div>
 
   <div class="hero-content">
     <p class="hero-tag">Gibbor Roots Process — Stage & Formation</p>
@@ -771,38 +1057,74 @@
     </div>
   </div>
 
+  <!-- Main ouverte SVG -->
+  <div class="hero-main">
+    <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 10 C50 10 50 50 50 60" stroke="#f4f0e8" stroke-width="3" stroke-linecap="round"/>
+      <path d="M35 25 C35 25 35 55 35 65" stroke="#f4f0e8" stroke-width="3" stroke-linecap="round"/>
+      <path d="M20 35 C20 35 20 60 20 70" stroke="#f4f0e8" stroke-width="3" stroke-linecap="round"/>
+      <path d="M65 25 C65 25 65 55 65 65" stroke="#f4f0e8" stroke-width="3" stroke-linecap="round"/>
+      <path d="M80 35 C80 35 80 60 80 70" stroke="#f4f0e8" stroke-width="3" stroke-linecap="round"/>
+      <path d="M20 70 Q50 100 80 70" stroke="#f4f0e8" stroke-width="3" stroke-linecap="round" fill="none"/>
+    </svg>
+    <p class="hero-main-texte">Reprends<br>le contrôle</p>
+  </div>
+
   <p class="label-foret">Nature — Autonomie — Survie</p>
   <p class="label-urbain">Confiance — Sécurité — Maîtrise</p>
 </section>
 
-<!-- PROCESS -->
+<!-- ─── PROCESS ─── -->
 <section class="section-process" id="process">
-  <p class="section-label">Le fil directeur</p>
+  <p class="section-label">Pourquoi maintenant</p>
   <h2 class="section-titre">UN CHEMIN,<br>PAS UN STAGE.</h2>
-  <p class="section-intro">
-    Gibbor Roots Process n'est pas un week-end d'aventure. C'est un processus structuré — ancré dans le réel, progressif, mesurable. Tu repars avec des compétences. Avec de la clarté. Avec quelque chose qui tient.
-  </p>
+
+  <!-- Articles de presse -->
+  <div class="presse-grid">
+    <div class="presse-card">
+      <p class="presse-source">Le Monde — Société</p>
+      <p class="presse-titre">Insécurité ressentie : un mal qui dépasse les statistiques</p>
+      <p class="presse-extrait">Le sentiment d'insécurité progresse dans toutes les catégories de population, indépendamment des chiffres de la délinquance réelle. Un phénomène psychologique et social profond.</p>
+      <p class="presse-date">2024</p>
+    </div>
+    <div class="presse-card">
+      <p class="presse-source">Figaro Santé — Psychologie</p>
+      <p class="presse-titre">Anxiété chronique : pourquoi tant de Français se sentent vulnérables</p>
+      <p class="presse-extrait">Les troubles anxieux liés au sentiment de perte de contrôle sur son environnement touchent désormais plus d'un Français sur quatre. L'autonomie comme remède.</p>
+      <p class="presse-date">2024</p>
+    </div>
+    <div class="presse-card">
+      <p class="presse-source">Sciences Humaines — Dossier</p>
+      <p class="presse-titre">Maslow revisité : quand les besoins fondamentaux sont menacés</p>
+      <p class="presse-extrait">Abraham Maslow l'avait prédit : sans sécurité, aucun épanouissement n'est possible. La pyramide des besoins est plus pertinente que jamais dans un monde en mutation.</p>
+      <p class="presse-date">2023</p>
+    </div>
+  </div>
+
+  <div class="maslow-intro">
+    Abraham Maslow a montré qu'un être humain ne peut s'épanouir que si ses besoins fondamentaux sont satisfaits. Aujourd'hui, beaucoup d'entre nous vivent avec ce socle fragilisé — sans le nommer, sans savoir comment y remédier. Gibbor Roots Process part de là. Du concret. Du réel. De ce qui tient.
+  </div>
 
   <div class="maslow-grid">
     <div class="maslow-item">
       <div class="maslow-num">01</div>
       <p class="maslow-titre">Besoins primaires</p>
-      <p class="maslow-desc">Survie, nature, autonomie, bushcraft, nourriture</p>
+      <p class="maslow-desc">Survie, nature, autonomie, bushcraft, nourriture, eau</p>
     </div>
-    <div class="maslow-item">
+    <div class="maslow-item securite">
       <div class="maslow-num">02</div>
-      <p class="maslow-titre">Sécurité</p>
-      <p class="maslow-desc">Self-défense, maîtrise de soi, matériel, préparation</p>
+      <p class="maslow-titre">Sécurité ◆</p>
+      <p class="maslow-desc">Self-défense, maîtrise de soi, matériel, préparation mentale</p>
     </div>
     <div class="maslow-item">
       <div class="maslow-num">03</div>
       <p class="maslow-titre">Appartenance</p>
-      <p class="maslow-desc">Cohésion, confiance, groupe, liens réels</p>
+      <p class="maslow-desc">Cohésion, confiance, groupe, liens authentiques</p>
     </div>
     <div class="maslow-item">
       <div class="maslow-num">04</div>
       <p class="maslow-titre">Identité</p>
-      <p class="maslow-desc">Reconnaissance, estime, engagement progressif</p>
+      <p class="maslow-desc">Reconnaissance, estime de soi, engagement progressif</p>
     </div>
     <div class="maslow-item">
       <div class="maslow-num">05</div>
@@ -810,26 +1132,29 @@
       <p class="maslow-desc">Transformation, sens, clarté, liberté intérieure</p>
     </div>
   </div>
+
+  <p class="section-intro">
+    Gibbor Roots Process n'est pas un week-end d'aventure. C'est un processus structuré — ancré dans le réel, progressif, mesurable. Tu repars avec des compétences. Avec de la clarté. Avec quelque chose qui tient.
+  </p>
 </section>
 
-<!-- STAGES -->
+<!-- ─── STAGES ─── -->
 <section class="section-stages" id="stages">
   <div class="stages-inner">
     <p class="section-label">Les formations</p>
     <h2 class="section-titre">DES STAGES<br>QUI CHANGENT QUELQUE CHOSE.</h2>
 
-    <div class="stages-grid">
-
+    <div class="stages-principaux">
       <div class="stage-card">
         <div class="stage-num">00</div>
-        <p class="stage-tag">Porte d'entrée</p>
+        <p class="stage-tag">Porte d'entrée — Sans engagement</p>
         <h3 class="stage-titre">JOURNÉE DÉCOUVERTE</h3>
-        <p class="stage-desc">Une journée pour tester, vérifier, ressentir. Sans engagement. Basée sur le contenu du Niveau 1 — pour savoir si c'est fait pour toi.</p>
+        <p class="stage-desc">Une journée pour tester, vérifier, ressentir. Basée sur le contenu du Niveau 1. Pour savoir si c'est fait pour toi — avant de t'engager.</p>
         <ul class="stage-details">
           <li>1 journée — sans nuitée</li>
-          <li>Prérequis physiques et relationnels</li>
-          <li>Porte naturelle vers le Niveau 1</li>
-          <li>Groupe restreint</li>
+          <li>Vérification des prérequis physiques et relationnels</li>
+          <li>Porte naturelle vers le Stage Niveau 1</li>
+          <li>Groupe restreint — qualité avant quantité</li>
         </ul>
         <a href="#contact" class="btn-secondaire">Me renseigner</a>
       </div>
@@ -841,130 +1166,201 @@
         <p class="stage-desc">3 jours, 2 nuits. Le stage fondateur. Nature, bushcraft, self-défense, psychologie relationnelle. Tu repars avec des bases solides et une expérience humaine forte.</p>
         <ul class="stage-details">
           <li>3 jours / 2 nuits</li>
-          <li>Randonnée & orientation</li>
-          <li>Bushcraft — feu, eau, abri, cuisine</li>
-          <li>Krav Maga — initiation</li>
-          <li>Psychologie relationnelle</li>
+          <li>Randonnée & orientation en milieu naturel</li>
+          <li>Bushcraft — feu, eau, abri, cuisine extérieure</li>
+          <li>Krav Maga — initiation avec intervenant diplômé</li>
+          <li>Psychologie relationnelle — prévention des conflits</li>
           <li>Hébergement dortoir — repas inclus</li>
+          <li>Bilan radar avant / après</li>
         </ul>
         <a href="#contact" class="btn-principal">Rejoindre un stage</a>
       </div>
+    </div>
 
-      <div class="stage-card">
-        <div class="stage-num">02</div>
-        <p class="stage-tag">Module spécialisé</p>
-        <h3 class="stage-titre">TECHNIQUES SURVIE & BUSHCRAFT</h3>
-        <p class="stage-desc">Feu, eau, abri, nourriture. Les compétences fondamentales pour ne dépendre de rien ni de personne en milieu naturel.</p>
-        <ul class="stage-details">
-          <li>Allumage feu sécurisé</li>
-          <li>Purification et gestion de l'eau</li>
-          <li>Construction d'abri</li>
-          <li>Alimentation terrain</li>
-        </ul>
-        <a href="#contact" class="btn-secondaire">Me renseigner</a>
-      </div>
-
-      <div class="stage-card">
-        <div class="stage-num">03</div>
-        <p class="stage-tag">Module spécialisé</p>
-        <h3 class="stage-titre">SELF DÉFENSE & GESTION DE CONFLIT</h3>
-        <p class="stage-desc">Pas pour devenir un combattant. Pour ne plus avoir peur. Gestes simples, efficaces, applicables. Lecture des situations, désescalade, fuite quand c'est la bonne option.</p>
-        <ul class="stage-details">
-          <li>Intervenant diplômé Krav Maga</li>
-          <li>Gestion du conflit avant le contact</li>
-          <li>Protection et fuite</li>
-          <li>Jeux de rôle réalistes</li>
-        </ul>
-        <a href="#contact" class="btn-secondaire">Me renseigner</a>
-      </div>
-
+    <!-- Modules à venir -->
+    <div class="modules-avenir">
+      <h3 class="modules-avenir-titre">MODULES COMPLÉMENTAIRES</h3>
+      <p class="modules-avenir-sous">Niveaux 2 & 3 + modules spécialisés — à venir</p>
+      <ul class="modules-liste">
+        <li><span class="num">02</span>Constitution & organisation du sac de survie</li>
+        <li><span class="num">03</span>Techniques survie & bushcraft avancé</li>
+        <li><span class="num">04</span>Techniques de combat armé</li>
+        <li><span class="num">05</span>Self défense & combat rapproché</li>
+        <li><span class="num">06</span>Communication & orientation terrain</li>
+        <li><span class="num">07</span>Intellect & esprit — prise de décision</li>
+        <li><span class="num">08</span>Soin, médical & alimentation terrain</li>
+        <li><span class="num">09</span>Stage urbain — milieu et contexte urbain</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- SACS -->
+<!-- ─── SACS ─── -->
 <section class="section-sacs" id="sacs">
   <p class="section-label">Autonomie matérielle</p>
   <h2 class="section-titre">TON SAC.<br>TON NIVEAU.</h2>
   <p class="section-intro">
-    Le sac de survie n'est pas un gadget. C'est la traduction concrète de ton niveau de préparation. Trois niveaux, trois réalités.
+    Le sac de survie n'est pas un gadget. C'est la traduction concrète de ton niveau de préparation. Ces tarifs sont des prix indicatifs du marché pour des sacs déjà constitués. Tu peux apprendre à le construire toi-même lors de nos stages — notamment le module Constitution du sac.
   </p>
 
   <div class="sacs-grid">
     <div class="sac-card">
+      <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80" alt="Sac de survie Starter" class="sac-image">
       <span class="sac-badge">Niveau 1</span>
       <h3 class="sac-titre">STARTER</h3>
       <p class="sac-sous-titre">Sortir du déni</p>
+      <p class="sac-prix-note">Prix marché indicatif</p>
       <p class="sac-prix">120 – 150€</p>
       <p class="sac-duree">Autonomie 24 – 48h</p>
-      <p class="sac-desc" style="font-size:0.9rem;color:rgba(244,240,232,0.55);line-height:1.6;">Purification eau, barres énergétiques, briquet, trousse de secours, couverture de survie, couteau pliant, poncho.</p>
+      <p class="sac-apprendre">Apprenez à le constituer vous-même lors du Stage Niveau 1 ou du module Constitution du sac.</p>
       <p class="sac-regle">Tu bouges. Tu ne t'installes pas.</p>
     </div>
 
     <div class="sac-card featured">
+      <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80" alt="Sac opérationnel 72h" class="sac-image">
       <span class="sac-badge">Niveau 2 — Recommandé</span>
       <h3 class="sac-titre">OPÉRATIONNEL</h3>
       <p class="sac-sous-titre">Le vrai sac 72h</p>
+      <p class="sac-prix-note">Prix marché indicatif</p>
       <p class="sac-prix">500 – 650€</p>
       <p class="sac-duree">Autonomie 72h complète</p>
-      <p class="sac-desc" style="font-size:0.9rem;color:rgba(244,240,232,0.55);line-height:1.6;">Filtre LifeStraw, réchaud + gaz, rations 3 jours, trousse complète, garrot, couteau fixe, multitool, carte + boussole, radio, tarp, sac de couchage.</p>
+      <p class="sac-apprendre">Le sac que l'on construit et teste ensemble au stage. Chaque élément est justifié, pesé, maîtrisé.</p>
       <p class="sac-regle">Tu peux t'arrêter. Pas t'ancrer.</p>
     </div>
 
     <div class="sac-card">
+      <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80" alt="Sac expert autonomie avancée" class="sac-image">
       <span class="sac-badge">Niveau 3</span>
       <h3 class="sac-titre">EXPERT</h3>
       <p class="sac-sous-titre">Autonomie avancée</p>
+      <p class="sac-prix-note">Prix marché indicatif</p>
       <p class="sac-prix">900 – 1200€</p>
-      <p class="sac-duree">Autonomie +72h — résilience</p>
-      <p class="sac-desc" style="font-size:0.9rem;color:rgba(244,240,232,0.55);line-height:1.6;">Filtre gravité, panneau solaire, radio avancée, tente légère, kit médical avancé, hachette, stock alimentaire étendu.</p>
+      <p class="sac-duree">Autonomie +72h — résilience totale</p>
+      <p class="sac-apprendre">Pour les participants avancés. Panneau solaire, filtre gravité, kit médical complet, autonomie énergétique.</p>
       <p class="sac-regle">Tu choisis quand tu bouges.</p>
     </div>
   </div>
 </section>
 
-<!-- ENTREPRISES -->
+<!-- ─── TEAM BUILDING ─── -->
 <section class="section-btob" id="entreprises">
   <div class="btob-inner">
-    <div class="btob-texte">
-      <p class="section-label">Team Building</p>
-      <h2 class="section-titre">VOS ÉQUIPES.<br>LE VRAI TEST.</h2>
-      <p>Le team building classique ne crée pas de cohésion. Il la simule. Gibbor Roots Process propose autre chose — une expérience réelle, en milieu naturel, qui révèle les forces de chacun et soude un groupe autour de l'essentiel.</p>
-      <ul class="btob-points">
-        <li>Cohésion d'équipe par l'expérience concrète</li>
-        <li>Gestion du stress et prise de décision</li>
-        <li>Communication et lecture des comportements</li>
-        <li>Leadership naturel en situation réelle</li>
-        <li>Programme sur mesure — groupe restreint</li>
-        <li>Mesure de l'évolution avant / après</li>
-      </ul>
-      <a href="#contact" class="btn-principal">Demander un devis</a>
+    <p class="section-label">Entreprises & Organisations</p>
+    <h2 class="section-titre">VOS ÉQUIPES.<br>LE VRAI TEST.</h2>
+
+    <div class="btob-header">
+      <div class="btob-texte">
+        <p>Le team building classique ne crée pas de cohésion. Il la simule. Gibbor Roots Process propose autre chose — une expérience réelle, en milieu naturel ou urbain, qui révèle les forces de chacun et soude un groupe autour de l'essentiel.</p>
+        <p>Un programme sur mesure. Des compétences transférables. Une mesure concrète de l'évolution avant et après.</p>
+        <ul class="btob-points">
+          <li>Cohésion d'équipe par l'expérience concrète</li>
+          <li>Gestion du stress et prise de décision sous pression</li>
+          <li>Communication et lecture des comportements</li>
+          <li>Leadership naturel en situation réelle</li>
+          <li>Programme sur mesure — groupe restreint</li>
+          <li>Mesure de l'évolution avant / après — diagramme radar</li>
+          <li>Rapport de synthèse transmis à l'entreprise</li>
+        </ul>
+        <a href="#contact" class="btn-principal">Demander un devis</a>
+      </div>
+
+      <div class="btob-image-wrapper">
+        <img src="https://images.unsplash.com/photo-1527525443983-6e60c75fff46?w=800&q=80"
+          alt="Équipe en situation de team building nature"
+          class="btob-image">
+        <span class="btob-image-label">Team Building — Milieu naturel</span>
+      </div>
     </div>
 
-    <div class="btob-visuel">
-      <div class="btob-chiffre">B2B</div>
-      <div class="btob-bloc">
-        <p class="btob-bloc-titre">Ce que vos équipes rapportent</p>
-        <p>Des compétences concrètes. Une confiance renforcée. Des liens forgés dans le réel — pas dans une salle de réunion. Un investissement RH mesurable, différenciant, mémorable.</p>
+    <!-- Image urbaine -->
+    <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=1200&q=80"
+      alt="Équipe en cohésion"
+      class="btob-image2">
+
+    <!-- Cards résultats -->
+    <div class="btob-resultats">
+      <div class="btob-resultat-card">
+        <p class="btob-resultat-num">01</p>
+        <p class="btob-resultat-titre">Des compétences concrètes</p>
+        <p class="btob-resultat-desc">Chaque participant repart avec des savoir-faire applicables — en entreprise comme dans sa vie personnelle.</p>
+      </div>
+      <div class="btob-resultat-card">
+        <p class="btob-resultat-num">02</p>
+        <p class="btob-resultat-titre">Une confiance renforcée</p>
+        <p class="btob-resultat-desc">Mesurée, documentée, visible. Le diagramme radar avant/après ne ment pas.</p>
+      </div>
+      <div class="btob-resultat-card">
+        <p class="btob-resultat-num">03</p>
+        <p class="btob-resultat-desc">Des liens forgés dans le réel — pas dans une salle de réunion. Mémorables et durables.</p>
+        <p class="btob-resultat-titre">Des liens durables</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;">
+      <a href="#contact" class="btn-principal">Construire votre programme</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section class="section-contact" id="contact">
+  <p class="section-label">Première étape</p>
+  <h2 class="section-titre" style="text-align:center;">PRÊT À<br>REPRENDRE LE CONTRÔLE ?</h2>
+  <p class="section-intro" style="margin:1rem auto 0;text-align:center;max-width:560px;">
+    Prends un rendez-vous ou définis ton niveau en 2 minutes. C'est la seule façon de commencer vraiment.
+  </p>
+
+  <div class="contact-grid">
+    <!-- RDV -->
+    <div class="contact-bloc">
+      <h3 class="contact-bloc-titre">PRENDRE RDV</h3>
+      <p>Un échange de 20 minutes pour comprendre où tu en es et ce qui te correspond. Sans engagement.</p>
+      <a href="#" class="btn-principal" style="width:100%;text-align:center;display:block;">Réserver un créneau</a>
+      <p style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;color:rgba(244,240,232,0.2);margin-top:1rem;text-transform:uppercase;">Via Koalendar — lien à venir</p>
+    </div>
+
+    <!-- Questionnaire niveau -->
+    <div class="contact-bloc">
+      <h3 class="contact-bloc-titre">DÉFINIR TON NIVEAU</h3>
+      <p>Réponds à quelques questions — reçois une recommandation personnalisée et une offre de bienvenue.</p>
+      <div class="form-niveau">
+        <div>
+          <label>Prénom & Nom</label>
+          <input type="text" placeholder="Denis Deblevid">
+        </div>
+        <div>
+          <label>Email</label>
+          <input type="email" placeholder="contact@exemple.fr">
+        </div>
+        <div>
+          <label>Ton objectif principal</label>
+          <select>
+            <option value="">— Choisir —</option>
+            <option>Reprendre confiance en moi</option>
+            <option>Apprendre à me défendre</option>
+            <option>Être plus autonome en nature</option>
+            <option>Construire mon sac de survie</option>
+            <option>Renforcer mon équipe (entreprise)</option>
+          </select>
+        </div>
+        <div>
+          <label>Ton niveau actuel en nature</label>
+          <select>
+            <option value="">— Choisir —</option>
+            <option>Jamais pratiqué</option>
+            <option>Débutant</option>
+            <option>Intermédiaire</option>
+            <option>Confirmé</option>
+          </select>
+        </div>
+        <button class="form-submit" type="button">Recevoir ma recommandation →</button>
+        <p class="promo-note">✦ Les participants reçoivent une offre de bienvenue sur la Journée Découverte.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section class="section-contact" id="contact">
-  <p class="section-label">Première étape</p>
-  <h2 class="contact-titre">PRÊT À<br>REPRENDRE LE CONTRÔLE ?</h2>
-  <p class="contact-desc">
-    Une question, un stage, un projet d'équipe. Prenez un rendez-vous ou remplissez le questionnaire — c'est la seule façon de commencer vraiment.
-  </p>
-  <div class="contact-ctas">
-    <a href="#" class="btn-principal">Prendre RDV — Koalendar</a>
-    <a href="https://docs.google.com/forms/d/1bETaUEYPUtKeviKy2I3HbYbtz7cvgC-pU0KJpuv5pno/" target="_blank" class="btn-secondaire">Questionnaire marché</a>
-  </div>
-</section>
-
-<!-- FOOTER -->
+<!-- ─── FOOTER ─── -->
 <footer>
   <div class="footer-logo">GIBBOR <span>ROOTS</span> PROCESS</div>
   <p class="footer-devise">Solide. Concret. Réel.</p>
@@ -973,7 +1369,8 @@
     <li><a href="#stages">Stages</a></li>
     <li><a href="#entreprises">Entreprises</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="denisdeblevid.fr">Denis Deblevid</a></li>
+    <li><a href="https://denisdeblevid.github.io/mon-cv/" target="_blank">Denis Deblevid</a></li>
+    <li><a href="#">Mentions légales</a></li>
   </ul>
 </footer>
 
