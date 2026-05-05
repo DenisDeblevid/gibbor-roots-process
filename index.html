@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gibbor Roots Process — Solide. Concret. Réel.</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
   :root {
     --noir: #0a0a0a;
@@ -16,7 +16,7 @@
 
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
-  body { background:var(--noir); color:var(--blanc); font-family:'Crimson Pro',serif; overflow-x:hidden; }
+  body { background:var(--noir); color:var(--blanc); font-family:'Courier Prime',monospace; overflow-x:hidden; font-size:16px; line-height:1.7; }
 
   /* ── RGPD ── */
   .rgpd {
@@ -50,7 +50,7 @@
   }
   .main-bloc svg { width:56px; height:68px; }
   .main-bloc-texte {
-    font-family:'Bebas Neue',sans-serif; font-size:1.1rem; letter-spacing:0.2em;
+    font-family:'Bebas Neue',sans-serif; font-size:1.15rem; letter-spacing:0.2em;
     text-transform:uppercase; color:var(--or); text-align:center; line-height:1.2;
     white-space:nowrap;
   }
@@ -121,7 +121,7 @@
   /* ── LABELS SECTION ── */
   .s-label { font-family:'Share Tech Mono',monospace; font-size:1rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--rouge); margin-bottom:1rem; }
   .s-titre { font-family:'Bebas Neue',sans-serif; font-size:clamp(2.2rem,4.5vw,4rem); line-height:1; letter-spacing:0.02em; margin-bottom:2rem; }
-  .s-intro { font-size:1.1rem; font-weight:300; line-height:1.85; color:rgba(244,240,232,0.68); max-width:680px; margin-bottom:4rem; }
+  .s-intro { font-size:1.15rem; font-weight:300; line-height:1.85; color:rgba(244,240,232,0.68); max-width:680px; margin-bottom:4rem; }
 
   /* ── PROCESS ── */
   .sec-process { padding:8rem 3rem 4rem; max-width:1200px; margin:0 auto; }
@@ -130,8 +130,8 @@
   .presse-card { padding:2rem; border:1px solid rgba(244,240,232,0.07); background:rgba(244,240,232,0.02); transition:border-color 0.3s; }
   .presse-card:hover { border-color:rgba(192,57,43,0.3); }
   .presse-source { font-family:'Share Tech Mono',monospace; font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--or); margin-bottom:0.8rem; }
-  .presse-titre { font-size:0.95rem; font-weight:600; line-height:1.5; color:var(--blanc); margin-bottom:0.6rem; }
-  .presse-extrait { font-size:0.85rem; font-weight:300; font-style:italic; line-height:1.6; color:rgba(244,240,232,0.45); }
+  .presse-titre { font-size:1.15rem; font-weight:600; line-height:1.5; color:var(--blanc); margin-bottom:0.6rem; }
+  .presse-extrait { font-size:0.92rem; font-weight:300; font-style:italic; line-height:1.6; color:rgba(244,240,232,0.45); }
   .presse-date { font-family:'Share Tech Mono',monospace; font-size:0.58rem; color:rgba(244,240,232,0.2); margin-top:1rem; }
 
   .maslow-intro { font-size:1rem; font-weight:300; line-height:1.85; color:rgba(244,240,232,0.62); max-width:760px; margin-bottom:3rem; border-left:3px solid var(--rouge); padding-left:1.5rem; }
@@ -145,7 +145,7 @@
   .maslow-item.securite .maslow-t { color:var(--or); }
   .maslow-num { font-family:'Bebas Neue',sans-serif; font-size:4rem; line-height:1; color:rgba(244,240,232,0.05); margin-bottom:1rem; }
   .maslow-t { font-family:'Share Tech Mono',monospace; font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--rouge); margin-bottom:0.8rem; }
-  .maslow-d { font-size:0.88rem; font-weight:300; line-height:1.6; color:rgba(244,240,232,0.52); margin-bottom:1rem; }
+  .maslow-d { font-size:0.95rem; font-weight:300; line-height:1.6; color:rgba(244,240,232,0.52); margin-bottom:1rem; }
   .maslow-besoins { list-style:none; margin-top:0.8rem; }
   .maslow-besoins li { font-family:'Share Tech Mono',monospace; font-size:0.6rem; letter-spacing:0.07em; color:rgba(244,240,232,0.35); padding:0.3rem 0; border-bottom:1px solid rgba(244,240,232,0.04); }
   .maslow-besoins li::before { content:'— '; color:var(--rouge); opacity:0.6; }
@@ -168,7 +168,7 @@
   .p-num { font-family:'Bebas Neue',sans-serif; font-size:4.5rem; line-height:1; color:rgba(244,240,232,0.04); position:absolute; top:1rem; right:1.5rem; }
   .p-tag { font-family:'Share Tech Mono',monospace; font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--or); margin-bottom:0.8rem; }
   .p-titre { font-family:'Bebas Neue',sans-serif; font-size:1.7rem; letter-spacing:0.05em; margin-bottom:1rem; color:var(--blanc); }
-  .p-desc { font-size:0.92rem; font-weight:300; line-height:1.7; color:rgba(244,240,232,0.58); margin-bottom:1.5rem; }
+  .p-desc { font-size:1rem; font-weight:300; line-height:1.7; color:rgba(244,240,232,0.58); margin-bottom:1.5rem; }
   .p-list { list-style:none; margin-bottom:2rem; }
   .p-list li { font-family:'Share Tech Mono',monospace; font-size:0.65rem; letter-spacing:0.08em; color:rgba(244,240,232,0.42); padding:0.38rem 0; border-bottom:1px solid rgba(244,240,232,0.05); }
   .p-list li::before { content:'— '; color:var(--rouge); }
@@ -185,6 +185,7 @@
   .modules-liste li::before { content:''; position:absolute; left:0; top:0; width:0; height:100%; background:var(--rouge); opacity:0.4; transition:width 0.3s; }
   .modules-liste li:hover::before { width:2px; }
   .m-num { display:block; font-size:0.55rem; color:rgba(192,57,43,0.55); margin-bottom:0.3rem; }
+  .m-tarif { display:block; font-size:0.6rem; color:var(--or); opacity:0.7; margin-top:0.3rem; }
 
   /* ── SACS ── */
   .sec-sacs { padding:8rem 3rem; max-width:1200px; margin:0 auto; }
@@ -205,15 +206,15 @@
   .sac-card:not(.featured) .sac-badge { color:rgba(244,240,232,0.3); border:1px solid rgba(244,240,232,0.1); }
   .sac-card.featured .sac-badge { color:var(--rouge); border:1px solid var(--rouge); }
   .sac-titre { font-family:'Bebas Neue',sans-serif; font-size:1.7rem; letter-spacing:0.05em; margin-bottom:0.3rem; color:var(--blanc); }
-  .sac-sous { font-style:italic; font-size:0.85rem; color:rgba(244,240,232,0.3); margin-bottom:1.2rem; }
+  .sac-sous { font-style:italic; font-size:0.92rem; color:rgba(244,240,232,0.3); margin-bottom:1.2rem; }
   .sac-prix-note { font-family:'Share Tech Mono',monospace; font-size:0.58rem; letter-spacing:0.12em; color:rgba(244,240,232,0.28); text-transform:uppercase; }
   .sac-prix { font-family:'Bebas Neue',sans-serif; font-size:1.8rem; color:var(--or); margin-bottom:0.2rem; }
   .sac-duree { font-family:'Share Tech Mono',monospace; font-size:0.6rem; letter-spacing:0.12em; color:rgba(244,240,232,0.3); text-transform:uppercase; margin-bottom:1.2rem; }
-  .sac-apprendre { font-size:0.85rem; font-style:italic; color:rgba(201,168,76,0.65); border-left:2px solid var(--or); padding-left:1rem; margin-bottom:1rem; line-height:1.5; }
+  .sac-apprendre { font-size:0.92rem; font-style:italic; color:rgba(201,168,76,0.65); border-left:2px solid var(--or); padding-left:1rem; margin-bottom:1rem; line-height:1.5; }
   .sac-card.actif { border-right:none; border-left:3px solid var(--rouge); box-shadow:0 0 25px rgba(192,57,43,0.07); }
   .sac-card.actif::before { content:''; position:absolute; top:0; left:0; right:auto; width:3px; height:0; background:var(--rouge); transition:height 0.4s; }
   .sac-card.actif:hover::before { height:100%; }
-  .sac-regle { font-style:italic; font-size:0.85rem; color:rgba(244,240,232,0.35); border-left:2px solid var(--rouge); padding-left:1rem; }
+  .sac-regle { font-style:italic; font-size:0.92rem; color:rgba(244,240,232,0.35); border-left:2px solid var(--rouge); padding-left:1rem; }
 
   /* ── CARTES OFF ── */
   .card-off { position:relative; overflow:hidden; opacity:0.4; filter:grayscale(70%); transition:opacity 0.3s, filter 0.3s; }
@@ -283,7 +284,7 @@
   .maslow-item.securite:hover { box-shadow: 0 0 0 1px rgba(192,57,43,0.4), inset 0 0 50px rgba(192,57,43,0.1); }
 
   /* Articles presse plus lisibles */
-  .presse-extrait { font-size:0.92rem; font-weight:300; font-style:italic; line-height:1.7; color:rgba(244,240,232,0.65); }
+  .presse-extrait { font-size:1rem; font-weight:300; font-style:italic; line-height:1.7; color:rgba(244,240,232,0.65); }
   .presse-titre { font-size:1rem; font-weight:600; line-height:1.5; color:var(--blanc); margin-bottom:0.8rem; }
 
   /* ── TEAM BUILDING ── */
@@ -291,7 +292,7 @@
   .btob-inner { max-width:1200px; margin:0 auto; }
 
   .btob-top { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; margin-bottom:5rem; }
-  .btob-texte p { font-size:1.05rem; font-weight:300; line-height:1.85; color:rgba(244,240,232,0.65); margin-bottom:1rem; }
+  .btob-texte p { font-size:1.15rem; font-weight:300; line-height:1.85; color:rgba(244,240,232,0.65); margin-bottom:1rem; }
   .btob-points { list-style:none; margin:2rem 0; }
   .btob-points li { font-family:'Share Tech Mono',monospace; font-size:0.7rem; letter-spacing:0.08em; color:rgba(244,240,232,0.52); padding:0.85rem 0; border-bottom:1px solid rgba(244,240,232,0.05); display:flex; align-items:center; gap:1rem; transition:color 0.3s; }
   .btob-points li:hover { color:rgba(244,240,232,0.85); }
@@ -327,7 +328,7 @@
   .btob-card:hover::before { height:100%; }
   .btob-card-num { font-family:'Bebas Neue',sans-serif; font-size:3.5rem; color:var(--rouge); line-height:1; margin-bottom:0.5rem; opacity:0.6; }
   .btob-card-t { font-family:'Share Tech Mono',monospace; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(244,240,232,0.45); margin-bottom:0.8rem; }
-  .btob-card-d { font-size:0.88rem; font-weight:300; line-height:1.6; color:rgba(244,240,232,0.38); }
+  .btob-card-d { font-size:0.95rem; font-weight:300; line-height:1.6; color:rgba(244,240,232,0.38); }
 
   .btob-ctas { display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap; }
 
@@ -346,11 +347,11 @@
   .contact-bloc-header .main-bloc svg { width:32px; height:40px; }
   .contact-bloc-header .main-bloc-texte { display:none; }
   .contact-bloc-t { font-family:'Bebas Neue',sans-serif; font-size:1.5rem; letter-spacing:0.05em; color:var(--blanc); }
-  .contact-bloc p { font-size:0.92rem; font-weight:300; line-height:1.7; color:rgba(244,240,232,0.52); margin-bottom:2rem; }
+  .contact-bloc p { font-size:1rem; font-weight:300; line-height:1.7; color:rgba(244,240,232,0.52); margin-bottom:2rem; }
 
   .form-q { display:flex; flex-direction:column; gap:1rem; }
   .form-q label { font-family:'Share Tech Mono',monospace; font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(244,240,232,0.38); display:block; margin-bottom:0.25rem; }
-  .form-q input, .form-q select { width:100%; padding:0.75rem 1rem; background:rgba(244,240,232,0.04); border:1px solid rgba(244,240,232,0.09); color:var(--blanc); font-family:'Crimson Pro',serif; font-size:0.95rem; outline:none; transition:border-color 0.3s; }
+  .form-q input, .form-q select { width:100%; padding:0.75rem 1rem; background:rgba(244,240,232,0.04); border:1px solid rgba(244,240,232,0.09); color:var(--blanc); font-family:'Courier Prime',monospace; font-size:1.15rem; outline:none; transition:border-color 0.3s; }
   .form-q input:focus, .form-q select:focus { border-color:var(--rouge); }
   .form-q select option { background:#111; }
   .form-submit { padding:1rem; background:var(--rouge); color:var(--blanc); font-family:'Share Tech Mono',monospace; font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; border:none; cursor:pointer; transition:background 0.3s; margin-top:0.5rem; clip-path:polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)); }
@@ -361,15 +362,20 @@
   footer { padding:3rem; border-top:1px solid var(--gris); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
   .footer-logo { font-family:'Bebas Neue',sans-serif; font-size:1.2rem; letter-spacing:0.15em; color:rgba(244,240,232,0.3); }
   .footer-logo span { color:var(--rouge); }
-  .footer-devise { font-style:italic; font-size:0.85rem; color:rgba(244,240,232,0.18); }
+  .footer-devise { font-style:italic; font-size:0.92rem; color:rgba(244,240,232,0.18); }
   .footer-links { display:flex; gap:2rem; list-style:none; }
   .footer-links a { font-family:'Share Tech Mono',monospace; font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(244,240,232,0.22); text-decoration:none; transition:color 0.3s; }
   .footer-links a:hover { color:var(--or); }
 
+  /* ── EFFET MACHINE À ÉCRIRE ── */
+  .typewriter { overflow:hidden; white-space:nowrap; border-right:3px solid var(--rouge); width:0; animation:typing 2s steps(30,end) forwards, blink-caret 0.75s step-end infinite; }
+  .typewriter-2 { overflow:hidden; white-space:nowrap; border-right:3px solid var(--or); width:0; animation:typing 1.5s steps(25,end) 2.2s forwards, blink-caret 0.75s step-end 2.2s infinite; }
+  .typewriter-3 { overflow:hidden; white-space:nowrap; width:0; animation:typing 1s steps(20,end) 3.8s forwards; }
+  @keyframes typing { from { width:0; } to { width:100%; } }
+  @keyframes blink-caret { from, to { border-color:transparent; } 50% { border-color:var(--rouge); } }
+
   /* ── ANIMATIONS ── */
   @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-
-  /* ── RESPONSIVE ── */
   @media (max-width:900px) {
     nav { padding:1.2rem 1.5rem; }
     .nav-links { display:none; }
@@ -425,7 +431,11 @@
 
   <div class="hero-content">
     <p class="hero-tag">Gibbor Roots Process — Parcours & Formation</p>
-    <h1 class="hero-titre">SOLIDE.<br>CONCRET.<br><span class="accent">RÉEL.</span></h1>
+    <h1 class="hero-titre">
+      <span class="typewriter" style="display:block;">SOLIDE.</span>
+      <span class="typewriter-2" style="display:block;">CONCRET.</span>
+      <span class="typewriter-3 accent" style="display:block;color:var(--rouge);">RÉEL.</span>
+    </h1>
     <p class="hero-accroche">Ce dont tu as besoin n'est pas loin.</p>
     <p class="hero-sous-accroche">Reprends le contrôle.</p>
     <div class="hero-ctas">
@@ -602,9 +612,11 @@
         <ul class="p-list">
           <li>1 journée — sans nuitée</li>
           <li>Vérification des prérequis</li>
-          <li>Groupe restreint</li>
+          <li>Groupe restreint — 10 participants max</li>
           <li>Porte naturelle vers le Niveau 1</li>
         </ul>
+        <p style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--or);margin-bottom:0.2rem;">150€</p>
+        <p style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.12em;color:rgba(244,240,232,0.4);text-transform:uppercase;margin-bottom:1.5rem;">50% déduits si vous rejoignez le Niveau 1 dans les 30 jours</p>
         <a href="#contact" class="btn-s">Me renseigner</a>
       </div>
 
@@ -621,7 +633,10 @@
           <li>Self-défense — instructeur diplômé Krav Maga</li>
           <li>Psychologie relationnelle</li>
           <li>Hébergement dortoir — repas inclus</li>
+          <li>Groupe restreint — 10 participants max</li>
         </ul>
+        <p style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--or);margin-bottom:0.2rem;">390€</p>
+        <p style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.12em;color:rgba(244,240,232,0.4);text-transform:uppercase;margin-bottom:1.5rem;">Hébergement & repas inclus — 75€ déduits si Journée Découverte effectuée</p>
         <a href="#contact" class="btn-p">Rejoindre ce parcours</a>
       </div>
 
@@ -656,16 +671,16 @@
         <div class="en-prep-ligne"></div>
       </div>
       <h3 class="modules-bloc-titre">MODULES COMPLÉMENTAIRES</h3>
-      <p class="modules-bloc-sous">Parcours spécialisés — à venir</p>
+      <p class="modules-bloc-sous">Parcours spécialisés — à partir de 150€ — tarif selon module</p>
       <ul class="modules-liste">
-        <li><span class="m-num">02</span>Constitution du sac d'évacuation</li>
-        <li><span class="m-num">03</span>Techniques survie & bushcraft avancé</li>
-        <li><span class="m-num">04</span>Techniques de combat armé</li>
-        <li><span class="m-num">05</span>Self défense & combat rapproché</li>
-        <li><span class="m-num">06</span>Communication & orientation terrain</li>
-        <li><span class="m-num">07</span>Intellect & esprit</li>
-        <li><span class="m-num">08</span>Soin, médical & alimentation terrain</li>
-        <li><span class="m-num">09</span>Parcours urbain</li>
+        <li><span class="m-num">02</span>Constitution du sac d'évacuation<span class="m-tarif">150 — 180€</span></li>
+        <li><span class="m-num">03</span>Techniques survie & bushcraft avancé<span class="m-tarif">150 — 180€</span></li>
+        <li><span class="m-num">04</span>Techniques de combat armé<span class="m-tarif">180 — 220€</span></li>
+        <li><span class="m-num">05</span>Self défense & combat rapproché<span class="m-tarif">150 — 200€</span></li>
+        <li><span class="m-num">06</span>Communication & orientation terrain<span class="m-tarif">150 — 170€</span></li>
+        <li><span class="m-num">07</span>Intellect & esprit<span class="m-tarif">150 — 180€</span></li>
+        <li><span class="m-num">08</span>Soin, médical & secourisme<span class="m-tarif">180 — 280€</span></li>
+        <li><span class="m-num">09</span>Parcours urbain<span class="m-tarif">150 — 200€</span></li>
       </ul>
     </div>
 
@@ -692,7 +707,7 @@
   </div>
 
   <p class="s-intro">
-    Un sac d'évacuation n'est pas un gadget — c'est la traduction concrète de ton niveau de préparation. Vous pouvez en trouver des constitués chez des professionnels que nous respectons, comme <a href="https://www.evakit.com" target="_blank" style="color:var(--or);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.3);">evakit.com</a> ou <a href="https://www.survivorattitude.com" target="_blank" style="color:var(--or);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.3);">survivorattitude.com</a>. Les prix sont là, transparents. Mais un sac tout fait ne sera jamais vraiment le vôtre — il ne connaît pas votre profil, votre région, vos contraintes. Ce que nous proposons est différent : <strong style="color:var(--blanc);">nous le constituons ensemble, pièce par pièce, selon ce que vous êtes vraiment.</strong> Vous repartez avec moins de dépenses, plus de compétences — et surtout, vous savez exactement pourquoi chaque élément est là.
+    Un sac d'évacuation n'est pas un gadget — c'est la traduction concrète de ton niveau de préparation. Vous pouvez en trouver des constitués chez des professionnels que nous respectons, comme <a href="https://www.evakit.com" target="_blank" style="color:var(--or);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.3);">evakit.com</a> ou <a href="https://www.lyophilise.fr/2931-sacs-d-evacuation" target="_blank" style="color:var(--or);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.3);">lyophilise.fr</a>. Les prix sont là, transparents. Mais un sac tout fait ne sera jamais vraiment le vôtre — il ne connaît pas votre profil, votre région, vos contraintes. Ce que nous proposons est différent : <strong style="color:var(--blanc);">nous le constituons ensemble, pièce par pièce, selon ce que vous êtes vraiment.</strong> Vous repartez avec moins de dépenses, plus de compétences — et surtout, vous savez exactement pourquoi chaque élément est là.
   </p>
 
   <div class="sacs-grid">
