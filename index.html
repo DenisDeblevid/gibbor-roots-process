@@ -145,9 +145,15 @@
   .maslow-item.securite .maslow-t { color:var(--or); }
   .maslow-num { font-family:'Bebas Neue',sans-serif; font-size:4rem; line-height:1; color:rgba(244,240,232,0.05); margin-bottom:1rem; }
   .maslow-t { font-family:'Share Tech Mono',monospace; font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--rouge); margin-bottom:0.8rem; }
-  .maslow-d { font-size:0.88rem; font-weight:300; line-height:1.6; color:rgba(244,240,232,0.52); }
-  .maslow-item::after { content:''; position:absolute; bottom:0; left:0; width:0; height:2px; background:var(--rouge); transition:width 0.4s; }
-  .maslow-item:hover::after { width:100%; }
+  .maslow-d { font-size:0.88rem; font-weight:300; line-height:1.6; color:rgba(244,240,232,0.52); margin-bottom:1rem; }
+  .maslow-besoins { list-style:none; margin-top:0.8rem; }
+  .maslow-besoins li { font-family:'Share Tech Mono',monospace; font-size:0.6rem; letter-spacing:0.07em; color:rgba(244,240,232,0.35); padding:0.3rem 0; border-bottom:1px solid rgba(244,240,232,0.04); }
+  .maslow-besoins li::before { content:'— '; color:var(--rouge); opacity:0.6; }
+  /* Barre gauche au survol — comme parcours */
+  .maslow-item::before { content:''; position:absolute; top:0; left:0; width:3px; height:0; background:var(--rouge); transition:height 0.4s; }
+  .maslow-item:hover::before { height:100%; }
+  /* Suppression barre bottom */
+  .maslow-item::after { display:none; }
 
   /* ── PARCOURS ── */
   .sec-parcours { padding:6rem 3rem; border-top:1px solid var(--gris); }
@@ -204,6 +210,9 @@
   .sac-prix { font-family:'Bebas Neue',sans-serif; font-size:1.8rem; color:var(--or); margin-bottom:0.2rem; }
   .sac-duree { font-family:'Share Tech Mono',monospace; font-size:0.6rem; letter-spacing:0.12em; color:rgba(244,240,232,0.3); text-transform:uppercase; margin-bottom:1.2rem; }
   .sac-apprendre { font-size:0.85rem; font-style:italic; color:rgba(201,168,76,0.65); border-left:2px solid var(--or); padding-left:1rem; margin-bottom:1rem; line-height:1.5; }
+  .sac-card.actif { border-left:none; border-right:3px solid var(--rouge); box-shadow:0 0 25px rgba(192,57,43,0.07); }
+  .sac-card.actif::before { content:''; position:absolute; top:0; right:0; left:auto; width:3px; height:0; background:var(--rouge); transition:height 0.4s; }
+  .sac-card.actif:hover::before { height:100%; }
   .sac-regle { font-style:italic; font-size:0.85rem; color:rgba(244,240,232,0.35); border-left:2px solid var(--rouge); padding-left:1rem; }
 
   /* ── CARTES OFF ── */
@@ -487,36 +496,72 @@
     Abraham Maslow a démontré qu'un être humain ne peut s'épanouir que si ses besoins fondamentaux sont satisfaits. Aujourd'hui, beaucoup vivent avec ce socle fragilisé — sans le nommer, sans savoir comment y remédier. Gibbor Roots Process part de là. Du concret. Du réel. De ce qui tient.
   </p>
 
+  <p class="s-label" style="font-size:1.3rem;letter-spacing:0.3em;margin-bottom:2rem;">BESOINS</p>
   <div class="maslow-grid">
     <div class="maslow-item">
       <div class="lum-wrap"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="grad-lum" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:transparent"/><stop offset="40%" style="stop-color:#c0392b"/><stop offset="60%" style="stop-color:#c9a84c"/><stop offset="100%" style="stop-color:transparent"/></linearGradient></defs><rect class="lum-rect" x="1" y="1" width="98" height="98" rx="0"/></svg></div>
       <div class="maslow-num">01</div>
       <p class="maslow-t">Besoins primaires</p>
-      <p class="maslow-d">Survie, nature, autonomie, bushcraft, eau, nourriture</p>
+      <p class="maslow-d">La base. Ce sans quoi rien n'est possible.</p>
+      <ul class="maslow-besoins">
+        <li>Manger</li>
+        <li>Boire</li>
+        <li>Dormir</li>
+        <li>Se protéger</li>
+        <li>Survivre</li>
+      </ul>
     </div>
     <div class="maslow-item securite">
       <div class="lum-wrap"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="grad-lum" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:transparent"/><stop offset="40%" style="stop-color:#c0392b"/><stop offset="60%" style="stop-color:#c9a84c"/><stop offset="100%" style="stop-color:transparent"/></linearGradient></defs><rect class="lum-rect" x="1" y="1" width="98" height="98" rx="0"/></svg></div>
       <div class="maslow-num">02</div>
       <p class="maslow-t">Sécurité ◆</p>
-      <p class="maslow-d">Self-défense, maîtrise de soi, matériel, préparation mentale</p>
+      <p class="maslow-d">Ne plus avoir peur. Reprendre le contrôle.</p>
+      <ul class="maslow-besoins">
+        <li>Sécurité physique</li>
+        <li>Maîtrise de soi</li>
+        <li>Stabilité</li>
+        <li>Préparation</li>
+        <li>Autonomie</li>
+      </ul>
     </div>
     <div class="maslow-item">
       <div class="lum-wrap"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="grad-lum" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:transparent"/><stop offset="40%" style="stop-color:#c0392b"/><stop offset="60%" style="stop-color:#c9a84c"/><stop offset="100%" style="stop-color:transparent"/></linearGradient></defs><rect class="lum-rect" x="1" y="1" width="98" height="98" rx="0"/></svg></div>
       <div class="maslow-num">03</div>
       <p class="maslow-t">Appartenance</p>
-      <p class="maslow-d">Cohésion, confiance, groupe, liens authentiques</p>
+      <p class="maslow-d">Faire confiance. Être relié.</p>
+      <ul class="maslow-besoins">
+        <li>Liens authentiques</li>
+        <li>Confiance</li>
+        <li>Cohésion</li>
+        <li>Groupe</li>
+        <li>Partage</li>
+      </ul>
     </div>
     <div class="maslow-item">
       <div class="lum-wrap"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="grad-lum" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:transparent"/><stop offset="40%" style="stop-color:#c0392b"/><stop offset="60%" style="stop-color:#c9a84c"/><stop offset="100%" style="stop-color:transparent"/></linearGradient></defs><rect class="lum-rect" x="1" y="1" width="98" height="98" rx="0"/></svg></div>
       <div class="maslow-num">04</div>
       <p class="maslow-t">Identité</p>
-      <p class="maslow-d">Reconnaissance, estime de soi, engagement progressif</p>
+      <p class="maslow-d">Savoir qui on est. Se tenir debout.</p>
+      <ul class="maslow-besoins">
+        <li>Estime de soi</li>
+        <li>Reconnaissance</li>
+        <li>Engagement</li>
+        <li>Valeur</li>
+        <li>Dignité</li>
+      </ul>
     </div>
     <div class="maslow-item">
       <div class="lum-wrap"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="grad-lum" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:transparent"/><stop offset="40%" style="stop-color:#c0392b"/><stop offset="60%" style="stop-color:#c9a84c"/><stop offset="100%" style="stop-color:transparent"/></linearGradient></defs><rect class="lum-rect" x="1" y="1" width="98" height="98" rx="0"/></svg></div>
       <div class="maslow-num">05</div>
       <p class="maslow-t">Épanouissement</p>
-      <p class="maslow-d">Transformation, sens, clarté, liberté intérieure</p>
+      <p class="maslow-d">Devenir ce qu'on est vraiment.</p>
+      <ul class="maslow-besoins">
+        <li>Transformation</li>
+        <li>Sens</li>
+        <li>Clarté</li>
+        <li>Liberté intérieure</li>
+        <li>Accomplissement</li>
+      </ul>
     </div>
   </div>
 
@@ -796,6 +841,7 @@
 
   <div class="contact-grid">
     <div class="contact-bloc">
+      <div class="lum-wrap"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="grad-lum" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:transparent"/><stop offset="40%" style="stop-color:#c0392b"/><stop offset="60%" style="stop-color:#c9a84c"/><stop offset="100%" style="stop-color:transparent"/></linearGradient></defs><rect class="lum-rect" x="1" y="1" width="98" height="98" rx="0"/></svg></div>
       <div class="contact-bloc-header">
         <div class="main-bloc">
           <svg viewBox="0 0 60 75" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -815,6 +861,7 @@
     </div>
 
     <div class="contact-bloc">
+      <div class="lum-wrap"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="grad-lum" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:transparent"/><stop offset="40%" style="stop-color:#c0392b"/><stop offset="60%" style="stop-color:#c9a84c"/><stop offset="100%" style="stop-color:transparent"/></linearGradient></defs><rect class="lum-rect" x="1" y="1" width="98" height="98" rx="0"/></svg></div>
       <div class="contact-bloc-header">
         <div class="main-bloc">
           <svg viewBox="0 0 60 75" fill="none" xmlns="http://www.w3.org/2000/svg">
