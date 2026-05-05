@@ -377,11 +377,12 @@
   /* ── ANIMATION MACHINE À ÉCRIRE AU SCROLL ── */
   .tw { opacity:0; }
   .tw.visible { opacity:1; }
-  .tw-line { display:inline-block; overflow:hidden; white-space:nowrap; width:0; }
-  .tw.visible .tw-line { animation:tw-typing 1.2s steps(30,end) forwards; }
-  .tw.visible .tw-line:nth-child(2) { animation-delay:1.3s; }
-  .tw.visible .tw-line:nth-child(3) { animation-delay:2.6s; }
+  .tw-line { display:inline-block; overflow:hidden; white-space:nowrap; width:0; border-right:3px solid transparent; }
+  .tw.visible .tw-line { animation:tw-typing 1.2s steps(30,end) forwards, tw-blink 0.75s step-end infinite; }
+  .tw.visible .tw-line:nth-child(2) { animation:tw-typing 1.2s steps(30,end) 1.3s forwards, tw-blink 0.75s step-end 1.3s infinite; }
+  .tw.visible .tw-line:nth-child(3) { animation:tw-typing 1.2s steps(30,end) 2.6s forwards, tw-blink 0.75s step-end 2.6s infinite; }
   @keyframes tw-typing { from { width:0; } to { width:100%; } }
+  @keyframes tw-blink { from, to { border-color:transparent; } 50% { border-color:var(--rouge); } }
 
   /* ── BOITES CONTACT MÊME TAILLE ── */
   .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--gris); align-items:stretch; }
@@ -923,42 +924,30 @@
             <path d="M8 55 Q18 68 30 68 Q42 68 52 55" stroke="#f4f0e8" stroke-width="3" stroke-linecap="round" fill="none"/>
           </svg>
         </div>
+        <h3 class="contact-bloc-t">PRENDRE RDV</h3>
+      </div>
+      <p>Un échange de 20 minutes pour comprendre où tu en es et ce qui te correspond. Sans engagement. Sans pression.</p>
+      <a href="https://koalendar.com/e/rencontrer-denis" target="_blank" class="btn-p" style="width:100%;text-align:center;display:block;margin-top:auto;">Réserver un créneau</a>
+    </div>
+
+    <div class="contact-bloc">
+      <div class="lum-wrap"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="grad-lum" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:transparent"/><stop offset="40%" style="stop-color:#c0392b"/><stop offset="60%" style="stop-color:#c9a84c"/><stop offset="100%" style="stop-color:transparent"/></linearGradient></defs><rect class="lum-rect" x="1" y="1" width="98" height="98" rx="0"/></svg></div>
+      <div class="contact-bloc-header">
+        <div class="main-bloc">
+          <svg viewBox="0 0 60 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 8 L30 45" stroke="#f4f0e8" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M18 18 L18 50" stroke="#f4f0e8" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M8 26 L8 55" stroke="#f4f0e8" stroke-width="3" stroke-linecap="round"/>
+            <path d="M42 18 L42 50" stroke="#f4f0e8" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M52 26 L52 55" stroke="#f4f0e8" stroke-width="3" stroke-linecap="round"/>
+            <path d="M8 55 Q18 68 30 68 Q42 68 52 55" stroke="#f4f0e8" stroke-width="3" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
         <h3 class="contact-bloc-t">DÉFINIR TON NIVEAU</h3>
       </div>
-      <p>Réponds à quelques questions — reçois une recommandation personnalisée et une offre de bienvenue sur ta première journée.</p>
-      <div class="form-q">
-        <div>
-          <label>Prénom & Nom</label>
-          <input type="text" placeholder="Votre nom">
-        </div>
-        <div>
-          <label>Email</label>
-          <input type="email" placeholder="votre@email.fr">
-        </div>
-        <div>
-          <label>Objectif principal</label>
-          <select>
-            <option value="">— Choisir —</option>
-            <option>Reprendre confiance en moi</option>
-            <option>Apprendre à me défendre</option>
-            <option>Être plus autonome en nature</option>
-            <option>Construire mon sac d'évacuation</option>
-            <option>Renforcer mon équipe</option>
-          </select>
-        </div>
-        <div>
-          <label>Niveau actuel en nature</label>
-          <select>
-            <option value="">— Choisir —</option>
-            <option>Jamais pratiqué</option>
-            <option>Débutant</option>
-            <option>Intermédiaire</option>
-            <option>Confirmé</option>
-          </select>
-        </div>
-        <button class="form-submit" type="button">Recevoir ma recommandation →</button>
-        <p class="promo-note">✦ Les participants reçoivent une offre de bienvenue sur la Journée Découverte.</p>
-      </div>
+      <p>Réponds à 10 questions. Reçois ton profil instantané — points forts et axes de progression — avec une recommandation personnalisée.</p>
+      <p style="font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:rgba(201,168,76,0.6);margin-top:1rem;line-height:1.6;border-left:2px solid rgba(201,168,76,0.3);padding-left:0.8rem;">✦ Une offre de bienvenue vous sera transmise à l'issue du questionnaire.</p>
+      <a href="questionnaire.html" class="btn-p" style="width:100%;text-align:center;display:block;margin-top:auto;">Commencer le questionnaire →</a>
     </div>
   </div>
 </section>
