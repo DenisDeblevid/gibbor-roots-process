@@ -137,7 +137,7 @@
   .maslow-intro { font-size:1rem; font-weight:300; line-height:1.85; color:rgba(244,240,232,0.62); max-width:760px; margin-bottom:3rem; border-left:3px solid var(--rouge); padding-left:1.5rem; }
 
   .maslow-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:0; margin-bottom:5rem; }
-  .maslow-item { padding:2.5rem 1.5rem; border-left:1px solid rgba(244,240,232,0.07); position:relative; transition:background 0.3s; cursor:default; }
+  .maslow-item { padding:2.5rem 1.5rem; border-left:1px solid rgba(244,240,232,0.07); position:relative; overflow:hidden; transition:background 0.3s; cursor:default; }
   .maslow-item:hover { background:rgba(244,240,232,0.03); }
   .maslow-item.securite { background:rgba(192,57,43,0.07); border-left:2px solid rgba(192,57,43,0.5); box-shadow:inset 0 0 40px rgba(192,57,43,0.08); transition:background 0.3s, box-shadow 0.3s; }
   .maslow-item.securite:hover { background:rgba(192,57,43,0.12); box-shadow:inset 0 0 60px rgba(192,57,43,0.15), 0 0 30px rgba(192,57,43,0.1); }
@@ -221,28 +221,57 @@
   .en-prep-sous { font-family:'Share Tech Mono',monospace; font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(244,240,232,0.35); text-align:center; }
   .en-prep-ligne { width:40px; height:1px; background:var(--rouge); opacity:0.6; }
 
-  /* ── ANIMATION LUMIÈRE AU SURVOL ── */
-  .p-card:hover, .sac-card.actif:hover, .presse-card:hover, .btob-card:hover, .contact-bloc:hover {
-    box-shadow:0 0 0 1px rgba(192,57,43,0.3), inset 0 0 40px rgba(192,57,43,0.05);
-    transition:box-shadow 0.4s;
+  /* ── ANIMATION ECG — TOUR COMPLET AU SURVOL ── */
+  /* Principe : 4 pseudo-éléments SVG border simulés via clip-path animé */
+
+  .lum-wrap { position:absolute; inset:0; pointer-events:none; z-index:15; opacity:0; transition:opacity 0.2s; }
+  .lum-wrap svg { position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
+
+  /* On active au survol du parent */
+  .p-card:hover .lum-wrap,
+  .sac-card:hover .lum-wrap,
+  .btob-card:hover .lum-wrap,
+  .contact-bloc:hover .lum-wrap,
+  .maslow-item:hover .lum-wrap {
+    opacity:1;
   }
 
-  /* Lumière courante sur le bord supérieur */
-  .p-card, .sac-card, .presse-card, .btob-card, .contact-bloc { isolation:isolate; }
-  .p-card .lum, .sac-card .lum, .presse-card .lum, .btob-card .lum, .contact-bloc .lum {
-    position:absolute; top:0; left:-100%; width:100%; height:2px;
-    background:linear-gradient(90deg, transparent, var(--rouge), var(--or), var(--rouge), transparent);
-    opacity:0; pointer-events:none; z-index:10;
-    transition:opacity 0.2s;
+  /* Le rect SVG animé — trait qui fait le tour */
+  .lum-rect {
+    fill:none;
+    stroke:url(#grad-lum);
+    stroke-width:2;
+    stroke-dasharray: 60 10000;
+    stroke-dashoffset: 0;
+    animation:none;
   }
-  .p-card:hover .lum, .sac-card:hover .lum, .presse-card:hover .lum, .btob-card:hover .lum, .contact-bloc:hover .lum {
-    opacity:1; animation:lum-run 1s ease forwards;
+
+  .p-card:hover .lum-rect,
+  .sac-card:hover .lum-rect,
+  .btob-card:hover .lum-rect,
+  .contact-bloc:hover .lum-rect,
+  .maslow-item:hover .lum-rect {
+    animation: ecg-tour 1.8s linear forwards;
   }
-  @keyframes lum-run {
-    0% { left:-100%; opacity:0; }
-    10% { opacity:1; }
-    100% { left:100%; opacity:0; }
+
+  @keyframes ecg-tour {
+    0%   { stroke-dashoffset: 0;    stroke-dasharray: 0 10000; opacity:0; }
+    5%   { opacity:1; stroke-dasharray: 0 10000; }
+    15%  { stroke-dasharray: 80 10000; }
+    85%  { stroke-dasharray: 10000 0; opacity:1; }
+    100% { stroke-dasharray: 10000 0; opacity:0; }
   }
+
+  /* Glow au survol */
+  .p-card:hover,
+  .sac-card.actif:hover,
+  .btob-card:hover,
+  .contact-bloc:hover {
+    box-shadow: 0 0 0 1px rgba(192,57,43,0.2), inset 0 0 35px rgba(192,57,43,0.04);
+  }
+
+  .maslow-item:hover .lum-rect { stroke-width:1.5; }
+  .maslow-item.securite:hover { box-shadow: 0 0 0 1px rgba(192,57,43,0.4), inset 0 0 50px rgba(192,57,43,0.1); }
 
   /* Articles presse plus lisibles */
   .presse-extrait { font-size:0.92rem; font-weight:300; font-style:italic; line-height:1.7; color:rgba(244,240,232,0.65); }
@@ -260,6 +289,12 @@
   .btob-points li::before { content:'◆'; color:var(--rouge); font-size:0.42rem; flex-shrink:0; }
 
   /* Placeholder image BtoB */
+  .btob-img-wrap { position:relative; }
+  .btob-img { width:100%; height:520px; object-fit:cover; filter:grayscale(20%); opacity:0.78; transition:opacity 0.4s, filter 0.4s; display:block; }
+  .btob-img:hover { opacity:0.92; filter:grayscale(5%); }
+  .btob-img-cap { position:absolute; bottom:1.5rem; left:1.5rem; font-family:'Share Tech Mono',monospace; font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(244,240,232,0.55); background:rgba(10,10,10,0.75); padding:0.4rem 0.8rem; }
+  .btob-img2 { width:100%; height:340px; object-fit:cover; filter:grayscale(30%); opacity:0.65; display:block; }
+  .btob-mid { margin-bottom:4rem; position:relative; overflow:hidden; }
   .btob-img-placeholder {
     width:100%; height:480px;
     background:rgba(244,240,232,0.02); border:1px dashed rgba(244,240,232,0.1);
@@ -454,26 +489,31 @@
 
   <div class="maslow-grid">
     <div class="maslow-item">
+      <div class="lum-wrap"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="grad-lum" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:transparent"/><stop offset="40%" style="stop-color:#c0392b"/><stop offset="60%" style="stop-color:#c9a84c"/><stop offset="100%" style="stop-color:transparent"/></linearGradient></defs><rect class="lum-rect" x="1" y="1" width="98" height="98" rx="0"/></svg></div>
       <div class="maslow-num">01</div>
       <p class="maslow-t">Besoins primaires</p>
       <p class="maslow-d">Survie, nature, autonomie, bushcraft, eau, nourriture</p>
     </div>
     <div class="maslow-item securite">
+      <div class="lum-wrap"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="grad-lum" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:transparent"/><stop offset="40%" style="stop-color:#c0392b"/><stop offset="60%" style="stop-color:#c9a84c"/><stop offset="100%" style="stop-color:transparent"/></linearGradient></defs><rect class="lum-rect" x="1" y="1" width="98" height="98" rx="0"/></svg></div>
       <div class="maslow-num">02</div>
       <p class="maslow-t">Sécurité ◆</p>
       <p class="maslow-d">Self-défense, maîtrise de soi, matériel, préparation mentale</p>
     </div>
     <div class="maslow-item">
+      <div class="lum-wrap"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="grad-lum" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:transparent"/><stop offset="40%" style="stop-color:#c0392b"/><stop offset="60%" style="stop-color:#c9a84c"/><stop offset="100%" style="stop-color:transparent"/></linearGradient></defs><rect class="lum-rect" x="1" y="1" width="98" height="98" rx="0"/></svg></div>
       <div class="maslow-num">03</div>
       <p class="maslow-t">Appartenance</p>
       <p class="maslow-d">Cohésion, confiance, groupe, liens authentiques</p>
     </div>
     <div class="maslow-item">
+      <div class="lum-wrap"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="grad-lum" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:transparent"/><stop offset="40%" style="stop-color:#c0392b"/><stop offset="60%" style="stop-color:#c9a84c"/><stop offset="100%" style="stop-color:transparent"/></linearGradient></defs><rect class="lum-rect" x="1" y="1" width="98" height="98" rx="0"/></svg></div>
       <div class="maslow-num">04</div>
       <p class="maslow-t">Identité</p>
       <p class="maslow-d">Reconnaissance, estime de soi, engagement progressif</p>
     </div>
     <div class="maslow-item">
+      <div class="lum-wrap"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="grad-lum" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:transparent"/><stop offset="40%" style="stop-color:#c0392b"/><stop offset="60%" style="stop-color:#c9a84c"/><stop offset="100%" style="stop-color:transparent"/></linearGradient></defs><rect class="lum-rect" x="1" y="1" width="98" height="98" rx="0"/></svg></div>
       <div class="maslow-num">05</div>
       <p class="maslow-t">Épanouissement</p>
       <p class="maslow-d">Transformation, sens, clarté, liberté intérieure</p>
@@ -507,7 +547,7 @@
 
     <div class="parcours-top">
       <div class="p-card">
-        <span class="lum"></span>
+        <div class="lum-wrap"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="grad-lum" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:transparent"/><stop offset="40%" style="stop-color:#c0392b"/><stop offset="60%" style="stop-color:#c9a84c"/><stop offset="100%" style="stop-color:transparent"/></linearGradient></defs><rect class="lum-rect" x="1" y="1" width="98" height="98" rx="0"/></svg></div>
         <div class="p-num">00</div>
         <p class="p-tag">Porte d'entrée — Sans engagement</p>
         <h3 class="p-titre">JOURNÉE DÉCOUVERTE</h3>
@@ -522,7 +562,7 @@
       </div>
 
       <div class="p-card">
-        <span class="lum"></span>
+        <div class="lum-wrap"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="grad-lum" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:transparent"/><stop offset="40%" style="stop-color:#c0392b"/><stop offset="60%" style="stop-color:#c9a84c"/><stop offset="100%" style="stop-color:transparent"/></linearGradient></defs><rect class="lum-rect" x="1" y="1" width="98" height="98" rx="0"/></svg></div>
         <div class="p-num">01</div>
         <p class="p-tag">Parcours référence — Fondateur</p>
         <h3 class="p-titre">INITIATION NIVEAU 1</h3>
@@ -539,7 +579,7 @@
       </div>
 
       <div class="p-card card-off">
-        <span class="lum"></span>
+        <div class="lum-wrap"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="grad-lum" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:transparent"/><stop offset="40%" style="stop-color:#c0392b"/><stop offset="60%" style="stop-color:#c9a84c"/><stop offset="100%" style="stop-color:transparent"/></linearGradient></defs><rect class="lum-rect" x="1" y="1" width="98" height="98" rx="0"/></svg></div>
         <div class="en-prep">
           <div class="en-prep-ligne"></div>
           <p class="en-prep-icone">⧗</p>
@@ -611,7 +651,7 @@
   <div class="sacs-grid">
     <!-- SAC 1 — ACTIF -->
     <div class="sac-card actif" style="border:1px solid rgba(192,57,43,0.3); box-shadow:0 0 30px rgba(192,57,43,0.08);">
-      <span class="lum"></span>
+      <div class="lum-wrap"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="grad-lum" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:transparent"/><stop offset="40%" style="stop-color:#c0392b"/><stop offset="60%" style="stop-color:#c9a84c"/><stop offset="100%" style="stop-color:transparent"/></linearGradient></defs><rect class="lum-rect" x="1" y="1" width="98" height="98" rx="0"/></svg></div>
       <div class="sac-img-placeholder"><span>Photo à venir</span></div>
       <span class="sac-badge" style="color:var(--rouge);border:1px solid var(--rouge);">Niveau 1 — Disponible</span>
       <h3 class="sac-titre">STARTER</h3>
@@ -625,7 +665,7 @@
 
     <!-- SAC 2 — OFF -->
     <div class="sac-card card-off">
-      <span class="lum"></span>
+      <div class="lum-wrap"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="grad-lum" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:transparent"/><stop offset="40%" style="stop-color:#c0392b"/><stop offset="60%" style="stop-color:#c9a84c"/><stop offset="100%" style="stop-color:transparent"/></linearGradient></defs><rect class="lum-rect" x="1" y="1" width="98" height="98" rx="0"/></svg></div>
       <div class="en-prep">
         <div class="en-prep-ligne"></div>
         <p class="en-prep-icone">⧗</p>
@@ -646,7 +686,7 @@
 
     <!-- SAC 3 — OFF -->
     <div class="sac-card card-off">
-      <span class="lum"></span>
+      <div class="lum-wrap"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="grad-lum" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:transparent"/><stop offset="40%" style="stop-color:#c0392b"/><stop offset="60%" style="stop-color:#c9a84c"/><stop offset="100%" style="stop-color:transparent"/></linearGradient></defs><rect class="lum-rect" x="1" y="1" width="98" height="98" rx="0"/></svg></div>
       <div class="en-prep">
         <div class="en-prep-ligne"></div>
         <p class="en-prep-icone">⧗</p>
@@ -717,16 +757,19 @@
 
     <div class="btob-cards">
       <div class="btob-card">
+        <div class="lum-wrap"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="grad-lum" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:transparent"/><stop offset="40%" style="stop-color:#c0392b"/><stop offset="60%" style="stop-color:#c9a84c"/><stop offset="100%" style="stop-color:transparent"/></linearGradient></defs><rect class="lum-rect" x="1" y="1" width="98" height="98" rx="0"/></svg></div>
         <p class="btob-card-num">01</p>
         <p class="btob-card-t">Des compétences concrètes</p>
         <p class="btob-card-d">Chaque participant repart avec des savoir-faire applicables — en entreprise comme dans sa vie personnelle.</p>
       </div>
       <div class="btob-card">
+        <div class="lum-wrap"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="grad-lum" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:transparent"/><stop offset="40%" style="stop-color:#c0392b"/><stop offset="60%" style="stop-color:#c9a84c"/><stop offset="100%" style="stop-color:transparent"/></linearGradient></defs><rect class="lum-rect" x="1" y="1" width="98" height="98" rx="0"/></svg></div>
         <p class="btob-card-num">02</p>
         <p class="btob-card-t">Une confiance renforcée</p>
         <p class="btob-card-d">Mesurée, documentée, visible. L'évolution avant / après ne ment pas.</p>
       </div>
       <div class="btob-card">
+        <div class="lum-wrap"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="grad-lum" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:transparent"/><stop offset="40%" style="stop-color:#c0392b"/><stop offset="60%" style="stop-color:#c9a84c"/><stop offset="100%" style="stop-color:transparent"/></linearGradient></defs><rect class="lum-rect" x="1" y="1" width="98" height="98" rx="0"/></svg></div>
         <p class="btob-card-num">03</p>
         <p class="btob-card-t">Des liens durables</p>
         <p class="btob-card-d">Forgés dans le réel — pas dans une salle de réunion. Mémorables et durables.</p>
