@@ -41,7 +41,7 @@
 
   .etape-num { font-family:'Share Tech Mono',monospace; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--rouge); margin-bottom:0.8rem; }
   .etape-titre { font-family:'Bebas Neue',sans-serif; font-size:1.8rem; letter-spacing:0.05em; margin-bottom:0.5rem; color:var(--blanc); }
-  .etape-sous { font-size:0.95rem; color:rgba(244,240,232,0.55); margin-bottom:2rem; line-height:1.6; }
+  .etape-sous { font-size:1rem; color:rgba(244,240,232,0.7); margin-bottom:2rem; line-height:1.7; }
 
   /* CHAMPS */
   .champ { margin-bottom:1.5rem; }
@@ -59,8 +59,8 @@
   .choix-item {
     padding:1rem 1.2rem; border:1px solid rgba(244,240,232,0.1);
     background:rgba(244,240,232,0.02); cursor:pointer;
-    font-size:0.92rem; color:rgba(244,240,232,0.6);
-    transition:all 0.2s; position:relative;
+    font-size:1rem; color:rgba(244,240,232,0.72);
+    transition:all 0.2s; position:relative; line-height:1.5;
   }
   .choix-item:hover { border-color:rgba(192,57,43,0.4); color:var(--blanc); background:rgba(192,57,43,0.05); }
   .choix-item.selected { border-color:var(--rouge); color:var(--blanc); background:rgba(192,57,43,0.08); }
@@ -100,26 +100,26 @@
   /* RÉSULTAT */
   #resultat { display:none; }
   #resultat.active { display:block; animation:fadeIn 0.5s ease; }
-  .radar-wrap { margin:3rem 0; }
+  .radar-wrap { margin:2rem auto; max-width:480px; }
   .radar-wrap canvas { max-width:100%; }
   .reco-bloc {
     padding:2rem; border:1px solid rgba(192,57,43,0.3);
     background:rgba(192,57,43,0.04); margin-bottom:1.5rem;
   }
-  .reco-titre { font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:0.05em; color:var(--or); margin-bottom:0.8rem; }
-  .reco-texte { font-size:0.95rem; line-height:1.7; color:rgba(244,240,232,0.7); }
+  .reco-titre { font-family:'Bebas Neue',sans-serif; font-size:1.5rem; letter-spacing:0.05em; color:var(--or); margin-bottom:0.8rem; }
+  .reco-texte { font-size:1rem; line-height:1.8; color:rgba(244,240,232,0.72); }
   .axes-liste { list-style:none; margin:2rem 0; }
-  .axe-item { display:flex; align-items:center; gap:1rem; padding:0.8rem 0; border-bottom:1px solid var(--gris); }
-  .axe-nom { font-family:'Share Tech Mono',monospace; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(244,240,232,0.5); flex:1; }
-  .axe-barre { flex:2; height:4px; background:rgba(244,240,232,0.08); position:relative; }
+  .axe-item { display:flex; align-items:center; gap:1rem; padding:0.9rem 0; border-bottom:1px solid var(--gris); }
+  .axe-nom { font-family:'Share Tech Mono',monospace; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(244,240,232,0.65); flex:1; }
+  .axe-barre { flex:2; height:5px; background:rgba(244,240,232,0.08); position:relative; }
   .axe-fill { height:100%; background:linear-gradient(90deg, var(--rouge), var(--or)); transition:width 1s ease; }
-  .axe-score { font-family:'Bebas Neue',sans-serif; font-size:1.2rem; color:var(--or); width:30px; text-align:right; }
+  .axe-score { font-family:'Bebas Neue',sans-serif; font-size:1.3rem; color:var(--or); width:35px; text-align:right; }
   .offre-bloc {
-    padding:2rem; border:1px solid rgba(201,168,76,0.3);
+    padding:2.5rem; border:1px solid rgba(201,168,76,0.3);
     background:rgba(201,168,76,0.04); margin-top:2rem; text-align:center;
   }
-  .offre-titre { font-family:'Bebas Neue',sans-serif; font-size:1.6rem; letter-spacing:0.1em; color:var(--or); margin-bottom:0.5rem; }
-  .offre-texte { font-size:0.92rem; color:rgba(244,240,232,0.6); margin-bottom:1.5rem; line-height:1.6; }
+  .offre-titre { font-family:'Bebas Neue',sans-serif; font-size:1.8rem; letter-spacing:0.1em; color:var(--or); margin-bottom:0.8rem; }
+  .offre-texte { font-size:1rem; color:rgba(244,240,232,0.68); margin-bottom:1.5rem; line-height:1.8; }
 
   @media (max-width:600px) {
     header { padding:1.5rem; }
@@ -127,6 +127,7 @@
     .choix-grid { grid-template-columns:1fr; }
   }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 </head>
 <body>
 
@@ -343,6 +344,10 @@
 
     <ul class="axes-liste" id="axes-liste"></ul>
 
+    <div class="radar-wrap">
+      <canvas id="radar-chart"></canvas>
+    </div>
+
     <div class="reco-bloc" id="reco-bloc">
       <p class="reco-titre" id="reco-titre"></p>
       <p class="reco-texte" id="reco-texte"></p>
@@ -350,7 +355,7 @@
 
     <div class="offre-bloc">
       <p class="offre-titre">OFFRE DE BIENVENUE</p>
-      <p class="offre-texte">En tant que nouveau membre Gibbor Roots Process, bénéficiez de <strong style="color:var(--or);">50% de réduction</strong> sur la Journée Découverte si vous vous inscrivez au Parcours Niveau 1 dans les 30 jours.</p>
+      <p class="offre-texte">La Journée Découverte est à <strong style="color:var(--or);">150€</strong>. Si vous vous inscrivez au Parcours Niveau 1 dans les <strong style="color:var(--or);">30 jours</strong>, <strong style="color:var(--blanc);">75€ sont déduits</strong> du montant du parcours.</p>
       <a href="https://koalendar.com/e/rencontrer-denis" target="_blank" style="display:inline-block;padding:1rem 2.5rem;background:var(--rouge);color:var(--blanc);font-family:'Share Tech Mono',monospace;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));">Prendre RDV avec Denis →</a>
     </div>
   </div>
@@ -461,6 +466,41 @@ function calculer() {
   document.getElementById('progress-label').textContent = 'Profil complété';
   document.getElementById('resultat').classList.add('active');
   document.getElementById('resultat').scrollIntoView({behavior:'smooth'});
+
+  // Générer le radar Chart.js
+  setTimeout(() => {
+    const ctx = document.getElementById('radar-chart').getContext('2d');
+    new Chart(ctx, {
+      type: 'radar',
+      data: {
+        labels: axes,
+        datasets: [{
+          label: 'Ton profil',
+          data: Object.values(scores),
+          backgroundColor: 'rgba(192,57,43,0.15)',
+          borderColor: '#c0392b',
+          borderWidth: 2,
+          pointBackgroundColor: '#c9a84c',
+          pointBorderColor: '#c9a84c',
+          pointRadius: 4,
+        }]
+      },
+      options: {
+        scales: {
+          r: {
+            min: 0, max: 5,
+            ticks: { stepSize: 1, color: 'rgba(244,240,232,0.3)', font: { size: 10 }, backdropColor: 'transparent' },
+            grid: { color: 'rgba(244,240,232,0.08)' },
+            angleLines: { color: 'rgba(244,240,232,0.08)' },
+            pointLabels: { color: 'rgba(244,240,232,0.6)', font: { size: 11, family: "'Share Tech Mono'" } }
+          }
+        },
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+  }, 500);
 }
 </script>
 
