@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gibbor Roots Process — Définir ton niveau</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Courier+Prime:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root { --noir:#0a0a0a; --blanc:#f4f0e8; --rouge:#c0392b; --or:#c9a84c; --gris:rgba(244,240,232,0.06); }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--noir); color:var(--blanc); font-family:'Courier Prime',monospace; min-height:100vh; }
+
+  /* HEADER */
+  header {
+    padding:2rem 3rem;
+    border-bottom:1px solid var(--gris);
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .logo { font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:0.15em; color:var(--blanc); text-decoration:none; }
+  .logo span { color:var(--rouge); }
+  .retour { font-family:'Share Tech Mono',monospace; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(244,240,232,0.4); text-decoration:none; transition:color 0.3s; }
+  .retour:hover { color:var(--or); }
+
+  /* CONTENU */
+  .wrap { max-width:800px; margin:0 auto; padding:4rem 2rem 6rem; }
+
+  .q-intro { margin-bottom:4rem; }
+  .q-intro .label { font-family:'Share Tech Mono',monospace; font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--rouge); margin-bottom:1rem; }
+  .q-intro h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(2rem,5vw,3.5rem); line-height:1; margin-bottom:1.5rem; }
+  .q-intro p { font-size:1rem; line-height:1.8; color:rgba(244,240,232,0.65); }
+
+  /* PROGRESSION */
+  .progress-bar { width:100%; height:3px; background:rgba(244,240,232,0.08); margin-bottom:3rem; position:relative; }
+  .progress-fill { height:100%; background:linear-gradient(90deg, var(--rouge), var(--or)); transition:width 0.4s ease; width:0%; }
+  .progress-label { font-family:'Share Tech Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(244,240,232,0.3); margin-top:0.5rem; }
+
+  /* ÉTAPE IDENTITÉ */
+  .etape { display:none; }
+  .etape.active { display:block; animation:fadeIn 0.4s ease; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+
+  .etape-num { font-family:'Share Tech Mono',monospace; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--rouge); margin-bottom:0.8rem; }
+  .etape-titre { font-family:'Bebas Neue',sans-serif; font-size:1.8rem; letter-spacing:0.05em; margin-bottom:0.5rem; color:var(--blanc); }
+  .etape-sous { font-size:0.95rem; color:rgba(244,240,232,0.55); margin-bottom:2rem; line-height:1.6; }
+
+  /* CHAMPS */
+  .champ { margin-bottom:1.5rem; }
+  .champ label { font-family:'Share Tech Mono',monospace; font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(244,240,232,0.45); display:block; margin-bottom:0.5rem; }
+  .champ input {
+    width:100%; padding:0.9rem 1rem;
+    background:rgba(244,240,232,0.04); border:1px solid rgba(244,240,232,0.1);
+    color:var(--blanc); font-family:'Courier Prime',monospace; font-size:1rem;
+    outline:none; transition:border-color 0.3s;
+  }
+  .champ input:focus { border-color:var(--rouge); }
+
+  /* CHOIX MULTIPLES */
+  .choix-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-bottom:2rem; }
+  .choix-item {
+    padding:1rem 1.2rem; border:1px solid rgba(244,240,232,0.1);
+    background:rgba(244,240,232,0.02); cursor:pointer;
+    font-size:0.92rem; color:rgba(244,240,232,0.6);
+    transition:all 0.2s; position:relative;
+  }
+  .choix-item:hover { border-color:rgba(192,57,43,0.4); color:var(--blanc); background:rgba(192,57,43,0.05); }
+  .choix-item.selected { border-color:var(--rouge); color:var(--blanc); background:rgba(192,57,43,0.08); }
+  .choix-item.selected::before { content:'✓'; position:absolute; top:0.5rem; right:0.8rem; color:var(--rouge); font-size:0.8rem; }
+
+  /* ÉCHELLE */
+  .echelle { display:flex; gap:0.5rem; margin-bottom:2rem; flex-wrap:wrap; }
+  .echelle-item {
+    flex:1; min-width:50px; padding:0.8rem 0.5rem; text-align:center;
+    border:1px solid rgba(244,240,232,0.1); cursor:pointer;
+    font-family:'Bebas Neue',sans-serif; font-size:1.4rem; color:rgba(244,240,232,0.4);
+    transition:all 0.2s;
+  }
+  .echelle-item:hover { border-color:rgba(192,57,43,0.4); color:var(--blanc); }
+  .echelle-item.selected { border-color:var(--rouge); color:var(--rouge); background:rgba(192,57,43,0.06); }
+  .echelle-labels { display:flex; justify-content:space-between; margin-bottom:1.5rem; }
+  .echelle-labels span { font-family:'Share Tech Mono',monospace; font-size:0.58rem; letter-spacing:0.1em; color:rgba(244,240,232,0.3); text-transform:uppercase; }
+
+  /* NAVIGATION */
+  .nav-btns { display:flex; gap:1rem; margin-top:2.5rem; }
+  .btn-suiv {
+    padding:1rem 2.5rem; background:var(--rouge); color:var(--blanc);
+    font-family:'Share Tech Mono',monospace; font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase;
+    border:none; cursor:pointer; flex:1;
+    clip-path:polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    transition:background 0.3s;
+  }
+  .btn-suiv:hover { background:#a93226; }
+  .btn-prev {
+    padding:1rem 2rem; background:transparent; color:rgba(244,240,232,0.4);
+    font-family:'Share Tech Mono',monospace; font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase;
+    border:1px solid rgba(244,240,232,0.15); cursor:pointer;
+    transition:color 0.3s, border-color 0.3s;
+  }
+  .btn-prev:hover { color:var(--blanc); border-color:rgba(244,240,232,0.4); }
+
+  /* RÉSULTAT */
+  #resultat { display:none; }
+  #resultat.active { display:block; animation:fadeIn 0.5s ease; }
+  .radar-wrap { margin:3rem 0; }
+  .radar-wrap canvas { max-width:100%; }
+  .reco-bloc {
+    padding:2rem; border:1px solid rgba(192,57,43,0.3);
+    background:rgba(192,57,43,0.04); margin-bottom:1.5rem;
+  }
+  .reco-titre { font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:0.05em; color:var(--or); margin-bottom:0.8rem; }
+  .reco-texte { font-size:0.95rem; line-height:1.7; color:rgba(244,240,232,0.7); }
+  .axes-liste { list-style:none; margin:2rem 0; }
+  .axe-item { display:flex; align-items:center; gap:1rem; padding:0.8rem 0; border-bottom:1px solid var(--gris); }
+  .axe-nom { font-family:'Share Tech Mono',monospace; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(244,240,232,0.5); flex:1; }
+  .axe-barre { flex:2; height:4px; background:rgba(244,240,232,0.08); position:relative; }
+  .axe-fill { height:100%; background:linear-gradient(90deg, var(--rouge), var(--or)); transition:width 1s ease; }
+  .axe-score { font-family:'Bebas Neue',sans-serif; font-size:1.2rem; color:var(--or); width:30px; text-align:right; }
+  .offre-bloc {
+    padding:2rem; border:1px solid rgba(201,168,76,0.3);
+    background:rgba(201,168,76,0.04); margin-top:2rem; text-align:center;
+  }
+  .offre-titre { font-family:'Bebas Neue',sans-serif; font-size:1.6rem; letter-spacing:0.1em; color:var(--or); margin-bottom:0.5rem; }
+  .offre-texte { font-size:0.92rem; color:rgba(244,240,232,0.6); margin-bottom:1.5rem; line-height:1.6; }
+
+  @media (max-width:600px) {
+    header { padding:1.5rem; }
+    .wrap { padding:2rem 1.5rem 4rem; }
+    .choix-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">GIBBOR <span>ROOTS</span> PROCESS</a>
+  <a href="index.html" class="retour">← Retour</a>
+</header>
+
+<div class="wrap">
+
+  <!-- INTRO -->
+  <div class="q-intro">
+    <p class="label">Diagnostic personnalisé</p>
+    <h1>DÉFINIR<br>TON NIVEAU</h1>
+    <p>10 questions — 3 minutes. Tu reçois instantanément ton profil Gibbor — tes points forts, tes axes de progression, et une recommandation personnalisée vers le parcours qui te correspond.</p>
+  </div>
+
+  <!-- BARRE DE PROGRESSION -->
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress"></div>
+  </div>
+  <p class="progress-label" id="progress-label">Question 1 / 10</p>
+
+  <!-- ÉTAPE 0 — IDENTITÉ -->
+  <div class="etape active" id="etape-0">
+    <p class="etape-num">Avant de commencer</p>
+    <h2 class="etape-titre">QUI ES-TU ?</h2>
+    <p class="etape-sous">Ces informations restent confidentielles et servent uniquement à personnaliser ta recommandation.</p>
+    <div class="champ"><label>Prénom & Nom</label><input type="text" id="nom" placeholder="Denis Deblevid"></div>
+    <div class="champ"><label>Email</label><input type="email" id="email" placeholder="contact@exemple.fr"></div>
+    <div class="nav-btns">
+      <button class="btn-suiv" onclick="suivant()">Commencer →</button>
+    </div>
+  </div>
+
+  <!-- Q1 — AUTONOMIE NATURE -->
+  <div class="etape" id="etape-1">
+    <p class="etape-num">Question 1 — Autonomie nature</p>
+    <h2 class="etape-titre">EN PLEINE NATURE,<br>TU TE SENS...</h2>
+    <p class="etape-sous">Sois honnête — il n'y a pas de mauvaise réponse.</p>
+    <div class="choix-grid">
+      <div class="choix-item" onclick="select(this,1,1)">Totalement perdu — je n'ai aucune référence</div>
+      <div class="choix-item" onclick="select(this,1,2)">Débrouillard — je m'adapte mais sans vraie méthode</div>
+      <div class="choix-item" onclick="select(this,1,3)">À l'aise — j'ai déjà passé des nuits dehors</div>
+      <div class="choix-item" onclick="select(this,1,4)">Très autonome — je maîtrise les bases de survie</div>
+    </div>
+    <div class="nav-btns">
+      <button class="btn-prev" onclick="precedent()">←</button>
+      <button class="btn-suiv" onclick="suivant()">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- Q2 — PRÉPARATION MATÉRIELLE -->
+  <div class="etape" id="etape-2">
+    <p class="etape-num">Question 2 — Préparation matérielle</p>
+    <h2 class="etape-titre">TON SAC<br>D'ÉVACUATION...</h2>
+    <p class="etape-sous">En cas d'urgence, êtes-vous prêt à partir en 5 minutes ?</p>
+    <div class="choix-grid">
+      <div class="choix-item" onclick="select(this,2,1)">Je n'en ai pas — je n'y ai jamais pensé</div>
+      <div class="choix-item" onclick="select(this,2,2)">J'ai quelques affaires mais rien de structuré</div>
+      <div class="choix-item" onclick="select(this,2,3)">J'ai un sac mais je ne maîtrise pas tout son contenu</div>
+      <div class="choix-item" onclick="select(this,2,4)">Mon sac est prêt, testé et je sais m'en servir</div>
+    </div>
+    <div class="nav-btns">
+      <button class="btn-prev" onclick="precedent()">←</button>
+      <button class="btn-suiv" onclick="suivant()">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- Q3 — CAPACITÉ PHYSIQUE -->
+  <div class="etape" id="etape-3">
+    <p class="etape-num">Question 3 — Capacité physique</p>
+    <h2 class="etape-titre">PHYSIQUEMENT,<br>TU TE SITUES OÙ ?</h2>
+    <p class="etape-sous">Évalue ta condition réelle — pas celle que tu voudrais avoir.</p>
+    <div class="echelle">
+      <div class="echelle-item" onclick="selectEchelle(this,3,1)">1</div>
+      <div class="echelle-item" onclick="selectEchelle(this,3,2)">2</div>
+      <div class="echelle-item" onclick="selectEchelle(this,3,3)">3</div>
+      <div class="echelle-item" onclick="selectEchelle(this,3,4)">4</div>
+      <div class="echelle-item" onclick="selectEchelle(this,3,5)">5</div>
+    </div>
+    <div class="echelle-labels"><span>Sédentaire</span><span>Sportif régulier</span></div>
+    <div class="nav-btns">
+      <button class="btn-prev" onclick="precedent()">←</button>
+      <button class="btn-suiv" onclick="suivant()">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- Q4 — SÉCURITÉ & DÉFENSE -->
+  <div class="etape" id="etape-4">
+    <p class="etape-num">Question 4 — Sécurité & défense</p>
+    <h2 class="etape-titre">FACE À UNE AGRESSION,<br>TU RÉAGIS COMMENT ?</h2>
+    <p class="etape-sous">Pas de jugement — c'est une question de préparation, pas de courage.</p>
+    <div class="choix-grid">
+      <div class="choix-item" onclick="select(this,4,1)">Je me fige — je ne sais pas quoi faire</div>
+      <div class="choix-item" onclick="select(this,4,2)">Je fuirais — mais sans stratégie claire</div>
+      <div class="choix-item" onclick="select(this,4,3)">J'ai quelques notions mais jamais testé sous stress</div>
+      <div class="choix-item" onclick="select(this,4,4)">Je sais gérer — j'ai une formation ou pratique régulière</div>
+    </div>
+    <div class="nav-btns">
+      <button class="btn-prev" onclick="precedent()">←</button>
+      <button class="btn-suiv" onclick="suivant()">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- Q5 — GESTION DU STRESS -->
+  <div class="etape" id="etape-5">
+    <p class="etape-num">Question 5 — Gestion du stress</p>
+    <h2 class="etape-titre">FACE À L'IMPRÉVU,<br>TON PREMIER RÉFLEXE...</h2>
+    <p class="etape-sous">Ce qui se passe réellement, pas ce que tu penses devoir répondre.</p>
+    <div class="choix-grid">
+      <div class="choix-item" onclick="select(this,5,1)">Je panique — j'ai du mal à penser clairement</div>
+      <div class="choix-item" onclick="select(this,5,2)">Je m'agite — j'agis sans vraiment réfléchir</div>
+      <div class="choix-item" onclick="select(this,5,3)">Je ralentis — j'essaie d'analyser avant d'agir</div>
+      <div class="choix-item" onclick="select(this,5,4)">Je reste calme — le stress m'aide à me concentrer</div>
+    </div>
+    <div class="nav-btns">
+      <button class="btn-prev" onclick="precedent()">←</button>
+      <button class="btn-suiv" onclick="suivant()">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- Q6 — ÉMOTIONS -->
+  <div class="etape" id="etape-6">
+    <p class="etape-num">Question 6 — Conscience émotionnelle</p>
+    <h2 class="etape-titre">TES ÉMOTIONS<br>ET TOI...</h2>
+    <p class="etape-sous">La peur, la colère, la tristesse — elles influencent tes décisions. Est-ce que tu le sais ?</p>
+    <div class="choix-grid">
+      <div class="choix-item" onclick="select(this,6,1)">Rarement — je ne fais pas attention à ça</div>
+      <div class="choix-item" onclick="select(this,6,2)">Parfois — je les ressens mais je ne sais pas les nommer</div>
+      <div class="choix-item" onclick="select(this,6,3)">Souvent — je les reconnais mais elles me débordent parfois</div>
+      <div class="choix-item" onclick="select(this,6,4)">Clairement — je sais les identifier et les utiliser</div>
+    </div>
+    <div class="nav-btns">
+      <button class="btn-prev" onclick="precedent()">←</button>
+      <button class="btn-suiv" onclick="suivant()">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- Q7 — RELATIONS & CONFLIT -->
+  <div class="etape" id="etape-7">
+    <p class="etape-num">Question 7 — Relations & conflits</p>
+    <h2 class="etape-titre">FACE À UN CONFLIT,<br>TU...</h2>
+    <p class="etape-sous">Dans la vie quotidienne ou en situation de tension.</p>
+    <div class="choix-grid">
+      <div class="choix-item" onclick="select(this,7,1)">J'évite — je préfère ne pas m'impliquer</div>
+      <div class="choix-item" onclick="select(this,7,2)">Je subis — j'ai du mal à m'affirmer</div>
+      <div class="choix-item" onclick="select(this,7,3)">Je négocie — mais ça me coûte de l'énergie</div>
+      <div class="choix-item" onclick="select(this,7,4)">Je gère — je sais désamorcer et trouver un accord</div>
+    </div>
+    <div class="nav-btns">
+      <button class="btn-prev" onclick="precedent()">←</button>
+      <button class="btn-suiv" onclick="suivant()">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- Q8 — PRISE DE DÉCISION -->
+  <div class="etape" id="etape-8">
+    <p class="etape-num">Question 8 — Prise de décision</p>
+    <h2 class="etape-titre">QUAND TU DOIS<br>CHOISIR VITE...</h2>
+    <p class="etape-sous">Une décision difficile, sous pression, avec des enjeux réels.</p>
+    <div class="echelle">
+      <div class="echelle-item" onclick="selectEchelle(this,8,1)">1</div>
+      <div class="echelle-item" onclick="selectEchelle(this,8,2)">2</div>
+      <div class="echelle-item" onclick="selectEchelle(this,8,3)">3</div>
+      <div class="echelle-item" onclick="selectEchelle(this,8,4)">4</div>
+      <div class="echelle-item" onclick="selectEchelle(this,8,5)">5</div>
+    </div>
+    <div class="echelle-labels"><span>Je me perds</span><span>Je suis lucide</span></div>
+    <div class="nav-btns">
+      <button class="btn-prev" onclick="precedent()">←</button>
+      <button class="btn-suiv" onclick="suivant()">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- Q9 — LEADERSHIP -->
+  <div class="etape" id="etape-9">
+    <p class="etape-num">Question 9 — Leadership & groupe</p>
+    <h2 class="etape-titre">DANS UN GROUPE<br>EN DIFFICULTÉ...</h2>
+    <p class="etape-sous">Pas de hiérarchie définie — juste des gens et une situation à gérer.</p>
+    <div class="choix-grid">
+      <div class="choix-item" onclick="select(this,9,1)">J'attends que quelqu'un prenne les choses en main</div>
+      <div class="choix-item" onclick="select(this,9,2)">Je suis — j'appuie mais je ne dirige pas</div>
+      <div class="choix-item" onclick="select(this,9,3)">Je m'implique — je propose sans imposer</div>
+      <div class="choix-item" onclick="select(this,9,4)">Je prends naturellement les décisions si nécessaire</div>
+    </div>
+    <div class="nav-btns">
+      <button class="btn-prev" onclick="precedent()">←</button>
+      <button class="btn-suiv" onclick="suivant()">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- Q10 — ANCRAGE INTÉRIEUR -->
+  <div class="etape" id="etape-10">
+    <p class="etape-num">Question 10 — Ancrage intérieur</p>
+    <h2 class="etape-titre">QUAND TOUT<br>S'EFFONDRE...</h2>
+    <p class="etape-sous">Ce qui te tient debout quand les repères disparaissent.</p>
+    <div class="choix-grid">
+      <div class="choix-item" onclick="select(this,10,1)">Je n'ai pas vraiment de réponse à ça</div>
+      <div class="choix-item" onclick="select(this,10,2)">Ma famille — les gens que j'aime</div>
+      <div class="choix-item" onclick="select(this,10,3)">Mes valeurs — ce en quoi je crois</div>
+      <div class="choix-item" onclick="select(this,10,4)">Une conviction profonde — foi, sens, mission</div>
+    </div>
+    <div class="nav-btns">
+      <button class="btn-prev" onclick="precedent()">←</button>
+      <button class="btn-suiv" onclick="calculer()">Voir mon profil →</button>
+    </div>
+  </div>
+
+  <!-- RÉSULTAT -->
+  <div id="resultat">
+    <p class="etape-num">Ton profil Gibbor</p>
+    <h2 class="etape-titre" id="res-titre">TON PROFIL<br>EST PRÊT.</h2>
+
+    <ul class="axes-liste" id="axes-liste"></ul>
+
+    <div class="reco-bloc" id="reco-bloc">
+      <p class="reco-titre" id="reco-titre"></p>
+      <p class="reco-texte" id="reco-texte"></p>
+    </div>
+
+    <div class="offre-bloc">
+      <p class="offre-titre">OFFRE DE BIENVENUE</p>
+      <p class="offre-texte">En tant que nouveau membre Gibbor Roots Process, bénéficiez de <strong style="color:var(--or);">50% de réduction</strong> sur la Journée Découverte si vous vous inscrivez au Parcours Niveau 1 dans les 30 jours.</p>
+      <a href="https://koalendar.com/e/rencontrer-denis" target="_blank" style="display:inline-block;padding:1rem 2.5rem;background:var(--rouge);color:var(--blanc);font-family:'Share Tech Mono',monospace;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));">Prendre RDV avec Denis →</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+let etape = 0;
+const total = 10;
+const reponses = {};
+
+const axes = [
+  'Autonomie nature',
+  'Préparation matérielle',
+  'Capacité physique',
+  'Sécurité & défense',
+  'Gestion du stress',
+  'Conscience émotionnelle',
+  'Relations & conflits',
+  'Prise de décision',
+  'Leadership',
+  'Ancrage intérieur'
+];
+
+function select(el, q, val) {
+  document.querySelectorAll(`#etape-${q} .choix-item`).forEach(i => i.classList.remove('selected'));
+  el.classList.add('selected');
+  reponses[q] = val;
+}
+
+function selectEchelle(el, q, val) {
+  document.querySelectorAll(`#etape-${q} .echelle-item`).forEach(i => i.classList.remove('selected'));
+  el.classList.add('selected');
+  reponses[q] = val;
+}
+
+function suivant() {
+  if (etape === 0) {
+    const nom = document.getElementById('nom').value;
+    const email = document.getElementById('email').value;
+    if (!nom || !email) { alert('Merci de renseigner ton prénom et ton email.'); return; }
+  }
+  document.getElementById(`etape-${etape}`).classList.remove('active');
+  etape++;
+  document.getElementById(`etape-${etape}`).classList.add('active');
+  majProgress();
+}
+
+function precedent() {
+  document.getElementById(`etape-${etape}`).classList.remove('active');
+  etape--;
+  document.getElementById(`etape-${etape}`).classList.add('active');
+  majProgress();
+}
+
+function majProgress() {
+  const pct = etape === 0 ? 0 : Math.round((etape / total) * 100);
+  document.getElementById('progress').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = etape === 0 ? 'Identification' : `Question ${etape} / ${total}`;
+}
+
+function calculer() {
+  document.getElementById(`etape-${etape}`).classList.remove('active');
+
+  // Calcul scores
+  const scores = {};
+  for (let i = 1; i <= total; i++) {
+    scores[i] = reponses[i] ? Math.round((reponses[i] / 4) * 5) : 1;
+  }
+
+  // Affichage axes
+  const liste = document.getElementById('axes-liste');
+  liste.innerHTML = '';
+  let total_score = 0;
+  for (let i = 1; i <= total; i++) {
+    total_score += scores[i];
+    const pct = (scores[i] / 5) * 100;
+    liste.innerHTML += `
+      <li class="axe-item">
+        <span class="axe-nom">${axes[i-1]}</span>
+        <div class="axe-barre"><div class="axe-fill" style="width:0%" data-pct="${pct}%"></div></div>
+        <span class="axe-score">${scores[i]}/5</span>
+      </li>`;
+  }
+
+  // Animation barres
+  setTimeout(() => {
+    document.querySelectorAll('.axe-fill').forEach(b => b.style.width = b.dataset.pct);
+  }, 300);
+
+  // Recommandation personnalisée
+  const moy = total_score / total;
+  let titre, texte;
+  if (moy <= 2) {
+    titre = 'Commencez par la Journée Découverte';
+    texte = 'Votre profil montre que vous partez de loin — et c\'est exactement là que Gibbor Roots Process est le plus utile. La Journée Découverte vous permettra de tester l\'environnement sans engagement, et de poser les premières bases concrètes.';
+  } else if (moy <= 3.5) {
+    titre = 'Le Parcours Niveau 1 est fait pour vous';
+    texte = 'Vous avez des bases mais des zones fragiles. Le Parcours Niveau 1 — 3 jours immersifs — vous donnera les compétences manquantes et surtout la cohérence entre ce que vous savez et ce que vous ressentez face à l\'imprévu.';
+  } else {
+    titre = 'Explorez les modules spécialisés';
+    texte = 'Votre profil est solide. Le Parcours Niveau 1 reste le point d\'entrée obligatoire — mais vous progresserez rapidement vers les modules spécialisés selon vos axes de développement prioritaires.';
+  }
+
+  document.getElementById('reco-titre').textContent = titre;
+  document.getElementById('reco-texte').textContent = texte;
+  document.getElementById('progress').style.width = '100%';
+  document.getElementById('progress-label').textContent = 'Profil complété';
+  document.getElementById('resultat').classList.add('active');
+  document.getElementById('resultat').scrollIntoView({behavior:'smooth'});
+}
+</script>
+
+</body>
+</html>
