@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gibbor Roots Process — Demande de devis entreprise</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Courier+Prime:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root { --noir:#0a0a0a; --blanc:#f4f0e8; --rouge:#c0392b; --or:#c9a84c; --gris:rgba(244,240,232,0.06); }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--noir); color:var(--blanc); font-family:'Courier Prime',monospace; min-height:100vh; }
+
+  header { padding:2rem 3rem; border-bottom:1px solid var(--gris); display:flex; justify-content:space-between; align-items:center; }
+  .logo { font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:0.15em; color:var(--blanc); text-decoration:none; }
+  .logo span { color:var(--rouge); }
+  .retour { font-family:'Share Tech Mono',monospace; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(244,240,232,0.4); text-decoration:none; transition:color 0.3s; }
+  .retour:hover { color:var(--or); }
+
+  .wrap { max-width:760px; margin:0 auto; padding:4rem 2rem 6rem; }
+
+  .intro { margin-bottom:3rem; }
+  .intro .label { font-family:'Share Tech Mono',monospace; font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--rouge); margin-bottom:1rem; }
+  .intro h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(2rem,5vw,3.5rem); line-height:1; margin-bottom:1.5rem; }
+  .intro p { font-size:1rem; line-height:1.8; color:rgba(244,240,232,0.65); }
+
+  .form-bloc { border:1px solid rgba(244,240,232,0.08); padding:3rem; background:rgba(244,240,232,0.01); margin-bottom:2rem; }
+  .form-bloc-titre { font-family:'Bebas Neue',sans-serif; font-size:1.3rem; letter-spacing:0.08em; color:var(--or); margin-bottom:2rem; padding-bottom:0.8rem; border-bottom:1px solid var(--gris); }
+
+  .champ { margin-bottom:1.5rem; }
+  .champ label { font-family:'Share Tech Mono',monospace; font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(244,240,232,0.45); display:block; margin-bottom:0.5rem; }
+  .champ input, .champ select, .champ textarea {
+    width:100%; padding:0.9rem 1rem;
+    background:rgba(244,240,232,0.04); border:1px solid rgba(244,240,232,0.1);
+    color:var(--blanc); font-family:'Courier Prime',monospace; font-size:0.95rem;
+    outline:none; transition:border-color 0.3s;
+  }
+  .champ input:focus, .champ select:focus, .champ textarea:focus { border-color:var(--rouge); }
+  .champ select option { background:#111; }
+  .champ textarea { min-height:120px; resize:vertical; line-height:1.6; }
+
+  .champ-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+
+  .checkboxes { display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; }
+  .check-item { display:flex; align-items:center; gap:0.8rem; padding:0.7rem 1rem; border:1px solid rgba(244,240,232,0.08); cursor:pointer; transition:all 0.2s; }
+  .check-item:hover { border-color:rgba(192,57,43,0.3); background:rgba(192,57,43,0.03); }
+  .check-item input[type="checkbox"] { accent-color:var(--rouge); width:16px; height:16px; cursor:pointer; }
+  .check-item label { font-size:0.88rem; color:rgba(244,240,232,0.6); cursor:pointer; }
+
+  .btn-envoi {
+    width:100%; padding:1.2rem;
+    background:var(--rouge); color:var(--blanc);
+    font-family:'Share Tech Mono',monospace; font-size:0.8rem; letter-spacing:0.2em; text-transform:uppercase;
+    border:none; cursor:pointer; transition:background 0.3s;
+    clip-path:polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    margin-top:1rem;
+  }
+  .btn-envoi:hover { background:#a93226; }
+
+  .note-rgpd { font-family:'Share Tech Mono',monospace; font-size:0.58rem; letter-spacing:0.08em; color:rgba(244,240,232,0.25); line-height:1.6; margin-top:1.5rem; }
+
+  #merci { display:none; text-align:center; padding:4rem 2rem; }
+  #merci.visible { display:block; animation:fadeIn 0.5s ease; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+  #merci h2 { font-family:'Bebas Neue',sans-serif; font-size:3rem; letter-spacing:0.05em; color:var(--or); margin-bottom:1rem; }
+  #merci p { font-size:1rem; line-height:1.8; color:rgba(244,240,232,0.65); margin-bottom:2rem; }
+
+  @media (max-width:600px) {
+    header { padding:1.5rem; }
+    .wrap { padding:2rem 1.5rem 4rem; }
+    .champ-grid { grid-template-columns:1fr; }
+    .checkboxes { grid-template-columns:1fr; }
+    .form-bloc { padding:2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">GIBBOR <span>ROOTS</span> PROCESS</a>
+  <a href="index.html" class="retour">← Retour</a>
+</header>
+
+<div class="wrap">
+
+  <div class="intro" id="form-intro">
+    <p class="label">Entreprises & Organisations</p>
+    <h1>DEMANDE<br>DE DEVIS</h1>
+    <p>Chaque programme est construit sur mesure. Remplissez ce formulaire — Denis vous recontacte sous 48h pour construire votre parcours ensemble.</p>
+  </div>
+
+  <form id="devis-form" onsubmit="envoyerDevis(event)">
+
+    <!-- BLOC 1 — CONTACT -->
+    <div class="form-bloc">
+      <p class="form-bloc-titre">01 — Vos coordonnées</p>
+      <div class="champ-grid">
+        <div class="champ"><label>Prénom & Nom *</label><input type="text" name="nom" required placeholder="Denis Deblevid"></div>
+        <div class="champ"><label>Fonction *</label><input type="text" name="fonction" required placeholder="DRH, Directeur, Manager..."></div>
+      </div>
+      <div class="champ-grid">
+        <div class="champ"><label>Email professionnel *</label><input type="email" name="email" required placeholder="contact@entreprise.fr"></div>
+        <div class="champ"><label>Téléphone</label><input type="tel" name="telephone" placeholder="+33 6 00 00 00 00"></div>
+      </div>
+      <div class="champ-grid">
+        <div class="champ"><label>Entreprise / Organisation *</label><input type="text" name="entreprise" required placeholder="Nom de votre structure"></div>
+        <div class="champ"><label>Secteur d'activité</label><input type="text" name="secteur" placeholder="Industrie, services, santé..."></div>
+      </div>
+    </div>
+
+    <!-- BLOC 2 — PROJET -->
+    <div class="form-bloc">
+      <p class="form-bloc-titre">02 — Votre projet</p>
+      <div class="champ-grid">
+        <div class="champ">
+          <label>Nombre de participants *</label>
+          <select name="participants" required>
+            <option value="">— Choisir —</option>
+            <option>10 à 15 personnes</option>
+            <option>15 à 25 personnes</option>
+            <option>25 à 40 personnes</option>
+            <option>Plus de 40 personnes</option>
+          </select>
+        </div>
+        <div class="champ">
+          <label>Format souhaité</label>
+          <select name="format">
+            <option value="">— Choisir —</option>
+            <option>Journée découverte (1 jour)</option>
+            <option>Parcours Niveau 1 (3 jours / 2 nuits)</option>
+            <option>Module spécialisé (1 jour)</option>
+            <option>Programme sur mesure</option>
+          </select>
+        </div>
+      </div>
+      <div class="champ">
+        <label>Objectifs principaux — cochez ce qui vous correspond</label>
+        <div class="checkboxes" style="margin-top:0.5rem;">
+          <div class="check-item"><input type="checkbox" id="c1" name="objectifs" value="cohesion"><label for="c1">Cohésion d'équipe</label></div>
+          <div class="check-item"><input type="checkbox" id="c2" name="objectifs" value="leadership"><label for="c2">Leadership & management</label></div>
+          <div class="check-item"><input type="checkbox" id="c3" name="objectifs" value="stress"><label for="c3">Gestion du stress</label></div>
+          <div class="check-item"><input type="checkbox" id="c4" name="objectifs" value="communication"><label for="c4">Communication</label></div>
+          <div class="check-item"><input type="checkbox" id="c5" name="objectifs" value="confiance"><label for="c5">Confiance & autonomie</label></div>
+          <div class="check-item"><input type="checkbox" id="c6" name="objectifs" value="autre"><label for="c6">Autre</label></div>
+        </div>
+      </div>
+      <div class="champ-grid">
+        <div class="champ">
+          <label>Période envisagée</label>
+          <select name="periode">
+            <option value="">— Choisir —</option>
+            <option>Dans le mois</option>
+            <option>Dans les 3 mois</option>
+            <option>Dans les 6 mois</option>
+            <option>À définir</option>
+          </select>
+        </div>
+        <div class="champ">
+          <label>Budget indicatif</label>
+          <select name="budget">
+            <option value="">— Choisir —</option>
+            <option>Moins de 2 000€</option>
+            <option>2 000€ à 5 000€</option>
+            <option>5 000€ à 10 000€</option>
+            <option>Plus de 10 000€</option>
+            <option>À définir ensemble</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOC 3 — MESSAGE -->
+    <div class="form-bloc">
+      <p class="form-bloc-titre">03 — Votre message</p>
+      <div class="champ">
+        <label>Décrivez votre contexte et vos attentes</label>
+        <textarea name="message" placeholder="Quel est le contexte de votre demande ? Avez-vous déjà fait des séminaires similaires ? Y a-t-il des contraintes particulières à prendre en compte ?"></textarea>
+      </div>
+      <div class="champ">
+        <label>Comment avez-vous entendu parler de Gibbor Roots Process ?</label>
+        <select name="source">
+          <option value="">— Choisir —</option>
+          <option>Bouche à oreille</option>
+          <option>LinkedIn</option>
+          <option>Recherche Google</option>
+          <option>Recommandation d'un partenaire</option>
+          <option>Autre</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit" class="btn-envoi">Envoyer ma demande de devis →</button>
+    <p class="note-rgpd">Vos données sont utilisées uniquement pour traiter votre demande. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression. Contact : denisdeblevidcontact@gmail.com</p>
+
+  </form>
+
+  <!-- MESSAGE DE CONFIRMATION -->
+  <div id="merci">
+    <h2>REÇU.</h2>
+    <p>Votre demande a bien été transmise à Denis.<br>Il vous recontacte sous 48h pour construire votre programme ensemble.</p>
+    <a href="index.html" style="display:inline-block;padding:1rem 2.5rem;background:var(--rouge);color:var(--blanc);font-family:'Share Tech Mono',monospace;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));">Retour au site</a>
+  </div>
+
+</div>
+
+<script>
+function envoyerDevis(e) {
+  e.preventDefault();
+  const form = document.getElementById('devis-form');
+  const data = new FormData(form);
+
+  // Construire le corps du mail
+  let corps = 'NOUVELLE DEMANDE DE DEVIS — GIBBOR ROOTS PROCESS\n\n';
+  corps += '=== CONTACT ===\n';
+  corps += `Nom : ${data.get('nom')}\n`;
+  corps += `Fonction : ${data.get('fonction')}\n`;
+  corps += `Email : ${data.get('email')}\n`;
+  corps += `Téléphone : ${data.get('telephone') || 'Non renseigné'}\n`;
+  corps += `Entreprise : ${data.get('entreprise')}\n`;
+  corps += `Secteur : ${data.get('secteur') || 'Non renseigné'}\n\n`;
+  corps += '=== PROJET ===\n';
+  corps += `Participants : ${data.get('participants') || 'Non renseigné'}\n`;
+  corps += `Format : ${data.get('format') || 'Non renseigné'}\n`;
+  corps += `Période : ${data.get('periode') || 'Non renseigné'}\n`;
+  corps += `Budget : ${data.get('budget') || 'Non renseigné'}\n\n`;
+  corps += '=== MESSAGE ===\n';
+  corps += `${data.get('message') || 'Aucun message'}\n\n`;
+  corps += `Source : ${data.get('source') || 'Non renseigné'}`;
+
+  // Lien mailto
+  const sujet = encodeURIComponent(`Demande de devis — ${data.get('entreprise')}`);
+  const body = encodeURIComponent(corps);
+  window.location.href = `mailto:denisdeblevidcontact@gmail.com?subject=${sujet}&body=${body}`;
+
+  // Afficher confirmation
+  setTimeout(() => {
+    document.getElementById('form-intro').style.display = 'none';
+    form.style.display = 'none';
+    document.getElementById('merci').classList.add('visible');
+  }, 500);
+}
+</script>
+
+</body>
+</html>
