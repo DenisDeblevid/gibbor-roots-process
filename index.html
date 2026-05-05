@@ -380,11 +380,101 @@
     background:rgba(244,240,232,0.03);
   }
 
-  /* ── TEAM BUILDING ── */
-  .sec-btob { padding:8rem 3rem; border-top:1px solid var(--gris); border-bottom:1px solid var(--gris); }
+  /* ── SECTION À PROPOS DENIS ── */
+  .sec-denis {
+    padding:8rem 3rem;
+    background:
+      radial-gradient(ellipse 60% 40% at 85% 30%, rgba(38,75,22,0.4) 0%, transparent 65%),
+      radial-gradient(ellipse 40% 55% at 10% 70%, rgba(95,62,18,0.35) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 35% at 50% 90%, rgba(30,62,18,0.3) 0%, transparent 55%),
+      var(--noir);
+    border-top:1px solid var(--gris);
+    border-bottom:1px solid var(--gris);
+  }
+  .denis-inner { max-width:1200px; margin:0 auto; }
+  .denis-grid {
+    display:grid; grid-template-columns:340px 1fr;
+    gap:6rem; align-items:start; margin-top:3rem;
+  }
+  .denis-photo-wrap { position:relative; }
+  .denis-photo {
+    width:100%; aspect-ratio:3/4; object-fit:cover;
+    filter:grayscale(20%); opacity:0.85;
+    mask-image:linear-gradient(to bottom, black 70%, transparent 100%);
+    -webkit-mask-image:linear-gradient(to bottom, black 70%, transparent 100%);
+  }
+  .denis-photo-placeholder {
+    width:100%; aspect-ratio:3/4;
+    background:rgba(244,240,232,0.03);
+    border:1px dashed rgba(244,240,232,0.12);
+    display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1rem;
+  }
+  .denis-photo-placeholder span {
+    font-family:'Share Tech Mono',monospace; font-size:0.6rem;
+    letter-spacing:0.15em; text-transform:uppercase; color:rgba(244,240,232,0.2);
+  }
+  .denis-citation {
+    position:absolute; bottom:0; left:0; right:0;
+    padding:1.5rem;
+    background:linear-gradient(to top, rgba(10,10,10,0.95), transparent);
+  }
+  .denis-citation p {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:1.1rem; letter-spacing:0.08em;
+    color:var(--or); line-height:1.3;
+  }
+  .denis-texte .s-label { margin-bottom:0.5rem; }
+  .denis-texte h2 {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(2rem,4vw,3.5rem); line-height:1;
+    letter-spacing:0.02em; margin-bottom:2.5rem; color:var(--blanc);
+  }
+  .denis-bloc { margin-bottom:2rem; }
+  .denis-bloc-titre {
+    font-family:'Share Tech Mono',monospace;
+    font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--rouge); margin-bottom:0.8rem;
+  }
+  .denis-bloc p {
+    font-family:'Courier Prime',monospace;
+    font-size:1rem; line-height:1.85;
+    color:rgba(244,240,232,0.68);
+  }
+  .denis-certs {
+    list-style:none; margin-top:1rem;
+    border-left:2px solid rgba(192,57,43,0.25);
+    padding-left:1.5rem;
+  }
+  .denis-certs li {
+    font-family:'Courier Prime',monospace;
+    font-size:0.92rem; line-height:1.7;
+    color:rgba(244,240,232,0.6);
+    padding:0.3rem 0;
+    border-bottom:1px solid rgba(244,240,232,0.05);
+  }
+  .denis-certs li::before { content:'— '; color:var(--rouge); }
+  .denis-signature {
+    margin-top:3rem; padding-top:2rem;
+    border-top:1px solid rgba(244,240,232,0.08);
+  }
+  .denis-signature blockquote {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:1.8rem; letter-spacing:0.08em;
+    color:rgba(244,240,232,0.35); line-height:1.2;
+  }
+  .denis-lien-rds {
+    display:inline-block; margin-top:1.5rem;
+    font-family:'Share Tech Mono',monospace;
+    font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase;
+    color:var(--or); text-decoration:none;
+    border-bottom:1px solid rgba(201,168,76,0.3);
+    transition:border-color 0.3s;
+  }
+  .denis-lien-rds:hover { border-color:var(--or); }
   .btob-inner { max-width:1200px; margin:0 auto; }
 
-  .btob-top { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; margin-bottom:5rem; }
+  /* ── TEAM BUILDING ── */
+  .sec-btob { padding:8rem 3rem; border-top:1px solid var(--gris); border-bottom:1px solid var(--gris); }
   .btob-texte p { font-size:1.15rem; font-weight:300; line-height:1.85; color:rgba(244,240,232,0.65); margin-bottom:1rem; }
   .btob-points { list-style:none; margin:2rem 0; }
   .btob-points li { font-family:'Share Tech Mono',monospace; font-size:0.7rem; letter-spacing:0.08em; color:rgba(244,240,232,0.52); padding:0.85rem 0; border-bottom:1px solid rgba(244,240,232,0.05); display:flex; align-items:center; gap:1rem; transition:color 0.3s; }
@@ -576,7 +666,8 @@
     .parcours-top { grid-template-columns:1fr; }
     .modules-liste { grid-template-columns:1fr 1fr; }
     .sacs-grid { grid-template-columns:1fr; background:none; gap:1rem; }
-    .btob-top { grid-template-columns:1fr; gap:2rem; }
+    .denis-grid { grid-template-columns:1fr; gap:3rem; }
+    .sec-denis { padding:4rem 1.5rem; }
     .btob-cards { grid-template-columns:1fr; }
     .contact-grid { grid-template-columns:1fr; background:none; gap:1rem; }
 
@@ -641,6 +732,7 @@
     <li><a href="#process">Le Process</a></li>
     <li><a href="#parcours">Les Parcours</a></li>
     <li><a href="#sacs">Les Sacs</a></li>
+    <li><a href="#denis">Denis Deblevid</a></li>
     <li><a href="#entreprises">Entreprises</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -654,6 +746,7 @@
   <a href="#process" onclick="fermerMenu()">Le Process</a>
   <a href="#parcours" onclick="fermerMenu()">Les Parcours</a>
   <a href="#sacs" onclick="fermerMenu()">Les Sacs</a>
+  <a href="#denis" onclick="fermerMenu()">Denis Deblevid</a>
   <a href="#entreprises" onclick="fermerMenu()">Entreprises</a>
   <a href="#contact" onclick="fermerMenu()">Contact</a>
   <a href="https://koalendar.com/e/rencontrer-denis" target="_blank" onclick="fermerMenu()" style="color:var(--or);font-size:1.4rem;">Prendre RDV</a>
@@ -1018,6 +1111,82 @@
       <p class="sac-duree">Résilience totale +72h</p>
       <p class="sac-apprendre">Vous le trouvez constitué à <strong style="color:var(--or);">900–1200€</strong> chez nos référents. À ce niveau, maîtriser chaque composant n'est plus une option — c'est l'objet même du parcours avancé.</p>
       <p class="sac-regle">Tu choisis quand tu bouges.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SÉPARATEUR -->
+<div class="sep"></div>
+
+<!-- À PROPOS DENIS -->
+<section class="sec-denis" id="denis">
+  <div class="denis-inner">
+    <p class="s-label">Le fondateur</p>
+    <div class="denis-grid">
+
+      <!-- PHOTO -->
+      <div class="denis-photo-wrap">
+        <div class="denis-photo-placeholder">
+          <span>📷</span>
+          <span>Photo à venir</span>
+        </div>
+        <div class="denis-citation">
+          <p>Le courage n'attend<br>jamais la permission.</p>
+        </div>
+      </div>
+
+      <!-- TEXTE -->
+      <div class="denis-texte">
+        <p class="s-label">Pourquoi lui</p>
+        <h2>DENIS<br>DEBLEVID</h2>
+
+        <div class="denis-bloc">
+          <p class="denis-bloc-titre">Le corps avant les mots</p>
+          <p>Tout commence à 12 ans avec les arts martiaux — une pratique assidue et sérieuse pendant 13 ans, qui apprend à gérer la peur, la douleur, l'adversaire, et surtout soi-même. Ce qu'on intègre dans un dojo à cet âge-là ne disparaît jamais vraiment — ça devient une façon de penser, de se tenir, de décider.</p>
+        </div>
+
+        <div class="denis-bloc">
+          <p class="denis-bloc-titre">5ème Régiment de Dragons — Valdahon</p>
+          <p>Unité semi-disciplinaire assimilée Chasseurs Alpins, pilote de char au sein de l'escadron du capitaine. À quelques semaines de signer pour partir en ex-Yougoslavie, la jeunesse fait ses choix. Ce goût pour ce qui est martial — la discipline, la lucidité, la capacité à agir quand d'autres se figent — ne l'a jamais quitté.</p>
+        </div>
+
+        <div class="denis-bloc">
+          <p class="denis-bloc-titre">22 ans de maturation</p>
+          <p>Gibbor Roots Process n'est pas né d'une idée de week-end. Denis porte ce projet depuis ses 30 ans, nourri par chaque expérience, chaque erreur, chaque rencontre sur le terrain — 22 ans pour que rien n'échappe et que la forme soit enfin juste.</p>
+        </div>
+
+        <div class="denis-bloc">
+          <p class="denis-bloc-titre">Avant Gibbor — les 4P</p>
+          <p>Une méthode construite patiemment autour de quatre dimensions fondamentales — le Physique, le Psychologique, le Professionnel et le Pneuma, cette dimension de sens et de philosophie qui tient debout quand tout vacille. C'est à travers <a href="https://www.renaitredelasoif.fr" target="_blank" class="denis-lien-rds">renaîtredelasoif.fr</a> que Denis a développé et testé cette approche. Gibbor Roots Process en est l'aboutissement terrain — ancré dans le réel, accessible à tous, sans concession sur l'exigence.</p>
+        </div>
+
+        <div class="denis-bloc">
+          <p class="denis-bloc-titre">Les certifications qui comptent</p>
+          <ul class="denis-certs">
+            <li>Éducateur Sportif diplômé d'État — encadrement en milieu physique</li>
+            <li>Professeur d'Arts Martiaux — discipline du corps et de l'esprit</li>
+            <li>CQP Formateur Professionnel d'Adultes — niveau 5 certifié</li>
+            <li>Secouriste en Santé Mentale — certifié PSSM France</li>
+            <li>Analyse Transactionnelle 101 et 102</li>
+            <li>Digitalisation et relation client</li>
+            <li>Ancien prestidigitateur — maîtrise des mécanismes de l'attention</li>
+          </ul>
+        </div>
+
+        <div class="denis-bloc">
+          <p class="denis-bloc-titre">Trente ans dans des environnements exigeants</p>
+          <p>L'hôtellerie de luxe et l'événementiel de prestige d'abord — maître d'hôtel, responsable clientèle VIP, management d'équipes sous pression quotidienne. Puis la formation adultes et la négociation commerciale — consultant, formateur certifié, entrepreneur depuis plus de 28 ans. Des environnements différents, une constante : la relation humaine comme terrain d'action principal.</p>
+        </div>
+
+        <div class="denis-bloc">
+          <p>Marié depuis 20 ans, père de 9 enfants. Ce détail dit tout sur ce qu'il a compris de la responsabilité réelle — pas celle des livres. Construire une famille dans la durée demande exactement les mêmes compétences que ce qu'on travaille ici — confiance, stabilité, décision assumée, engagement dans le temps.</p>
+        </div>
+
+        <div class="denis-signature">
+          <blockquote>"Gibbor Roots Process n'est pas une idée.<br>C'est la synthèse de tout ce chemin."</blockquote>
+        </div>
+
+      </div>
     </div>
   </div>
 </section>
