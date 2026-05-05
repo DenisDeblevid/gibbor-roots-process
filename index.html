@@ -321,8 +321,10 @@
   .btob-img2-placeholder span { font-family:'Share Tech Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(244,240,232,0.2); }
 
   .btob-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--gris); margin-bottom:3rem; }
-  .btob-card { padding:2.5rem; background:var(--noir); transition:background 0.3s; position:relative; overflow:hidden; }
-  .btob-card:hover { background:rgba(192,57,43,0.04); }
+  .btob-card { padding:2.5rem; background:var(--noir); transition:background 0.3s, border-color 0.3s; position:relative; overflow:hidden; border-left:3px solid transparent; }
+  .btob-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:0; background:var(--rouge); transition:height 0.4s; z-index:2; }
+  .btob-card:hover { background:rgba(192,57,43,0.04); border-left-color:var(--rouge); }
+  .btob-card:hover::before { height:100%; }
   .btob-card-num { font-family:'Bebas Neue',sans-serif; font-size:3.5rem; color:var(--rouge); line-height:1; margin-bottom:0.5rem; opacity:0.6; }
   .btob-card-t { font-family:'Share Tech Mono',monospace; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(244,240,232,0.45); margin-bottom:0.8rem; }
   .btob-card-d { font-size:0.88rem; font-weight:300; line-height:1.6; color:rgba(244,240,232,0.38); }
@@ -690,7 +692,7 @@
   </div>
 
   <p class="s-intro">
-    Un sac d'évacuation n'est pas un gadget — c'est la traduction concrète de ton niveau de préparation. Vous trouverez ci-dessous les prix pratiqués sur le marché pour des sacs déjà constitués, notamment chez nos référents comme <a href="https://www.evakit.com" target="_blank" style="color:var(--or);text-decoration:none;">evakit.com</a>. Mais apprenez à le constituer avec nous lors de nos parcours — vous en aurez plus pour moins cher, et surtout vous saurez exactement pourquoi chaque élément est là.
+    Un sac d'évacuation n'est pas un gadget — c'est la traduction concrète de ton niveau de préparation. Vous pouvez en trouver des constitués chez des professionnels que nous respectons, comme <a href="https://www.evakit.com" target="_blank" style="color:var(--or);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.3);">evakit.com</a> ou <a href="https://www.survivorattitude.com" target="_blank" style="color:var(--or);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.3);">survivorattitude.com</a>. Les prix sont là, transparents. Mais un sac tout fait ne sera jamais vraiment le vôtre — il ne connaît pas votre profil, votre région, vos contraintes. Ce que nous proposons est différent : <strong style="color:var(--blanc);">nous le constituons ensemble, pièce par pièce, selon ce que vous êtes vraiment.</strong> Vous repartez avec moins de dépenses, plus de compétences — et surtout, vous savez exactement pourquoi chaque élément est là.
   </p>
 
   <div class="sacs-grid">
@@ -704,7 +706,7 @@
       <p class="sac-prix-note">Prix marché — <a href="https://www.evakit.com" target="_blank" style="color:var(--or);text-decoration:none;opacity:0.7;">evakit.com</a></p>
       <p class="sac-prix">120 – 150€</p>
       <p class="sac-duree">Départ immédiat — 24 à 48h</p>
-      <p class="sac-apprendre">Comptez <strong style="color:var(--or);">120 à 150€</strong> pour un sac constitué chez un professionnel. Apprenez à le faire vous-même lors du Parcours Niveau 1 — pour moins cher et en mieux.</p>
+      <p class="sac-apprendre">Vous le trouvez constitué à <strong style="color:var(--or);">120–150€</strong> chez nos référents. Lors du Parcours Niveau 1, vous apprenez à le construire vous-même — pour moins cher, et avec une vraie maîtrise de son contenu.</p>
       <p class="sac-regle">Tu bouges. Tu ne t'installes pas.</p>
     </div>
 
@@ -725,7 +727,7 @@
       <p class="sac-prix-note">Prix marché — <a href="https://www.evakit.com" target="_blank" style="color:var(--or);text-decoration:none;opacity:0.7;">evakit.com</a></p>
       <p class="sac-prix">500 – 650€</p>
       <p class="sac-duree">Autonomie complète 72h</p>
-      <p class="sac-apprendre">Comptez <strong style="color:var(--or);">500 à 650€</strong> pour un sac constitué chez un professionnel. Construisez-le avec nous lors du module dédié — chaque élément justifié, pour moins cher.</p>
+      <p class="sac-apprendre">Vous le trouvez constitué à <strong style="color:var(--or);">500–650€</strong> chez nos référents. Lors du module dédié, vous le construisez avec nous — chaque élément justifié, rien de superflu, pour moins cher.</p>
       <p class="sac-regle">Tu peux t'arrêter. Pas t'ancrer.</p>
     </div>
 
@@ -746,7 +748,7 @@
       <p class="sac-prix-note">Prix marché — <a href="https://www.evakit.com" target="_blank" style="color:var(--or);text-decoration:none;opacity:0.7;">evakit.com</a></p>
       <p class="sac-prix">900 – 1200€</p>
       <p class="sac-duree">Résilience totale +72h</p>
-      <p class="sac-apprendre">Comptez <strong style="color:var(--or);">900 à 1200€</strong> pour un sac constitué chez un professionnel. Maîtrisez chaque composant lors des parcours avancés — pour moins cher et surtout en sachant pourquoi.</p>
+      <p class="sac-apprendre">Vous le trouvez constitué à <strong style="color:var(--or);">900–1200€</strong> chez nos référents. À ce niveau, maîtriser chaque composant n'est plus une option — c'est l'objet même du parcours avancé.</p>
       <p class="sac-regle">Tu choisis quand tu bouges.</p>
     </div>
   </div>
