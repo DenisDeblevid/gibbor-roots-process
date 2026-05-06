@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>N.O.T</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --noir: #080808;
+    --blanc: #e8e4d8;
+    --rouge: #8b1a1a;
+    --or: #a8862e;
+    --or-clair: #c9a84c;
+    --gris: rgba(232,228,216,0.06);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    background:var(--noir);
+    color:var(--blanc);
+    font-family:'Courier Prime',monospace;
+    overflow-x:hidden;
+    background-image:
+      radial-gradient(ellipse 70% 40% at 20% 20%, rgba(139,26,26,0.08) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 60% at 80% 70%, rgba(139,26,26,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(168,134,46,0.04) 0%, transparent 55%);
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding:3rem;
+    border-bottom:1px solid rgba(139,26,26,0.3);
+    display:flex; justify-content:space-between; align-items:center;
+    position:relative;
+  }
+  header::after {
+    content:'';
+    position:absolute; bottom:-1px; left:0; right:0; height:1px;
+    background:linear-gradient(90deg, transparent, var(--rouge), var(--or), var(--rouge), transparent);
+    opacity:0.5;
+  }
+
+  .not-logo {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:1.1rem; letter-spacing:0.4em;
+    color:rgba(232,228,216,0.4);
+    text-decoration:none;
+  }
+  .not-devise {
+    font-family:'Courier Prime',monospace;
+    font-size:0.7rem; font-style:italic;
+    color:rgba(168,134,46,0.5);
+    letter-spacing:0.05em;
+  }
+
+  /* ── HERO NOT ── */
+  .not-hero {
+    padding:6rem 3rem 4rem;
+    max-width:900px; margin:0 auto;
+    text-align:center;
+    position:relative;
+  }
+
+  .not-croix {
+    margin:0 auto 3rem;
+    opacity:0.15;
+  }
+
+  .not-titre {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(1.5rem,4vw,2.5rem);
+    letter-spacing:0.5em;
+    color:rgba(232,228,216,0.5);
+    margin-bottom:0.5rem;
+  }
+
+  .not-sous-titre {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(3rem,8vw,6rem);
+    letter-spacing:0.1em;
+    line-height:1;
+    color:var(--blanc);
+    margin-bottom:2rem;
+  }
+  .not-sous-titre span { color:var(--rouge); }
+
+  .not-devise-grande {
+    font-style:italic;
+    font-size:1rem;
+    color:rgba(168,134,46,0.6);
+    line-height:1.8;
+    margin-bottom:1rem;
+  }
+  .not-devise-trad {
+    font-family:'Share Tech Mono',monospace;
+    font-size:0.62rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:rgba(232,228,216,0.2);
+  }
+
+  /* ── SÉPARATEUR ── */
+  .sep {
+    width:100%; height:1px;
+    background:linear-gradient(90deg, transparent, var(--rouge), var(--or), var(--rouge), transparent);
+    opacity:0.25; margin:0;
+  }
+
+  /* ── SECTIONS ── */
+  .not-section {
+    padding:5rem 3rem;
+    max-width:900px; margin:0 auto;
+  }
+
+  .not-section-titre {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:1.8rem; letter-spacing:0.15em;
+    color:rgba(232,228,216,0.5);
+    margin-bottom:0.5rem;
+  }
+  .not-section-sous {
+    font-family:'Share Tech Mono',monospace;
+    font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--rouge); margin-bottom:2.5rem;
+    opacity:0.6;
+  }
+
+  /* ── GRADES ── */
+  .grades-grid {
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:1px;
+    background:rgba(232,228,216,0.05);
+    margin-bottom:3rem;
+  }
+
+  .grade-card {
+    padding:2rem 1.5rem;
+    background:var(--noir);
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    transition:background 0.3s;
+  }
+  .grade-card:hover { background:rgba(139,26,26,0.08); }
+
+  /* Écusson SVG */
+  .ecusson { margin:0 auto 1.2rem; display:block; }
+
+  .grade-nom {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:1rem; letter-spacing:0.15em;
+    color:rgba(232,228,216,0.6);
+    margin-bottom:0.3rem;
+  }
+  .grade-desc {
+    font-family:'Share Tech Mono',monospace;
+    font-size:0.55rem; letter-spacing:0.1em; text-transform:uppercase;
+    color:rgba(232,228,216,0.25);
+  }
+
+  /* ── SYMBOLIQUE ── */
+  .symbole-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:rgba(232,228,216,0.05);
+    margin-bottom:3rem;
+  }
+  .symbole-card {
+    padding:2.5rem;
+    background:var(--noir);
+    transition:background 0.3s;
+  }
+  .symbole-card:hover { background:rgba(139,26,26,0.06); }
+  .symbole-titre {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:1.3rem; letter-spacing:0.1em;
+    color:var(--or-clair); margin-bottom:1rem;
+  }
+  .symbole-texte {
+    font-size:0.92rem; line-height:1.8;
+    color:rgba(232,228,216,0.5);
+  }
+  .symbole-texte strong { color:rgba(232,228,216,0.75); }
+
+  /* ── GIBBOR MATIÈRE ── */
+  .gibbor-bloc {
+    border-left:2px solid rgba(139,26,26,0.4);
+    padding:2rem 2.5rem;
+    background:rgba(139,26,26,0.04);
+    margin-bottom:2rem;
+  }
+  .gibbor-mot {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:3rem; letter-spacing:0.1em;
+    color:rgba(232,228,216,0.15);
+    line-height:1; margin-bottom:0.5rem;
+  }
+  .gibbor-hebreu {
+    font-size:1.8rem; color:rgba(168,134,46,0.4);
+    margin-bottom:1rem; letter-spacing:0.05em;
+  }
+  .gibbor-texte {
+    font-size:0.92rem; line-height:1.85;
+    color:rgba(232,228,216,0.5);
+  }
+
+  /* ── TRIPTYQUE ── */
+  .triptyque {
+    text-align:center;
+    padding:3rem;
+    border:1px solid rgba(168,134,46,0.15);
+    background:rgba(168,134,46,0.02);
+    margin-bottom:3rem;
+  }
+  .triptyque-titre {
+    font-family:'Share Tech Mono',monospace;
+    font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase;
+    color:rgba(168,134,46,0.4); margin-bottom:1.5rem;
+  }
+  .triptyque-phrase {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(1.5rem,4vw,2.5rem);
+    letter-spacing:0.1em; line-height:1.2;
+    color:rgba(232,228,216,0.4);
+  }
+  .triptyque-phrase span { color:var(--or-clair); opacity:0.7; }
+
+  /* ── MASLOW ── */
+  .maslow-liste {
+    list-style:none;
+    margin-bottom:3rem;
+  }
+  .maslow-item-not {
+    display:flex; align-items:flex-start; gap:2rem;
+    padding:1.5rem 0;
+    border-bottom:1px solid rgba(232,228,216,0.05);
+  }
+  .maslow-num-not {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:3rem; line-height:1;
+    color:rgba(139,26,26,0.2); flex-shrink:0; width:50px;
+  }
+  .maslow-content-not {}
+  .maslow-titre-not {
+    font-family:'Share Tech Mono',monospace;
+    font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase;
+    color:var(--rouge); margin-bottom:0.4rem; opacity:0.7;
+  }
+  .maslow-texte-not {
+    font-size:0.9rem; line-height:1.7;
+    color:rgba(232,228,216,0.45);
+  }
+
+  /* ── RESSOURCES ── */
+  .ressources-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:rgba(232,228,216,0.05);
+    margin-bottom:3rem;
+  }
+  .ressource-card {
+    padding:2.5rem;
+    background:var(--noir);
+    position:relative; overflow:hidden;
+    transition:background 0.3s;
+  }
+  .ressource-card:hover { background:rgba(139,26,26,0.06); }
+  .ressource-card::before {
+    content:''; position:absolute; top:0; left:0;
+    width:2px; height:0; background:var(--rouge);
+    transition:height 0.4s;
+  }
+  .ressource-card:hover::before { height:100%; }
+  .ressource-tag {
+    font-family:'Share Tech Mono',monospace;
+    font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase;
+    color:rgba(139,26,26,0.6); margin-bottom:0.8rem;
+  }
+  .ressource-titre {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:1.3rem; letter-spacing:0.05em;
+    color:rgba(232,228,216,0.5); margin-bottom:0.8rem;
+  }
+  .ressource-texte {
+    font-size:0.85rem; line-height:1.7;
+    color:rgba(232,228,216,0.3);
+  }
+  .ressource-lien {
+    display:inline-block; margin-top:1.2rem;
+    font-family:'Share Tech Mono',monospace;
+    font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--or); text-decoration:none;
+    border-bottom:1px solid rgba(168,134,46,0.3);
+    transition:border-color 0.3s;
+  }
+  .ressource-lien:hover { border-color:var(--or); }
+
+  /* ── FOOTER NOT ── */
+  footer {
+    padding:3rem;
+    border-top:1px solid rgba(139,26,26,0.2);
+    text-align:center;
+    position:relative;
+  }
+  footer::before {
+    content:'';
+    position:absolute; top:-1px; left:0; right:0; height:1px;
+    background:linear-gradient(90deg, transparent, var(--rouge), var(--or), var(--rouge), transparent);
+    opacity:0.3;
+  }
+  .footer-devise {
+    font-style:italic;
+    font-size:0.85rem;
+    color:rgba(168,134,46,0.3);
+    margin-bottom:0.5rem;
+  }
+  .footer-note {
+    font-family:'Share Tech Mono',monospace;
+    font-size:0.55rem; letter-spacing:0.15em; text-transform:uppercase;
+    color:rgba(232,228,216,0.12);
+  }
+
+  @media (max-width:768px) {
+    header, .not-hero, .not-section { padding:2rem 1.5rem; }
+    .grades-grid { grid-template-columns:1fr 1fr; gap:0; }
+    .symbole-grid, .ressources-grid { grid-template-columns:1fr; }
+    .not-sous-titre { font-size:clamp(2.5rem,12vw,4rem); }
+    .triptyque { padding:2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <span class="not-logo">N · O · T</span>
+  <span class="not-devise">Non Nobis Domine</span>
+</header>
+
+<!-- HERO -->
+<section class="not-hero">
+
+  <!-- Croix pattée SVG -->
+  <svg class="not-croix" width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M35 10 L65 10 L75 35 L90 35 L90 65 L75 65 L65 90 L35 90 L25 65 L10 65 L10 35 L25 35 Z" fill="none" stroke="#8b1a1a" stroke-width="1.5"/>
+    <path d="M38 15 L62 15 L72 38 L85 38 L85 62 L72 62 L62 85 L38 85 L28 62 L15 62 L15 38 L28 38 Z" fill="rgba(139,26,26,0.15)"/>
+  </svg>
+
+  <p class="not-titre">Novus Ordo Templi</p>
+  <h1 class="not-sous-titre">GIBBOR<br><span>ROOTS</span><br>PROCESS</h1>
+  <p class="not-devise-grande">Non Nobis Domine, Non Nobis,<br>Sed Nomini Tuo Da Gloriam</p>
+  <p class="not-devise-trad">Non pas à nous Seigneur — non pas à nous — mais à ton Nom donne la gloire</p>
+</section>
+
+<div class="sep"></div>
+
+<!-- GRADES -->
+<section class="not-section">
+  <h2 class="not-section-titre">LES GRADES</h2>
+  <p class="not-section-sous">Bordure — engagement — chemin parcouru</p>
+
+  <div class="grades-grid">
+
+    <!-- Grade 1 — Membre -->
+    <div class="grade-card">
+      <svg class="ecusson" width="70" height="70" viewBox="0 0 100 100">
+        <rect x="5" y="5" width="90" height="90" fill="#0a0a0a" stroke="#333" stroke-width="2"/>
+        <path d="M35 18 L65 18 L75 35 L88 35 L88 65 L75 65 L65 82 L35 82 L25 65 L12 65 L12 35 L25 35 Z" fill="none" stroke="#8b1a1a" stroke-width="2"/>
+      </svg>
+      <p class="grade-nom">Membre</p>
+      <p class="grade-desc">Bordure noire<br>Sans initiales</p>
+    </div>
+
+    <!-- Grade 2 — Engagé -->
+    <div class="grade-card">
+      <svg class="ecusson" width="70" height="70" viewBox="0 0 100 100">
+        <rect x="5" y="5" width="90" height="90" fill="#0a0a0a" stroke="#444" stroke-width="3"/>
+        <path d="M35 18 L65 18 L75 35 L88 35 L88 65 L75 65 L65 82 L35 82 L25 65 L12 65 L12 35 L25 35 Z" fill="none" stroke="#8b1a1a" stroke-width="2"/>
+        <text x="50" y="14" text-anchor="middle" font-size="7" fill="rgba(232,228,216,0.5)" font-family="Share Tech Mono">NND</text>
+        <text x="50" y="92" text-anchor="middle" font-size="7" fill="rgba(232,228,216,0.5)" font-family="Share Tech Mono">NTDG</text>
+        <text x="10" y="53" text-anchor="middle" font-size="7" fill="rgba(232,228,216,0.5)" font-family="Share Tech Mono">N</text>
+        <text x="90" y="53" text-anchor="middle" font-size="7" fill="rgba(232,228,216,0.5)" font-family="Share Tech Mono">N</text>
+      </svg>
+      <p class="grade-nom">Engagé</p>
+      <p class="grade-desc">Bordure noire<br>Avec initiales</p>
+    </div>
+
+    <!-- Grade 3 — Responsable -->
+    <div class="grade-card">
+      <svg class="ecusson" width="70" height="70" viewBox="0 0 100 100">
+        <rect x="5" y="5" width="90" height="90" fill="#0a0a0a" stroke="#8b1a1a" stroke-width="3"/>
+        <path d="M35 18 L65 18 L75 35 L88 35 L88 65 L75 65 L65 82 L35 82 L25 65 L12 65 L12 35 L25 35 Z" fill="none" stroke="#8b1a1a" stroke-width="2"/>
+        <text x="50" y="14" text-anchor="middle" font-size="7" fill="rgba(232,228,216,0.5)" font-family="Share Tech Mono">NND</text>
+        <text x="50" y="92" text-anchor="middle" font-size="7" fill="rgba(232,228,216,0.5)" font-family="Share Tech Mono">NTDG</text>
+        <text x="10" y="53" text-anchor="middle" font-size="7" fill="rgba(232,228,216,0.5)" font-family="Share Tech Mono">N</text>
+        <text x="90" y="53" text-anchor="middle" font-size="7" fill="rgba(232,228,216,0.5)" font-family="Share Tech Mono">N</text>
+      </svg>
+      <p class="grade-nom">Responsable</p>
+      <p class="grade-desc">Bordure rouge<br>Avec initiales</p>
+    </div>
+
+    <!-- Grade 4 — Ancien -->
+    <div class="grade-card">
+      <svg class="ecusson" width="70" height="70" viewBox="0 0 100 100">
+        <rect x="5" y="5" width="90" height="90" fill="#0a0a0a" stroke="#a8862e" stroke-width="3"/>
+        <path d="M35 18 L65 18 L75 35 L88 35 L88 65 L75 65 L65 82 L35 82 L25 65 L12 65 L12 35 L25 35 Z" fill="none" stroke="#8b1a1a" stroke-width="2"/>
+        <text x="50" y="14" text-anchor="middle" font-size="7" fill="rgba(168,134,46,0.6)" font-family="Share Tech Mono">NND</text>
+        <text x="50" y="92" text-anchor="middle" font-size="7" fill="rgba(168,134,46,0.6)" font-family="Share Tech Mono">NTDG</text>
+        <text x="10" y="53" text-anchor="middle" font-size="7" fill="rgba(168,134,46,0.6)" font-family="Share Tech Mono">N</text>
+        <text x="90" y="53" text-anchor="middle" font-size="7" fill="rgba(168,134,46,0.6)" font-family="Share Tech Mono">N</text>
+      </svg>
+      <p class="grade-nom">Ancien</p>
+      <p class="grade-desc">Bordure dorée<br>Avec initiales</p>
+    </div>
+
+    <!-- Grade Honorifique -->
+    <div class="grade-card">
+      <svg class="ecusson" width="70" height="70" viewBox="0 0 100 100">
+        <rect x="5" y="5" width="90" height="90" fill="#0a0a0a" stroke="#c9a84c" stroke-width="4"/>
+        <path d="M35 18 L65 18 L75 35 L88 35 L88 65 L75 65 L65 82 L35 82 L25 65 L12 65 L12 35 L25 35 Z" fill="none" stroke="#c9a84c" stroke-width="2.5"/>
+        <text x="50" y="14" text-anchor="middle" font-size="7" fill="#c9a84c" font-family="Share Tech Mono">NND</text>
+        <text x="50" y="92" text-anchor="middle" font-size="7" fill="#c9a84c" font-family="Share Tech Mono">NTDG</text>
+        <text x="10" y="53" text-anchor="middle" font-size="7" fill="#c9a84c" font-family="Share Tech Mono">N</text>
+        <text x="90" y="53" text-anchor="middle" font-size="7" fill="#c9a84c" font-family="Share Tech Mono">N</text>
+      </svg>
+      <p class="grade-nom">Honorifique</p>
+      <p class="grade-desc">Tout doré<br>Prestige / cérémonie</p>
+    </div>
+
+  </div>
+
+  <!-- Symbolique des éléments -->
+  <div class="symbole-grid">
+    <div class="symbole-card">
+      <p class="symbole-titre">La Croix Pattée</p>
+      <p class="symbole-texte">Identité. La croix portée par les chevaliers de l'Ordre du Temple sur leur manteau blanc. Bras s'élargissant vers l'extérieur — <strong>force qui s'ouvre, pas qui écrase.</strong></p>
+    </div>
+    <div class="symbole-card">
+      <p class="symbole-titre">Le Carré</p>
+      <p class="symbole-texte">Structure. Les quatre Évangiles. La fondation qui ne cède pas. <strong>Ce sur quoi on bâtit</strong> — pas ce qu'on décore.</p>
+    </div>
+    <div class="symbole-card">
+      <p class="symbole-titre">La Bordure</p>
+      <p class="symbole-texte">Grade. Engagement. Chemin parcouru. <strong>Elle ne s'achète pas.</strong> Elle se gagne — par la présence, l'implication, la durée.</p>
+    </div>
+    <div class="symbole-card">
+      <p class="symbole-titre">La Devise</p>
+      <p class="symbole-texte">Boussole morale. Pourquoi on agit. <strong>Non pas pour soi.</strong> Pas pour la gloire. Pas pour la reconnaissance. Pour quelque chose qui dépasse.</p>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- GIBBOR — MATIÈRE -->
+<section class="not-section">
+  <h2 class="not-section-titre">GIBBOR — גִּבּוֹר</h2>
+  <p class="not-section-sous">Matière de fond — ce que le nom porte</p>
+
+  <div class="gibbor-bloc">
+    <p class="gibbor-mot">211</p>
+    <p class="gibbor-hebreu">גִּבּוֹר · אֹור · אֲרִי</p>
+    <p class="gibbor-texte">La guématria de GIBBOR est 211 — nombre premier, indivisible, irréductible. Ce qui ne cède pas. Cette valeur est partagée avec Or — אֹור — la lumière, et Ari — אֲרִי — le lion. Trois mots. Une seule valeur. Un seul sens profond.</p>
+  </div>
+
+  <div class="triptyque">
+    <p class="triptyque-titre">Triptyque symbolique NOT</p>
+    <p class="triptyque-phrase">L'homme vaillant<br>est <span>lion</span><br>et <span>lumière</span>.</p>
+  </div>
+
+  <div class="maslow-liste">
+    <div class="maslow-item-not">
+      <p class="maslow-num-not">01</p>
+      <div class="maslow-content-not">
+        <p class="maslow-titre-not">Roots — Besoins primaires & Sécurité</p>
+        <p class="maslow-texte-not">Survie, nature, autonomie, bushcraft. Le socle. Sans lui rien n'est possible. On y revient d'abord — pour pouvoir avancer ensuite.</p>
+      </div>
+    </div>
+    <div class="maslow-item-not">
+      <p class="maslow-num-not">02</p>
+      <div class="maslow-content-not">
+        <p class="maslow-titre-not">Gibbor — Appartenance & Identité</p>
+        <p class="maslow-texte-not">Cohésion, confiance, groupe, grades. L'homme se construit dans la relation aux autres — à condition que cette relation soit vraie, exigeante, libre.</p>
+      </div>
+    </div>
+    <div class="maslow-item-not">
+      <p class="maslow-num-not">03</p>
+      <div class="maslow-content-not">
+        <p class="maslow-titre-not">Process — Épanouissement</p>
+        <p class="maslow-texte-not">Transformation, sens, foi. Ce n'est pas un stage. C'est un chemin. Trois ans maximum — puis autonomie totale. L'homme n'a pas besoin du groupe pour exister — le groupe l'a aidé à se retrouver lui-même.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- RESSOURCES INTERNES -->
+<section class="not-section">
+  <h2 class="not-section-titre">RESSOURCES</h2>
+  <p class="not-section-sous">Espace réservé aux membres NOT</p>
+
+  <div class="ressources-grid">
+    <div class="ressource-card">
+      <p class="ressource-tag">Documents</p>
+      <p class="ressource-titre">Charte NOT</p>
+      <p class="ressource-texte">Les principes fondateurs, les engagements, les règles de vie du cercle intérieur. À lire. À relire. À vivre.</p>
+      <a href="#" class="ressource-lien">Accéder →</a>
+    </div>
+    <div class="ressource-card">
+      <p class="ressource-tag">Agenda</p>
+      <p class="ressource-titre">Prochains rendez-vous</p>
+      <p class="ressource-texte">Dates des parcours, sessions internes, adoubement Octobre 2026. Transmis via Telegram — canal privé NOT.</p>
+      <a href="#" class="ressource-lien">Canal Telegram →</a>
+    </div>
+    <div class="ressource-card">
+      <p class="ressource-tag">Formation</p>
+      <p class="ressource-titre">Parcours sur 3 ans</p>
+      <p class="ressource-texte">Architecture de la formation intérieure — les étapes, les modules, les quêtes. Du Membre à l'Ancien.</p>
+      <a href="#" class="ressource-lien">Voir le parcours →</a>
+    </div>
+    <div class="ressource-card">
+      <p class="ressource-tag">Contact</p>
+      <p class="ressource-titre">Denis Deblevid</p>
+      <p class="ressource-texte">Pour toute question, demande d'accès ou transmission d'information — uniquement via canal chiffré.</p>
+      <a href="https://t.me/" class="ressource-lien" target="_blank">Telegram →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-devise">Non Nobis Domine, Non Nobis, Sed Nomini Tuo Da Gloriam</p>
+  <p class="footer-note">Page non référencée — accès réservé — NOT — Mai 2026</p>
+</footer>
+
+</body>
+</html>
