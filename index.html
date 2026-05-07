@@ -412,8 +412,9 @@
       var(--noir);
     border-top:1px solid var(--gris);
     border-bottom:1px solid var(--gris);
+    overflow:hidden;
   }
-  .denis-inner { max-width:1200px; margin:0 auto; }
+  .denis-inner { max-width:1200px; margin:0 auto; overflow:hidden; }
   .denis-grid {
     display:grid; grid-template-columns:340px 1fr;
     gap:6rem; align-items:start; margin-top:3rem;
@@ -665,6 +666,15 @@
     /* Hero */
     .hero-content { padding:0 1.5rem; margin-left:0; max-width:100%; padding-top:6rem; }
     .hero-bg-urbain { display:none; }
+
+    /* Hero mobile — image forêt centrée et plus claire */
+    .hero-bg-foret {
+      background-position: 35% center;
+      opacity:0.7;
+    }
+    .hero-overlay {
+      background:linear-gradient(180deg, rgba(10,10,10,0.6) 0%, rgba(10,10,10,0.2) 50%, rgba(10,10,10,0.7) 100%);
+    }
     .hero-ligne { display:none; }
     .hero-main-corner { display:none; }
     .hero-titre { font-size:clamp(3rem,15vw,5rem); }
@@ -737,6 +747,12 @@
 
     /* Modale SOS */
     .sos-modal { padding:2rem 1.5rem; }
+
+    /* Section Denis */
+    .denis-grid { grid-template-columns:1fr !important; gap:2rem; }
+    .sec-denis { padding:3rem 1.5rem; }
+    .denis-photo { aspect-ratio:4/3; max-height:280px; }
+    .denis-photo-wrap { max-width:100%; overflow:hidden; }
   }
 
   @media (max-width:480px) {
