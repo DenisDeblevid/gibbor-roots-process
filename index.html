@@ -125,6 +125,7 @@
     z-index:10; text-align:center;
     opacity:0; animation:fadeUp 0.8s 1.4s ease forwards;
   }
+  .hero-main-mobile { display:none; }
   .hero-main-corner .main-bloc { opacity:0.5; }
   .hero-main-corner .main-bloc:hover { opacity:0.9; }
   .hero-main-corner .main-bloc svg { width:64px; height:78px; }
@@ -687,8 +688,20 @@
     .parcours-top { grid-template-columns:1fr; }
     .modules-liste { grid-template-columns:1fr 1fr; }
     .sacs-grid { grid-template-columns:1fr; background:none; gap:1rem; }
-    .denis-grid { grid-template-columns:1fr; gap:3rem; }
-    .sec-denis { padding:4rem 1.5rem; }
+    /* Labels hero — cachés sur mobile */
+    .hero-label-g, .hero-label-d { display:none; }
+
+    /* Main mobile — discrète en bas du hero */
+    .hero-main-mobile {
+      display:flex; flex-direction:column; align-items:center;
+      margin-top:2rem; opacity:0.6;
+    }
+    .hero-main-mobile svg { width:40px; height:48px; }
+    .hero-main-mobile-texte {
+      font-family:'Share Tech Mono',monospace;
+      font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase;
+      color:rgba(244,240,232,0.45); margin-top:0.4rem;
+    }
     .btob-cards { grid-template-columns:1fr; }
     .contact-grid { grid-template-columns:1fr; background:none; gap:1rem; }
 
@@ -812,6 +825,19 @@
 
   <p class="hero-label-g">Nature — Autonomie — Survie</p>
   <p class="hero-label-d">Confiance — Sécurité — Maîtrise</p>
+
+  <!-- Main mobile — visible uniquement sur mobile -->
+  <div class="hero-main-mobile" id="hero-main-mobile">
+    <svg viewBox="0 0 60 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M30 8 L30 45" stroke="#f4f0e8" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M18 18 L18 50" stroke="#f4f0e8" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M8 26 L8 55" stroke="#f4f0e8" stroke-width="3" stroke-linecap="round"/>
+      <path d="M42 18 L42 50" stroke="#f4f0e8" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M52 26 L52 55" stroke="#f4f0e8" stroke-width="3" stroke-linecap="round"/>
+      <path d="M8 55 Q18 68 30 68 Q42 68 52 55" stroke="#f4f0e8" stroke-width="3" stroke-linecap="round" fill="none"/>
+    </svg>
+    <span class="hero-main-mobile-texte">Reprends le contrôle</span>
+  </div>
 </section>
 
 <!-- PROCESS -->
@@ -1424,7 +1450,7 @@ function detecterMorse(duree) {
 }
 
 // Attacher aux mains SVG du hero
-document.querySelectorAll('.hero-main-corner .main-bloc, .titre-avec-main .main-bloc').forEach(main => {
+document.querySelectorAll('.hero-main-corner .main-bloc, .titre-avec-main .main-bloc, #hero-main-mobile').forEach(main => {
   main.addEventListener('mousedown', () => { pressStart = Date.now(); });
   main.addEventListener('mouseup', () => {
     const duree = Date.now() - pressStart;
