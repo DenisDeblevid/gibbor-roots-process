@@ -332,9 +332,30 @@ body.jolt { animation:body-jolt 0.18s steps(2) 1; }
 .glitch-hit { animation:rgb-hit 0.22s steps(2) 1; }
 @keyframes rgb-hit { 0%{ text-shadow:none; transform:translateX(0); } 30%{ text-shadow:-2px 0 rgba(192,57,43,0.8), 2px 0 rgba(76,201,240,0.6); transform:translateX(1px); } 60%{ text-shadow:2px 0 rgba(192,57,43,0.8), -2px 0 rgba(76,201,240,0.6); transform:translateX(-1px); } 100%{ text-shadow:none; transform:translateX(0); } }
 
-/* Couche 3 — Accroc sur les photos */
-.img-hit { animation:img-glitch 0.16s steps(2) 1; }
-@keyframes img-glitch { 0%{ filter:grayscale(15%); transform:translateX(0); } 40%{ filter:grayscale(15%) hue-rotate(12deg) brightness(1.25); transform:translateX(-3px); clip-path:inset(8% 0 12% 0); } 70%{ filter:grayscale(15%) brightness(0.9); transform:translateX(2px); clip-path:inset(0 0 0 0); } 100%{ filter:grayscale(15%); transform:translateX(0); } }
+/* Glitch long — 2s après la fin d'une frappe machine à écrire */
+.glitch-long { animation:rgb-long 2s linear 1; }
+@keyframes rgb-long {
+  0%,22%,38%,58%,76%,90%,100% { text-shadow:none; transform:translateX(0); }
+  4% { text-shadow:-3px 0 rgba(192,57,43,0.85), 3px 0 rgba(76,201,240,0.65); transform:translateX(2px); }
+  9% { text-shadow:3px 0 rgba(192,57,43,0.85), -3px 0 rgba(76,201,240,0.65); transform:translateX(-2px); }
+  14% { text-shadow:-2px 0 rgba(192,57,43,0.7), 2px 0 rgba(76,201,240,0.5); transform:translateX(1px); }
+  30% { text-shadow:2px 0 rgba(192,57,43,0.6), -2px 0 rgba(76,201,240,0.45); transform:translateX(-1px); }
+  48% { text-shadow:-3px 0 rgba(192,57,43,0.75), 3px 0 rgba(76,201,240,0.55); transform:translateX(2px); }
+  52% { text-shadow:2px 0 rgba(192,57,43,0.5), -2px 0 rgba(76,201,240,0.4); transform:translateX(-1px); }
+  68% { text-shadow:-2px 0 rgba(192,57,43,0.55), 2px 0 rgba(76,201,240,0.4); transform:translateX(1px); }
+  84% { text-shadow:1px 0 rgba(192,57,43,0.4), -1px 0 rgba(76,201,240,0.3); transform:translateX(-1px); }
+}
+
+/* Couche 3 — Accroc sur les photos — visible */
+.img-hit { animation:img-glitch 0.55s steps(1) 1; }
+@keyframes img-glitch {
+  0%,45%,100% { transform:translateX(0); clip-path:inset(0 0 0 0); filter:none; }
+  8% { transform:translateX(-5px); clip-path:inset(12% 0 55% 0); filter:hue-rotate(25deg) brightness(1.35); }
+  20% { transform:translateX(4px); clip-path:inset(45% 0 18% 0); filter:brightness(1.5) contrast(1.2); }
+  33% { transform:translateX(-3px); clip-path:inset(0 0 0 0); filter:brightness(0.8); }
+  60% { transform:translateX(3px); clip-path:inset(65% 0 8% 0); filter:hue-rotate(-15deg) brightness(1.25); }
+  75% { transform:translateX(-2px); clip-path:inset(0 0 0 0); filter:brightness(0.9); }
+}
 
 /* ── FACEBOOK ── */
 .hero-fb { display:flex; align-items:center; justify-content:center; width:54px; border:1px solid rgba(244,240,232,0.25); color:var(--blanc); transition:all 0.3s; }
@@ -975,25 +996,58 @@ document.getElementById('sos-overlay').addEventListener('click',function(e){if(e
   }
   setTimeout(function(){sweep();setInterval(sweep,INTERVALLE);},DELAI_DEMARRAGE);
 
-  // Sursauts RVB sur les titres de sections (jamais le hero pendant la frappe)
-  var titres=Array.prototype.slice.call(document.querySelectorAll('.s-titre, .sac-titre, .stage-titre, .p-titre, .contact-bloc-t'));
-  function hitTitre(){
-    if(titres.length===0)return;
-    var t=titres[Math.floor(Math.random()*titres.length)];
-    t.classList.add('glitch-hit');
-    setTimeout(function(){t.classList.remove('glitch-hit');},260);
-  }
-  setTimeout(function(){setInterval(hitTitre,9000+Math.random()*4000);},DELAI_DEMARRAGE+3000);
+  // Utilitaire — élément visible à l'écran ?
+  function visible(el){var r=el.getBoundingClientRect();return r.top<window.innerHeight-60&&r.bottom>60;}
+  function pickVisible(list){var v=list.filter(visible);if(v.length===0)return null;return v[Math.floor(Math.random()*v.length)];}
 
-  // Accrocs sur les photos
-  var photos=Array.prototype.slice.call(document.querySelectorAll('.poc-img-card, .poc-img-partenaire, .poc-img-secondary, .denis-photo, .sac-img, .btob-img, .btob-img2'));
-  function hitPhoto(){
-    if(photos.length===0)return;
-    var p=photos[Math.floor(Math.random()*photos.length)];
-    p.classList.add('img-hit');
-    setTimeout(function(){p.classList.remove('img-hit');},200);
+  // Glitch texte — piloté en direct, sans conflit avec les animations existantes
+  function glitchTexte(el,duree){
+    var t0=Date.now();
+    var iv=setInterval(function(){
+      if(Date.now()-t0>duree){clearInterval(iv);el.style.textShadow='';return;}
+      var r=Math.random();
+      if(r<0.45){
+        var d=Math.floor(Math.random()*3)+2;
+        var s=(Math.random()<0.5?-1:1);
+        el.style.textShadow=(s*d)+'px 0 rgba(192,57,43,0.85), '+(-s*d)+'px 0 rgba(76,201,240,0.6)';
+      } else {
+        el.style.textShadow='';
+      }
+    },85);
   }
-  setTimeout(function(){setInterval(hitPhoto,13000+Math.random()*5000);},DELAI_DEMARRAGE+7000);
+
+  // Glitch 2s sur le titre hero — après la fin de la frappe (~4.8s)
+  setTimeout(function(){
+    var h=document.querySelector('.hero-titre');
+    if(h){glitchTexte(h,2000);}
+  },5200);
+
+  // Glitch 2s sur chaque titre .tw — après la fin de sa frappe au scroll
+  var twObserver=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting&&!entry.target.dataset.glitched){
+        entry.target.dataset.glitched='1';
+        setTimeout(function(){glitchTexte(entry.target,2000);},2700);
+      }
+    });
+  },{threshold:0.3});
+  document.querySelectorAll('.tw').forEach(function(el){twObserver.observe(el);});
+
+  // Sursauts RVB brefs sur les titres visibles — entretien de l'atmosphère
+  var titres=Array.prototype.slice.call(document.querySelectorAll('.sac-titre, .stage-titre, .p-titre, .contact-bloc-t'));
+  setTimeout(function(){setInterval(function(){
+    var t=pickVisible(titres);
+    if(t){glitchTexte(t,300);}
+  },9000+Math.random()*4000);},DELAI_DEMARRAGE+3000);
+
+  // Accrocs photos — visibles à l'écran, en relais ENTRE les balayages
+  var photos=Array.prototype.slice.call(document.querySelectorAll('.poc-img-card, .poc-img-partenaire, .poc-img-secondary, .denis-photo, .sac-img, .btob-img, .btob-img2'));
+  setTimeout(function(){
+    setInterval(function(){
+      var p=pickVisible(photos);
+      if(p){p.classList.add('img-hit');setTimeout(function(){p.classList.remove('img-hit');},600);}
+    },INTERVALLE);
+  },DELAI_DEMARRAGE+Math.round(INTERVALLE/2)); // décalé d'un demi-cycle = pile entre deux balayages
 })();
 </script>
 
