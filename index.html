@@ -62,7 +62,7 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:1.5rem 3rem; 
 .hero-bg-urbain { position:absolute; top:0; right:0; width:52%; height:100%; background:url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&q=80') center/cover no-repeat; opacity:0.75; mask-image:linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.7) 35%, transparent 100%); -webkit-mask-image:linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.7) 35%, transparent 100%); }
 .hero-overlay { position:absolute; top:0; left:0; width:100%; height:100%; background:linear-gradient(135deg, rgba(10,10,10,0.8) 0%, rgba(10,10,10,0.25) 55%, rgba(10,10,10,0.55) 100%); }
 .hero-ligne { position:absolute; top:0; left:50%; width:1px; height:100%; background:linear-gradient(to bottom, transparent 0%, var(--rouge) 20%, var(--or) 50%, var(--rouge) 80%, transparent 100%); opacity:0.35; z-index:3; }
-.hero-content { position:relative; z-index:10; padding:0 3rem; max-width:600px; margin-left:5%; }
+.hero-content { position:relative; z-index:10; padding:0 3rem 6rem; max-width:600px; margin-left:5%; }
 .hero-tag { font-family:'Share Tech Mono',monospace; font-size:0.7rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--rouge); margin-bottom:1.5rem; opacity:0; animation:fadeUp 0.8s 0.3s ease forwards; }
 .hero-titre { font-family:'Bebas Neue',sans-serif; font-size:clamp(3.5rem,8vw,7rem); line-height:0.92; letter-spacing:0.02em; color:var(--blanc); margin-bottom:1.2rem; opacity:0; animation:fadeUp 0.8s 0.5s ease forwards; }
 .hero-titre .accent { color:var(--rouge); }
@@ -120,7 +120,12 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:1.5rem 3rem; 
 .parcours-inner { max-width:1200px; margin:0 auto; }
 .parcours-top { display:grid; grid-template-columns:1fr 1fr 1fr; gap:2px; margin-top:3rem; margin-bottom:3rem; }
 .p-card { padding:3rem; background:rgba(244,240,232,0.02); border:1px solid rgba(244,240,232,0.06); position:relative; overflow:hidden; transition:border-color 0.3s; display:flex; flex-direction:column; }
-.p-card .p-btn { margin-top:auto; align-self:stretch; display:flex; align-items:center; justify-content:center; min-height:52px; padding:0 1rem; box-sizing:border-box; text-align:center; }
+.btob-img-wrap { position:relative; }
+.p-prix { font-family:'Bebas Neue',sans-serif; font-size:2.2rem; color:var(--or); margin-bottom:0.2rem; margin-top:auto; }
+.p-prix-note { font-family:'Share Tech Mono',monospace; font-size:0.6rem; letter-spacing:0.12em; color:rgba(244,240,232,0.4); text-transform:uppercase; margin-bottom:1.5rem; min-height:2.8em; }
+.p-card.avenir .p-btn { position:relative; z-index:30; border-color:rgba(201,168,76,0.5); color:var(--or); }
+.p-card.avenir .p-btn:hover { background:var(--or); color:var(--noir); border-color:var(--or); }
+.p-card .p-btn { align-self:stretch; display:flex; align-items:center; justify-content:center; min-height:52px; padding:0 1rem; box-sizing:border-box; text-align:center; }
 .p-card:hover { border-color:rgba(192,57,43,0.35); }
 .p-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:0; background:var(--rouge); transition:height 0.4s; }
 .p-card:hover::before { height:100%; }
@@ -306,6 +311,12 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:1.5rem 3rem; 
 .contact-bloc-t { font-family:'Bebas Neue',sans-serif; font-size:1.5rem; letter-spacing:0.05em; color:var(--blanc); }
 .contact-bloc p { font-size:1rem; font-weight:300; line-height:1.7; color:rgba(244,240,232,0.52); margin-bottom:2rem; flex-grow:0; }
 
+/* ── FACEBOOK ── */
+.hero-fb { display:flex; align-items:center; justify-content:center; width:54px; border:1px solid rgba(244,240,232,0.25); color:var(--blanc); transition:all 0.3s; }
+.hero-fb:hover { background:#4267B2; border-color:#4267B2; color:#fff; }
+.footer-fb { display:flex; align-items:center; gap:0.6rem; color:#fff; background:#4267B2; padding:0.75rem 1.5rem; text-decoration:none; font-family:'Share Tech Mono',monospace; font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; transition:background 0.3s; }
+.footer-fb:hover { background:#365899; color:#fff; }
+
 /* ── FOOTER ── */
 footer { padding:3rem; border-top:1px solid var(--gris); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
 .footer-logo { font-family:'Bebas Neue',sans-serif; font-size:1.2rem; letter-spacing:0.15em; color:rgba(244,240,232,0.3); }
@@ -315,8 +326,6 @@ footer { padding:3rem; border-top:1px solid var(--gris); display:flex; justify-c
 .footer-links a { font-family:'Share Tech Mono',monospace; font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(244,240,232,0.22); text-decoration:none; transition:color 0.3s; }
 .footer-links a:hover { color:var(--or); }
 .footer-social { display:flex; gap:1rem; align-items:center; }
-.footer-fb { display:flex; align-items:center; gap:0.5rem; color:rgba(244,240,232,0.35); text-decoration:none; font-family:'Share Tech Mono',monospace; font-size:0.6rem; letter-spacing:0.1em; text-transform:uppercase; transition:color 0.3s; }
-.footer-fb:hover { color:var(--or); }
 
 /* ── MACHINE À ÉCRIRE ── */
 .typewriter { overflow:hidden; white-space:nowrap; border-right:3px solid var(--rouge); width:0; animation:typing 2s steps(30,end) forwards, blink-caret 0.75s step-end infinite; }
@@ -384,6 +393,7 @@ footer { padding:3rem; border-top:1px solid var(--gris); display:flex; justify-c
   .hero-label-g, .hero-label-d { display:none; }
   .hero-ctas { flex-direction:column; }
   .hero-ctas .btn-p, .hero-ctas .btn-s { text-align:center; width:100%; }
+  .hero-fb { width:100%; min-height:48px; }
   .titre-avec-main { flex-direction:column; align-items:flex-start; gap:1rem; }
   .titre-avec-main .main-bloc { display:none; }
   .sec-process, .sec-sacs, .sec-contact { padding:4rem 1.5rem; }
@@ -489,6 +499,7 @@ footer { padding:3rem; border-top:1px solid var(--gris); display:flex; justify-c
     <div class="hero-ctas">
       <a href="#parcours" class="btn-p">Découvrir les parcours</a>
       <a href="https://koalendar.com/e/rencontrer-denis" target="_blank" class="btn-s">Prendre RDV</a>
+      <a href="https://www.facebook.com/GibborRootsProcess/" target="_blank" class="hero-fb" title="Suivez Gibbor Roots Process sur Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
     </div>
   </div>
   <div class="hero-main-corner">
@@ -547,8 +558,8 @@ footer { padding:3rem; border-top:1px solid var(--gris); display:flex; justify-c
         <h3 class="p-titre">STAGE DÉCOUVERTE</h3>
         <p class="p-desc">Une journée pour tester, ressentir, vérifier. Basée sur le contenu du Stage Initiation. Pour savoir si ce chemin est fait pour toi — avant de t'engager.</p>
         <ul class="p-list"><li>1 journée — sans nuitée</li><li>Vérification des prérequis</li><li>Groupe restreint — 10 participants max</li><li>Porte naturelle vers le Stage Initiation</li></ul>
-        <p style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--or);margin-bottom:0.2rem;">100€</p>
-        <p style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.12em;color:rgba(244,240,232,0.4);text-transform:uppercase;margin-bottom:1.5rem;">50% déduits si vous rejoignez le Stage Initiation dans les 3 mois</p>
+        <p class="p-prix">100€</p>
+        <p class="p-prix-note">50% déduits si vous rejoignez le Stage Initiation dans les 3 mois</p>
         <a href="#contact" class="btn-s p-btn">Me renseigner</a>
       </div>
       <div class="p-card">
@@ -558,8 +569,8 @@ footer { padding:3rem; border-top:1px solid var(--gris); display:flex; justify-c
         <h3 class="p-titre">STAGE INITIATION</h3>
         <p class="p-desc">24h d'immersion totale avec une nuitée, au POC — Les Parcours d'Obstacles de la Crau. Feu, eau, self-défense, secourisme, orientation. Trois dates disponibles.</p>
         <ul class="p-list"><li>24h — avec une nuitée</li><li>Feu, eau, self-défense, secourisme, orientation</li><li>Le POC — Istres, terrain aux normes militaires</li><li>14 participants max par session</li><li>Certification Gibbor × POC incluse</li></ul>
-        <p style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--or);margin-bottom:0.2rem;">150€</p>
-        <p style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.12em;color:rgba(244,240,232,0.4);text-transform:uppercase;margin-bottom:1.5rem;">Tout compris — 50% déduits si vous rejoignez le Stage Avancé 1.0 dans les 3 mois</p>
+        <p class="p-prix">150€</p>
+        <p class="p-prix-note">Tout compris — 50% déduits si vous rejoignez le Stage Avancé 1.0 dans les 3 mois</p>
         <a href="#stages" class="btn-p p-btn">Voir les dates</a>
       </div>
       <div class="p-card avenir card-off">
@@ -569,8 +580,8 @@ footer { padding:3rem; border-top:1px solid var(--gris); display:flex; justify-c
         <h3 class="p-titre">STAGES AVANCÉS<br>1.0 — 2.0 — 3.0</h3>
         <p class="p-desc">La suite du chemin. Trois stages progressifs pour approfondir — chacun son axe, chacun son exigence. Programmes en cours d'élaboration.</p>
         <ul class="p-list"><li>Stage Avancé 1.0 — en préparation</li><li>Stage Avancé 2.0 — en préparation</li><li>Stage Avancé 3.0 — en préparation</li></ul>
-        <p style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--or);margin-bottom:0.2rem;">390€</p>
-        <p style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.12em;color:rgba(244,240,232,0.4);text-transform:uppercase;margin-bottom:1.5rem;">Par stage — hébergement & repas inclus</p>
+        <p class="p-prix">390€</p>
+        <p class="p-prix-note">Par stage — hébergement & repas inclus</p>
         <a href="#contact" class="btn-s p-btn">Être averti</a>
       </div>
     </div>
