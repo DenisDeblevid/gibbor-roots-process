@@ -119,7 +119,8 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:1.5rem 3rem; 
 .sec-parcours { padding:6rem 3rem; border-top:1px solid var(--gris); background: radial-gradient(ellipse 70% 35% at 85% 25%, rgba(35,65,20,0.55) 0%, transparent 65%), radial-gradient(ellipse 50% 45% at 20% 65%, rgba(28,58,17,0.5) 0%, transparent 60%), radial-gradient(ellipse 35% 55% at 55% 45%, rgba(92,62,18,0.55) 0%, transparent 55%), var(--noir); }
 .parcours-inner { max-width:1200px; margin:0 auto; }
 .parcours-top { display:grid; grid-template-columns:1fr 1fr 1fr; gap:2px; margin-top:3rem; margin-bottom:3rem; }
-.p-card { padding:3rem; background:rgba(244,240,232,0.02); border:1px solid rgba(244,240,232,0.06); position:relative; overflow:hidden; transition:border-color 0.3s; }
+.p-card { padding:3rem; background:rgba(244,240,232,0.02); border:1px solid rgba(244,240,232,0.06); position:relative; overflow:hidden; transition:border-color 0.3s; display:flex; flex-direction:column; }
+.p-card .p-btn { margin-top:auto; align-self:stretch; display:flex; align-items:center; justify-content:center; min-height:52px; padding:0 1rem; box-sizing:border-box; text-align:center; }
 .p-card:hover { border-color:rgba(192,57,43,0.35); }
 .p-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:0; background:var(--rouge); transition:height 0.4s; }
 .p-card:hover::before { height:100%; }
@@ -204,7 +205,7 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:1.5rem 3rem; 
 .sac-card:hover { background:rgba(244,240,232,0.02); }
 .sac-card.actif { border-left:3px solid var(--rouge); }
 .sac-img { width:100%; height:180px; object-fit:cover; display:block; filter:grayscale(20%); margin-bottom:1.5rem; -webkit-mask-image:linear-gradient(to bottom, black 70%, transparent 100%); mask-image:linear-gradient(to bottom, black 70%, transparent 100%); }
-.sac-img-placeholder { width:100%; height:140px; margin-bottom:1.5rem; background:rgba(244,240,232,0.03); border:1px dashed rgba(244,240,232,0.1); display:flex; align-items:center; justify-content:center; }
+.sac-img-placeholder { width:100%; height:180px; margin-bottom:1.5rem; background:rgba(244,240,232,0.03); border:1px dashed rgba(244,240,232,0.1); display:flex; align-items:center; justify-content:center; }
 .sac-img-placeholder span { font-family:'Share Tech Mono',monospace; font-size:0.58rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(244,240,232,0.2); }
 .sac-badge { font-family:'Share Tech Mono',monospace; font-size:0.57rem; letter-spacing:0.2em; text-transform:uppercase; padding:0.28rem 0.7rem; margin-bottom:1.2rem; display:inline-block; }
 .sac-card:not(.actif) .sac-badge { color:rgba(244,240,232,0.3); border:1px solid rgba(244,240,232,0.1); }
@@ -543,33 +544,34 @@ footer { padding:3rem; border-top:1px solid var(--gris); display:flex; justify-c
         <div class="lum-wrap"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="grad-p1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:transparent"/><stop offset="40%" style="stop-color:#c0392b"/><stop offset="60%" style="stop-color:#c9a84c"/><stop offset="100%" style="stop-color:transparent"/></linearGradient></defs><rect class="lum-rect" x="1" y="1" width="98" height="98" rx="0"/></svg></div>
         <div class="p-num">00</div>
         <p class="p-tag">Porte d'entrée — Sans engagement</p>
-        <h3 class="p-titre">JOURNÉE DÉCOUVERTE</h3>
-        <p class="p-desc">Une journée pour tester, ressentir, vérifier. Basée sur le contenu du Parcours Niveau 1. Pour savoir si ce chemin est fait pour toi — avant de t'engager.</p>
-        <ul class="p-list"><li>1 journée — sans nuitée</li><li>Vérification des prérequis</li><li>Groupe restreint — 10 participants max</li><li>Porte naturelle vers le Niveau 1</li></ul>
-        <p style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--or);margin-bottom:0.2rem;">150€</p>
-        <p style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.12em;color:rgba(244,240,232,0.4);text-transform:uppercase;margin-bottom:1.5rem;">50% déduits si vous rejoignez le Niveau 1 dans les 30 jours</p>
-        <a href="#contact" class="btn-s">Me renseigner</a>
+        <h3 class="p-titre">STAGE DÉCOUVERTE</h3>
+        <p class="p-desc">Une journée pour tester, ressentir, vérifier. Basée sur le contenu du Stage Initiation. Pour savoir si ce chemin est fait pour toi — avant de t'engager.</p>
+        <ul class="p-list"><li>1 journée — sans nuitée</li><li>Vérification des prérequis</li><li>Groupe restreint — 10 participants max</li><li>Porte naturelle vers le Stage Initiation</li></ul>
+        <p style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--or);margin-bottom:0.2rem;">100€</p>
+        <p style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.12em;color:rgba(244,240,232,0.4);text-transform:uppercase;margin-bottom:1.5rem;">50% déduits si vous rejoignez le Stage Initiation dans les 3 mois</p>
+        <a href="#contact" class="btn-s p-btn">Me renseigner</a>
       </div>
       <div class="p-card">
         <div class="lum-wrap"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="grad-p2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:transparent"/><stop offset="40%" style="stop-color:#c0392b"/><stop offset="60%" style="stop-color:#c9a84c"/><stop offset="100%" style="stop-color:transparent"/></linearGradient></defs><rect class="lum-rect" x="1" y="1" width="98" height="98" rx="0"/></svg></div>
         <div class="p-num">01</div>
-        <p class="p-tag">Parcours référence — Fondateur</p>
-        <h3 class="p-titre">INITIATION NIVEAU 1</h3>
-        <p class="p-desc">3 jours, 2 nuits. Le parcours fondateur. Nature, bushcraft avec expert, self-défense avec instructeur diplômé, psychologie relationnelle.</p>
-        <ul class="p-list"><li>3 jours / 2 nuits</li><li>Randonnée & orientation — instructeur diplômé</li><li>Bushcraft — feu, eau, abri, cuisine — avec expert</li><li>Self-défense — instructeur diplômé Krav Maga</li><li>Psychologie relationnelle</li><li>Hébergement dortoir — repas inclus</li><li>Groupe restreint — 10 participants max</li></ul>
-        <p style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--or);margin-bottom:0.2rem;">390€</p>
-        <p style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.12em;color:rgba(244,240,232,0.4);text-transform:uppercase;margin-bottom:1.5rem;">Hébergement & repas inclus — 75€ déduits si Journée Découverte effectuée</p>
-        <a href="https://koalendar.com/e/rencontrer-denis" target="_blank" class="btn-p">Rejoindre ce parcours</a>
-        <p style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;color:rgba(244,240,232,0.3);text-transform:uppercase;margin-top:0.8rem;">Groupe restreint — 10 participants max — Places limitées</p>
+        <p class="p-tag">Coopération Gibbor × Le POC — Istres</p>
+        <h3 class="p-titre">STAGE INITIATION</h3>
+        <p class="p-desc">24h d'immersion totale avec une nuitée, au POC — Les Parcours d'Obstacles de la Crau. Feu, eau, self-défense, secourisme, orientation. Trois dates disponibles.</p>
+        <ul class="p-list"><li>24h — avec une nuitée</li><li>Feu, eau, self-défense, secourisme, orientation</li><li>Le POC — Istres, terrain aux normes militaires</li><li>14 participants max par session</li><li>Certification Gibbor × POC incluse</li></ul>
+        <p style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--or);margin-bottom:0.2rem;">150€</p>
+        <p style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.12em;color:rgba(244,240,232,0.4);text-transform:uppercase;margin-bottom:1.5rem;">Tout compris — 50% déduits si vous rejoignez le Stage Avancé 1.0 dans les 3 mois</p>
+        <a href="#stages" class="btn-p p-btn">Voir les dates</a>
       </div>
       <div class="p-card avenir card-off">
-        <div class="en-prep"><div class="en-prep-ligne"></div><p class="en-prep-icone">⧗</p><p class="en-prep-titre">Bientôt disponible</p><p class="en-prep-sous">Niveaux 2 & 3 en préparation</p><div class="en-prep-ligne"></div></div>
+        <div class="en-prep"><div class="en-prep-ligne"></div><p class="en-prep-icone">⧗</p><p class="en-prep-titre">Bientôt disponible</p><p class="en-prep-sous">Stages Avancés en préparation</p><div class="en-prep-ligne"></div></div>
         <div class="p-num">02</div>
-        <p class="p-tag">À venir — Niveaux 2 & 3</p>
-        <h3 class="p-titre">PARCOURS AVANCÉS</h3>
-        <p class="p-desc">Les niveaux suivants sont en cours de structuration. Chaque parcours approfondit un axe spécifique — survie avancée, combat, orientation, médical, intellect.</p>
-        <ul class="p-list"><li>Parcours Niveau 2 — en préparation</li><li>Parcours Niveau 3 — en préparation</li><li>Modules spécialisés — voir ci-dessous</li></ul>
-        <a href="#contact" class="btn-s">Être informé</a>
+        <p class="p-tag">En préparation</p>
+        <h3 class="p-titre">STAGES AVANCÉS<br>1.0 — 2.0 — 3.0</h3>
+        <p class="p-desc">La suite du chemin. Trois stages progressifs pour approfondir — chacun son axe, chacun son exigence. Programmes en cours d'élaboration.</p>
+        <ul class="p-list"><li>Stage Avancé 1.0 — en préparation</li><li>Stage Avancé 2.0 — en préparation</li><li>Stage Avancé 3.0 — en préparation</li></ul>
+        <p style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--or);margin-bottom:0.2rem;">390€</p>
+        <p style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.12em;color:rgba(244,240,232,0.4);text-transform:uppercase;margin-bottom:1.5rem;">Par stage — hébergement & repas inclus</p>
+        <a href="#contact" class="btn-s p-btn">Être averti</a>
       </div>
     </div>
     <div class="modules-bloc card-off" style="position:relative;">
@@ -595,9 +597,9 @@ footer { padding:3rem; border-top:1px solid var(--gris); display:flex; justify-c
 <!-- STAGES -->
 <section class="sec-stages" id="stages">
   <div class="stages-inner">
-    <p class="s-label">Coopération Gibbor × Le POC</p>
+    <p class="s-label">Stage Initiation — Coopération Gibbor × Le POC</p>
     <div class="titre-avec-main">
-      <h2 class="s-titre tw"><span class="tw-line">SURVIE & SELF-DÉFENSE.</span><br><span class="tw-line">TROIS DATES, UN TERRAIN RÉEL.</span></h2>
+      <h2 class="s-titre tw"><span class="tw-line">STAGE INITIATION.</span><br><span class="tw-line">TROIS DATES, UN TERRAIN RÉEL.</span></h2>
       <div class="main-bloc"><svg viewBox="0 0 60 75" fill="none"><path d="M30 8 L30 45" stroke="#f4f0e8" stroke-width="3.5" stroke-linecap="round"/><path d="M18 18 L18 50" stroke="#f4f0e8" stroke-width="3.5" stroke-linecap="round"/><path d="M8 26 L8 55" stroke="#f4f0e8" stroke-width="3" stroke-linecap="round"/><path d="M42 18 L42 50" stroke="#f4f0e8" stroke-width="3.5" stroke-linecap="round"/><path d="M52 26 L52 55" stroke="#f4f0e8" stroke-width="3" stroke-linecap="round"/><path d="M8 55 Q18 68 30 68 Q42 68 52 55" stroke="#f4f0e8" stroke-width="3" stroke-linecap="round" fill="none"/></svg><span class="main-bloc-texte">Reprends<br>le contrôle</span></div>
     </div>
     <p class="stages-intro">24h d'immersion totale, en coopération avec Le POC — Les Parcours d'Obstacles de la Crau, à Istres. Places limitées à 14 participants par session.</p>
@@ -640,7 +642,7 @@ footer { padding:3rem; border-top:1px solid var(--gris); display:flex; justify-c
         <a href="https://www.lepocistres.fr/boutique/journee-complete-nuitee/" target="_blank" class="btn-p">S'inscrire sur Le POC</a>
       </div>
     </div>
-    <p class="stage-note" style="margin-top:2rem;">✦ Certification Gibbor × POC incluse — et réduction de 75€ sur le Parcours Initiation Niveau 1 (390€) en cas d'engagement sous 3 mois. Offre de lancement, non garantie dans le temps.</p>
+    <p class="stage-note" style="margin-top:2rem;">✦ Certification Gibbor × POC incluse — et 50% du Stage Initiation (75€) déduits du Stage Avancé 1.0 en cas d'inscription dans les 3 mois. Offre de lancement, non garantie dans le temps.</p>
   </div>
 </section>
 
@@ -663,7 +665,7 @@ footer { padding:3rem; border-top:1px solid var(--gris); display:flex; justify-c
       <p class="sac-prix-note">Prix marché — <a href="https://www.evakit.com" target="_blank" style="color:var(--or);text-decoration:none;">evakit.com</a></p>
       <p class="sac-prix">120 – 150€</p>
       <p class="sac-duree">Départ immédiat — 24 à 48h</p>
-      <p class="sac-apprendre">Vous le trouvez constitué à <strong>120–150€</strong> chez nos référents. Lors du Parcours Niveau 1, vous apprenez à le construire vous-même — pour moins cher, et avec une vraie maîtrise de son contenu.</p>
+      <p class="sac-apprendre">Vous le trouvez constitué à <strong>120–150€</strong> chez nos référents. Lors du Stage Initiation, vous apprenez à le construire vous-même — pour moins cher, et avec une vraie maîtrise de son contenu.</p>
       <p class="sac-regle">Tu bouges. Tu ne t'installes pas.</p>
     </div>
     <div class="sac-card card-off">
@@ -830,7 +832,7 @@ footer { padding:3rem; border-top:1px solid var(--gris); display:flex; justify-c
         <h3 class="contact-bloc-t">DÉFINIR TON NIVEAU</h3>
       </div>
       <p>Réponds à 10 questions. Reçois ton profil instantané — points forts et axes de progression — avec une recommandation personnalisée.</p>
-      <p style="font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:rgba(201,168,76,0.6);margin-top:1rem;line-height:1.6;border-left:2px solid rgba(201,168,76,0.3);padding-left:0.8rem;">✦ 50% de la Journée Découverte déduits si inscription au Niveau 1 dans les 30 jours.</p>
+      <p style="font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:rgba(201,168,76,0.6);margin-top:1rem;line-height:1.6;border-left:2px solid rgba(201,168,76,0.3);padding-left:0.8rem;">✦ 50% du Stage Découverte déduits si inscription au Stage Initiation dans les 3 mois.</p>
       <p style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;letter-spacing:0.08em;color:rgba(244,240,232,0.2);margin-top:0.5rem;">Les remises ne sont pas cumulables.</p>
       <a href="questionnaire.html" class="btn-p" style="width:100%;display:flex;align-items:center;justify-content:center;margin-top:auto;min-height:56px;padding:0 1rem;box-sizing:border-box;">Commencer le questionnaire</a>
     </div>
@@ -866,7 +868,7 @@ footer { padding:3rem; border-top:1px solid var(--gris); display:flex; justify-c
     <div id="sos-form-bloc">
       <p class="sos-modal-tag">· · · — — — · · ·</p>
       <h2 class="sos-modal-titre">VOUS AVEZ<br>TROUVÉ.</h2>
-      <p class="sos-modal-desc">Laissez votre nom et votre email. Vous recevrez un code de réduction de <strong style="color:var(--or);">−20%</strong> sur le Parcours Initiation Niveau 1.</p>
+      <p class="sos-modal-desc">Laissez votre nom et votre email. Vous recevrez un code de réduction de <strong style="color:var(--or);">−20%</strong> sur le Stage Initiation.</p>
       <p style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;letter-spacing:0.08em;color:rgba(244,240,232,0.25);margin-bottom:1.5rem;">Non cumulable avec d'autres offres.</p>
       <div class="sos-champ"><label>Prénom & Nom</label><input type="text" id="sos-nom" placeholder="Denis Deblevid"></div>
       <div class="sos-champ"><label>Email</label><input type="email" id="sos-email" placeholder="contact@exemple.fr"></div>
@@ -874,7 +876,7 @@ footer { padding:3rem; border-top:1px solid var(--gris); display:flex; justify-c
     </div>
     <div class="sos-confirm" id="sos-confirm">
       <p class="sos-confirm-titre">CODE ENVOYÉ.</p>
-      <p class="sos-confirm-texte">Votre réduction de <strong style="color:var(--or);">−20%</strong> sur le Parcours Initiation vous sera transmise par email dans les 24h.<br><br>Bienvenue dans Gibbor Roots Process.</p>
+      <p class="sos-confirm-texte">Votre réduction de <strong style="color:var(--or);">−20%</strong> sur le Stage Initiation vous sera transmise par email dans les 24h.<br><br>Bienvenue dans Gibbor Roots Process.</p>
     </div>
   </div>
 </div>
@@ -895,7 +897,7 @@ function detecterMorse(duree){const type=duree<300?'short':'long';morseSequence.
 document.querySelectorAll('.hero-main-corner .main-bloc, .titre-avec-main .main-bloc, #hero-main-mobile').forEach(main=>{main.addEventListener('mousedown',()=>{pressStart=Date.now();});main.addEventListener('mouseup',()=>{const duree=Date.now()-pressStart;detecterMorse(duree);});main.addEventListener('touchstart',(e)=>{e.preventDefault();pressStart=Date.now();});main.addEventListener('touchend',(e)=>{e.preventDefault();const duree=Date.now()-pressStart;detecterMorse(duree);});});
 function ouvrirSOS(){document.getElementById('sos-overlay').classList.add('active');}
 function fermerSOS(){document.getElementById('sos-overlay').classList.remove('active');document.getElementById('sos-confirm').classList.remove('visible');document.getElementById('sos-form-bloc').style.display='block';}
-function envoyerSOS(){const nom=document.getElementById('sos-nom').value;const email=document.getElementById('sos-email').value;if(!nom||!email){alert('Merci de renseigner votre nom et votre email.');return;}const sujet=encodeURIComponent('CODE SOS — Gibbor Roots Process — '+nom);const corps=encodeURIComponent('NOUVEAU CODE SOS DÉCLENCHÉ\n\nNom : '+nom+'\nEmail : '+email+'\n\nCette personne a trouvé la séquence SOS morse.\nLui envoyer le code −20% sur le Parcours Initiation Niveau 1.');window.open('mailto:denisdeblevidcontact@gmail.com?subject='+sujet+'&body='+corps);document.getElementById('sos-form-bloc').style.display='none';document.getElementById('sos-confirm').classList.add('visible');}
+function envoyerSOS(){const nom=document.getElementById('sos-nom').value;const email=document.getElementById('sos-email').value;if(!nom||!email){alert('Merci de renseigner votre nom et votre email.');return;}const sujet=encodeURIComponent('CODE SOS — Gibbor Roots Process — '+nom);const corps=encodeURIComponent('NOUVEAU CODE SOS DÉCLENCHÉ\n\nNom : '+nom+'\nEmail : '+email+'\n\nCette personne a trouvé la séquence SOS morse.\nLui envoyer le code −20% sur le Stage Initiation.');window.open('mailto:denisdeblevidcontact@gmail.com?subject='+sujet+'&body='+corps);document.getElementById('sos-form-bloc').style.display='none';document.getElementById('sos-confirm').classList.add('visible');}
 document.getElementById('sos-overlay').addEventListener('click',function(e){if(e.target===this)fermerSOS();});
 </script>
 
